@@ -1,9 +1,10 @@
 <p align="center">
-	<img alt="Fastis" src="Documentation/top_screen.jpg" srcset="top_screen@2x.jpg 2x">
+	<img alt="Fastis" src="https://github.com/retailcrm/Fastis/raw/master/Documentation/top_screen.jpg" srcset="top_screen@2x.jpg 2x">
 </p>
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![swift-package-manager](https://img.shields.io/badge/SwiftPM-compatible-brightgreen.svg?style=flat)](https://github.com/apple/swift-package-manager)
+[![SwiftMP compatible](https://img.shields.io/badge/SwiftPM-compatible-brightgreen.svg?style=flat)](https://github.com/apple/swift-package-manager)
+[![Cocoapods compatible](https://img.shields.io/cocoapods/v/Fastis.svg)](https://cocoapods.org/pods/Fastis)
 [![Swift](https://img.shields.io/badge/Swift-5-green.svg?style=flat)](https://swift.org)
 [![Xcode](https://img.shields.io/badge/Xcode-11-blue.svg?style=flat)](https://developer.apple.com/xcode)
 [![License](https://img.shields.io/badge/license-mit-brightgreen.svg?style=flat)](https://en.wikipedia.org/wiki/MIT_License)
@@ -36,6 +37,32 @@ Fastis is a fully customizable UI component for picking dates and ranges created
 
 ## Instalation
 
+### CocoaPods
+
+[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
+
+```bash
+$ gem install cocoapods
+```
+
+To integrate Fastis into your Xcode project using CocoaPods, specify it in your `Podfile`:
+
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '11.0'
+use_frameworks!
+
+target '<Your Target Name>' do
+    pod 'Fastis', '~> 1.0.0'
+end
+```
+
+Then, run the following command:
+
+```bash
+$ pod install
+```
+
 ### Carthage
 
 [Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
@@ -53,7 +80,12 @@ To integrate Fastis into your Xcode project using Carthage, specify it in your `
 github "retailcrm/Fastis" ~> 1.0.0
 ```
 
-Run `carthage update` to build the framework, drag the built `Fastis.framework`, `SnapKit.framewok`, `PrettyCards.framework` and `JTAppleCalendar.framework` into your Xcode project.
+Run `carthage update` to build the framework, drag the following framework into your Xcode project:
+
+- `Fastis.framework`
+- `SnapKit.framewok`
+- `PrettyCards.framework` 
+- `JTAppleCalendar.framework`
 
 ### Swift Package Manager
 
@@ -134,14 +166,14 @@ var maximumDate: Date? = nil
 var selectMonthOnHeaderTap: Bool = true
 ```
 
-- `shortcuts `- Shortcuts array. Default value is `[]`. See [Shortcuts](#shortcuts) section
-- `allowsToChooseNilDate `- Allow to choose `nil` date. If you set `true` done button will be wlways enabled. Default value is `false`.
-- `dismissHandler `- The block to execute after the dismissal finishes. Default value is `nil`.
-- `doneHandler `- The block to execute after "Done" button will be tapped. Default value is `nil`.
-- `initialValue `- And initial value which will be selected bu default. Default value is `nil`.
-- `minimumDate `-  Minimal selection date. Dates less then current will be markes as unavailable. Default value is `nil`.
-- `maximumDate `- Maximum selection date. Dates greather then current will be markes as unavailable. Default value is `nil`.
-- `selectMonthOnHeaderTap ` (Only for `.range` mode) - Set this variable to `true` if you want to allow select date ranges by tapping on months. Default value is `true`.
+- `shortcuts`- Shortcuts array. Default value is `[]`. See [Shortcuts](#shortcuts) section
+- `allowsToChooseNilDate`- Allow to choose `nil` date. If you set `true` done button will be wlways enabled. Default value is `false`.
+- `dismissHandler`- The block to execute after the dismissal finishes. Default value is `nil`.
+- `doneHandler`- The block to execute after "Done" button will be tapped. Default value is `nil`.
+- `initialValue`- And initial value which will be selected bu default. Default value is `nil`.
+- `minimumDate`-  Minimal selection date. Dates less then current will be markes as unavailable. Default value is `nil`.
+- `maximumDate`- Maximum selection date. Dates greather then current will be markes as unavailable. Default value is `nil`.
+- `selectMonthOnHeaderTap` (Only for `.range` mode) - Set this variable to `true` if you want to allow select date ranges by tapping on months. Default value is `true`.
 
 ### Shortcuts
 
