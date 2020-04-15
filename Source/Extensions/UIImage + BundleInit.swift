@@ -8,10 +8,13 @@
 
 import UIKit
 
+fileprivate class BundleId {}
+
 extension UIImage {
     
     internal convenience init?(named: String) {
-        self.init(named: named, in: Bundle(identifier: "com.retaildriver.Fastis"), compatibleWith: nil)
+        let podBundle = Bundle(for: BundleId.self)
+        self.init(named: named, in: podBundle, compatibleWith: nil)
     }
     
 }
