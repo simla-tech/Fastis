@@ -19,8 +19,8 @@ Pod::Spec.new do |s|
   s.source_files = 'Source/**/*.swift'
   s.resources = "Source/*.xcassets"
 
-  s.dependency 'SnapKit', '~> 5.0.1'
-  s.dependency 'JTAppleCalendar', '~> 8.0.3'
-  s.dependency 'PrettyCards', '~> 1.0.3'
+  s.dependency 'SnapKit', '~> 5.0.0'
+  s.dependency 'JTAppleCalendar', '~> 8.0.0'
+  s.dependency 'PrettyCards', '~> 1.0.0'
 
 end
