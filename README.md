@@ -3,8 +3,10 @@
 </p>
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![swift-package-manager](https://img.shields.io/badge/SwiftPM-compatible-brightgreen.svg?style=flat)](https://github.com/apple/swift-package-manager)
 [![Swift](https://img.shields.io/badge/Swift-5-green.svg?style=flat)](https://swift.org)
 [![Xcode](https://img.shields.io/badge/Xcode-11-blue.svg?style=flat)](https://developer.apple.com/xcode)
+[![License](https://img.shields.io/badge/license-mit-brightgreen.svg?style=flat)](https://en.wikipedia.org/wiki/MIT_License)
 
 Fastis is a fully customizable UI component for picking dates and ranges created using [JTAppleCalendar](https://github.com/patchthecode/JTAppleCalendar) library.
 
