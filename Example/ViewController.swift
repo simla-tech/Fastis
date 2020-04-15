@@ -72,7 +72,7 @@ class ViewController: UIViewController {
     // MARK: - Configuration
     
     private func configureFastis() {
-
+        FastisConfig.default.monthHeader.labelColor = .red
     }
     
     private func configureUI() {
@@ -106,7 +106,7 @@ class ViewController: UIViewController {
         fastisController.initialValue = self.currentValue as? FastisRange
         fastisController.minimumDate = Calendar.current.date(byAdding: .month, value: -1, to: Date())
         fastisController.maximumDate = Date()
-        fastisController.allowsToChooseNilDate = true
+        fastisController.allowToChooseNilDate = true
         fastisController.shortcuts = [.today, .lastWeek, .lastMonth]
         fastisController.doneHandler = { newValue in
             self.currentValue = newValue

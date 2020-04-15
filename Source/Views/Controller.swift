@@ -23,7 +23,7 @@ public class FastisController<Value: FastisValue>: UIViewController, JTACMonthVi
     private lazy var doneBarButtonItem: UIBarButtonItem = {
         let barButtonItem = UIBarButtonItem(title: self.appearance.doneButtonTitle, style: .done, target: self, action: #selector(self.done))
         barButtonItem.tintColor = self.appearance.barButtonItemsColor
-        barButtonItem.isEnabled = self.allowsToChooseNilDate
+        barButtonItem.isEnabled = self.allowToChooseNilDate
         return barButtonItem
     }()
     
@@ -93,16 +93,54 @@ public class FastisController<Value: FastisValue>: UIViewController, JTACMonthVi
         didSet {
             self.updateSelectedShortcut()
             self.currentValueView.currentValue = self.value
-            self.doneBarButtonItem.isEnabled = self.allowsToChooseNilDate || self.value != nil
+            self.doneBarButtonItem.isEnabled = self.allowToChooseNilDate || self.value != nil
         }
     }
     
+    /**
+     Shortcuts array
+     
+     You can use prepered shortcuts depending on the current mode.
+     
+     - For `.single` mode: `.today`, `.tomorrow`, `.yesterday`
+     - For `.range` mode: `.today`, `.lastWeek`, `.lastMonth`
+     
+     Or you can create your own shortcuts:
+     
+     ```
+     var customShortcut = FastisShortcut(name: "Today") {
+         let now = Date()
+         return FastisRange(from: now.startOfDay(), to: now.endOfDay())
+     }
+     ```
+     */
     public var shortcuts: [FastisShortcut<Value>] = []
-    public var allowsToChooseNilDate: Bool = false
+    
+    /**
+     Allow to choose `nil` date
+     
+     If you set `true` done button will be wlways enabled
+     */
+    public var allowToChooseNilDate: Bool = false
+    
+    /**
+     The block to execute after the dismissal finishes
+     */
     public var dismissHandler: (() -> Void)?
+    
+    /**
+    The block to execute after "Done" button will be tapped
+    */
     public var doneHandler: ((Value?) -> Void)?
+    
+    /**
+     And initial value which will be selected bu default
+     */
     public var initialValue: Value?
     
+    /**
+     Minimal selection date. Dates less then current will be markes as unavailable
+     */
     public var minimumDate: Date? {
         set {
             self.privateMinimumDate = newValue?.startOfDay()
@@ -112,6 +150,9 @@ public class FastisController<Value: FastisValue>: UIViewController, JTACMonthVi
         }
     }
     
+    /**
+    Maximum selection date. Dates greather then current will be markes as unavailable
+    */
     public var maximumDate: Date? {
         set {
             self.privateMaximumDate = newValue?.endOfDay()
@@ -146,6 +187,15 @@ public class FastisController<Value: FastisValue>: UIViewController, JTACMonthVi
         super.present(viewControllerToPresent, animated: flag, completion: completion)
     }
     
+    /**
+     Present FastisController above current top view controller
+     
+     - Parameters:
+        - viewController: view controller which will present FastisController
+        - flag: Pass true to animate the presentation; otherwise, pass false.
+        - completion: The block to execute after the presentation finishes. This block has no return value and takes no parameters. You may specify nil for this parameter.
+     
+     */
     public func present(above viewController: UIViewController, animated flag: Bool = true, completion: (() -> Void)? = nil) {
         let navVc = UINavigationController(rootViewController: self)
         navVc.modalTransitionStyle = viewController.modalTransitionStyle
@@ -428,11 +478,18 @@ public class FastisController<Value: FastisValue>: UIViewController, JTACMonthVi
 
 extension FastisController where Value == FastisRange {
     
+    /// Initiate FastisController
+    /// - Parameters:
+    ///   - mode: Choose `.range` or `.single` mode
+    ///   - config: Custom configuration parameters. Default value is equal to `FastisConfig.default`
     public convenience init(mode: FastisModeRange, config: FastisConfig = .default) {
         self.init(config: config)
         self.selectMonthOnHeaderTap = true
     }
     
+    /**
+     Set this variable to `true` if you want to allow select date ranges by tapping on months
+     */
     public var selectMonthOnHeaderTap: Bool {
         set {
             self.privateSelectMonthOnHeaderTap = newValue
@@ -445,9 +502,15 @@ extension FastisController where Value == FastisRange {
 }
 
 extension FastisController where Value == Date {
+    
+    /// Initiate FastisController
+    /// - Parameters:
+    ///   - mode: Choose .range or .single mode
+    ///   - config: Custom configuration parameters. Default value is equal to `FastisConfig.default`
     public convenience init(mode: FastisModeSingle, config: FastisConfig = .default) {
         self.init(config: config)
     }
+    
 }
 
 extension FastisConfig {
