@@ -3,13 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0880EAA57CFAF5A27C8E4C24 /* Pods_Fastis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A0CF85646F8F3B3BCD1A324 /* Pods_Fastis.framework */; };
+		297050AF7CC8D1891592B026 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2304B306CDE2F72C878566BD /* Pods_Example.framework */; };
 		F362EAD824405ADB0006046F /* Fastis.h in Headers */ = {isa = PBXBuildFile; fileRef = F362EAD624405ADB0006046F /* Fastis.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F362EAE024405B380006046F /* JTAppleCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = F362EADF24405B380006046F /* JTAppleCalendar */; };
-		F362EAE524405C510006046F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = F362EAE424405C510006046F /* SnapKit */; };
 		F362EAE724405F150006046F /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F362EAE624405F150006046F /* Controller.swift */; };
 		F36CBED12440ADD800071677 /* MonthHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36CBED02440ADD800071677 /* MonthHeader.swift */; };
 		F36CBED32440ADE400071677 /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36CBED22440ADE400071677 /* DayCell.swift */; };
@@ -28,7 +28,6 @@
 		F3A4543A24459EAB00E692BD /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A4543924459EAB00E692BD /* Config.swift */; };
 		F3B3E4B02445C849006320A7 /* Shortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B3E4AF2445C849006320A7 /* Shortcut.swift */; };
 		F3B3E4B22445D952006320A7 /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B3E4B12445D952006320A7 /* Value.swift */; };
-		F3B3E4B52445F4AA006320A7 /* PrettyCards in Frameworks */ = {isa = PBXBuildFile; productRef = F3B3E4B42445F4AA006320A7 /* PrettyCards */; };
 		F3EBC9712445C6F500A646BB /* ShortcutContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EBC9702445C6F500A646BB /* ShortcutContainerView.swift */; };
 		F3EBC9732445C70000A646BB /* ShortcutItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EBC9722445C70000A646BB /* ShortcutItemView.swift */; };
 /* End PBXBuildFile section */
@@ -58,6 +57,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2304B306CDE2F72C878566BD /* Pods_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C59D172337A795FC7BB5583 /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.debug.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
+		9A0CF85646F8F3B3BCD1A324 /* Pods_Fastis.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fastis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A06CE2D92C5B4B1B06281FC3 /* Pods-Fastis.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fastis.release.xcconfig"; path = "Target Support Files/Pods-Fastis/Pods-Fastis.release.xcconfig"; sourceTree = "<group>"; };
+		B6DA5F5625B527F7C3DD6D6D /* Pods-Fastis.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fastis.debug.xcconfig"; path = "Target Support Files/Pods-Fastis/Pods-Fastis.debug.xcconfig"; sourceTree = "<group>"; };
+		BD05CC6F2BCC87B3396F7D72 /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
 		F362EAD324405ADB0006046F /* Fastis.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Fastis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F362EAD624405ADB0006046F /* Fastis.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Fastis.h; sourceTree = "<group>"; };
 		F362EAD724405ADB0006046F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -88,9 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F362EAE024405B380006046F /* JTAppleCalendar in Frameworks */,
-				F362EAE524405C510006046F /* SnapKit in Frameworks */,
-				F3B3E4B52445F4AA006320A7 /* PrettyCards in Frameworks */,
+				0880EAA57CFAF5A27C8E4C24 /* Pods_Fastis.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,12 +102,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3A4542924459C6A00E692BD /* Fastis.framework in Frameworks */,
+				297050AF7CC8D1891592B026 /* Pods_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A74AB3733A0AAF4DF73E40FE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B6DA5F5625B527F7C3DD6D6D /* Pods-Fastis.debug.xcconfig */,
+				A06CE2D92C5B4B1B06281FC3 /* Pods-Fastis.release.xcconfig */,
+				5C59D172337A795FC7BB5583 /* Pods-Example.debug.xcconfig */,
+				BD05CC6F2BCC87B3396F7D72 /* Pods-Example.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		F362EAC924405ADB0006046F = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +127,7 @@
 				F3A4541524459BE400E692BD /* Example */,
 				F362EAD424405ADB0006046F /* Products */,
 				F3A4542824459C6A00E692BD /* Frameworks */,
+				A74AB3733A0AAF4DF73E40FE /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -152,6 +168,8 @@
 		F3A4542824459C6A00E692BD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A0CF85646F8F3B3BCD1A324 /* Pods_Fastis.framework */,
+				2304B306CDE2F72C878566BD /* Pods_Example.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -208,6 +226,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F362EADB24405ADB0006046F /* Build configuration list for PBXNativeTarget "Fastis" */;
 			buildPhases = (
+				D41D50A4F2D9C33F4CEFA4D5 /* [CP] Check Pods Manifest.lock */,
 				F362EACE24405ADB0006046F /* Headers */,
 				F362EACF24405ADB0006046F /* Sources */,
 				F362EAD024405ADB0006046F /* Frameworks */,
@@ -218,11 +237,6 @@
 			dependencies = (
 			);
 			name = Fastis;
-			packageProductDependencies = (
-				F362EADF24405B380006046F /* JTAppleCalendar */,
-				F362EAE424405C510006046F /* SnapKit */,
-				F3B3E4B42445F4AA006320A7 /* PrettyCards */,
-			);
 			productName = Fastis;
 			productReference = F362EAD324405ADB0006046F /* Fastis.framework */;
 			productType = "com.apple.product-type.framework";
@@ -231,10 +245,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F3A4542724459BE700E692BD /* Build configuration list for PBXNativeTarget "Example" */;
 			buildPhases = (
+				2A125D31A29D3EF4CB1E10D9 /* [CP] Check Pods Manifest.lock */,
 				F3A4541024459BE400E692BD /* Sources */,
 				F3A4541124459BE400E692BD /* Frameworks */,
 				F3A4541224459BE400E692BD /* Resources */,
 				F3A4542D24459C6A00E692BD /* Embed Frameworks */,
+				06FA73C1933C6808D5FEEDF3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -274,11 +290,6 @@
 				Base,
 			);
 			mainGroup = F362EAC924405ADB0006046F;
-			packageReferences = (
-				F362EADE24405B380006046F /* XCRemoteSwiftPackageReference "JTAppleCalendar" */,
-				F362EAE324405C510006046F /* XCRemoteSwiftPackageReference "SnapKit" */,
-				F3B3E4B32445F4AA006320A7 /* XCRemoteSwiftPackageReference "PrettyCards" */,
-			);
 			productRefGroup = F362EAD424405ADB0006046F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -308,6 +319,70 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		06FA73C1933C6808D5FEEDF3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Example/Pods-Example-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Example/Pods-Example-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Example/Pods-Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2A125D31A29D3EF4CB1E10D9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Example-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D41D50A4F2D9C33F4CEFA4D5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Fastis-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F362EACF24405ADB0006046F /* Sources */ = {
@@ -483,6 +558,7 @@
 		};
 		F362EADC24405ADB0006046F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6DA5F5625B527F7C3DD6D6D /* Pods-Fastis.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -510,6 +586,7 @@
 		};
 		F362EADD24405ADB0006046F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A06CE2D92C5B4B1B06281FC3 /* Pods-Fastis.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -536,6 +613,7 @@
 		};
 		F3A4542524459BE700E692BD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5C59D172337A795FC7BB5583 /* Pods-Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -555,6 +633,7 @@
 		};
 		F3A4542624459BE700E692BD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BD05CC6F2BCC87B3396F7D72 /* Pods-Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -605,51 +684,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		F362EADE24405B380006046F /* XCRemoteSwiftPackageReference "JTAppleCalendar" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/patchthecode/JTAppleCalendar";
-			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 8.0.3;
-			};
-		};
-		F362EAE324405C510006046F /* XCRemoteSwiftPackageReference "SnapKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SnapKit/SnapKit";
-			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 5.0.1;
-			};
-		};
-		F3B3E4B32445F4AA006320A7 /* XCRemoteSwiftPackageReference "PrettyCards" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ilia3546/PrettyCards";
-			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 1.0.3;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		F362EADF24405B380006046F /* JTAppleCalendar */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F362EADE24405B380006046F /* XCRemoteSwiftPackageReference "JTAppleCalendar" */;
-			productName = JTAppleCalendar;
-		};
-		F362EAE424405C510006046F /* SnapKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F362EAE324405C510006046F /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = SnapKit;
-		};
-		F3B3E4B42445F4AA006320A7 /* PrettyCards */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F3B3E4B32445F4AA006320A7 /* XCRemoteSwiftPackageReference "PrettyCards" */;
-			productName = PrettyCards;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F362EACA24405ADB0006046F /* Project object */;
 }

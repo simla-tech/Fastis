@@ -1,0 +1,24 @@
+PODS:
+  - JTAppleCalendar (8.0.3)
+  - PrettyCards (1.0.3)
+  - SnapKit (5.0.1)
+
+DEPENDENCIES:
+  - JTAppleCalendar (~> 8.0.0)
+  - PrettyCards (~> 1.0.0)
+  - SnapKit (~> 5.0.0)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - JTAppleCalendar
+    - PrettyCards
+    - SnapKit
+
+SPEC CHECKSUMS:
+  JTAppleCalendar: 932cadea40b1051beab10f67843451d48ba16c99
+  PrettyCards: 14d7c36a286cbd25ba29d351e9c5473f8c94ca6f
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+
+PODFILE CHECKSUM: d1adc9b29c5bab07aa870d8c1fcd1bb3074419f2
+
+COCOAPODS: 1.9.1
