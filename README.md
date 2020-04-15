@@ -1,5 +1,5 @@
 <p align="center">
-	<img alt="Fastis" src="https://github.com/retailcrm/Fastis/raw/master/Documentation/top_screen.jpg" srcset="top_screen@2x.jpg 2x">
+	<img alt="Fastis" src="https://github.com/retailcrm/Fastis/raw/master/Documentation/top_screen.jpg" width="356">
 </p>
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
