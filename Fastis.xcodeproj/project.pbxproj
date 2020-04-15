@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F308406724478770007DC416 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F308406424478770007DC416 /* SnapKit.framework */; };
+		F308406924478770007DC416 /* JTAppleCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F308406524478770007DC416 /* JTAppleCalendar.framework */; };
+		F308406B24478770007DC416 /* PrettyCards.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F308406624478770007DC416 /* PrettyCards.framework */; };
 		F362EAD824405ADB0006046F /* Fastis.h in Headers */ = {isa = PBXBuildFile; fileRef = F362EAD624405ADB0006046F /* Fastis.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F362EAE724405F150006046F /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F362EAE624405F150006046F /* Controller.swift */; };
 		F36CBED12440ADD800071677 /* MonthHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36CBED02440ADD800071677 /* MonthHeader.swift */; };
@@ -27,6 +30,9 @@
 /* Begin PBXFileReference section */
 		2304B306CDE2F72C878566BD /* Pods_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A0CF85646F8F3B3BCD1A324 /* Pods_Fastis.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fastis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F308406424478770007DC416 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
+		F308406524478770007DC416 /* JTAppleCalendar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JTAppleCalendar.framework; path = Carthage/Build/iOS/JTAppleCalendar.framework; sourceTree = "<group>"; };
+		F308406624478770007DC416 /* PrettyCards.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PrettyCards.framework; path = Carthage/Build/iOS/PrettyCards.framework; sourceTree = "<group>"; };
 		F362EAD324405ADB0006046F /* Fastis.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Fastis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F362EAD624405ADB0006046F /* Fastis.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Fastis.h; sourceTree = "<group>"; };
 		F362EAD724405ADB0006046F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -51,6 +57,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F308406B24478770007DC416 /* PrettyCards.framework in Frameworks */,
+				F308406724478770007DC416 /* SnapKit.framework in Frameworks */,
+				F308406924478770007DC416 /* JTAppleCalendar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +99,9 @@
 		F3A4542824459C6A00E692BD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F308406524478770007DC416 /* JTAppleCalendar.framework */,
+				F308406624478770007DC416 /* PrettyCards.framework */,
+				F308406424478770007DC416 /* SnapKit.framework */,
 				9A0CF85646F8F3B3BCD1A324 /* Pods_Fastis.framework */,
 				2304B306CDE2F72C878566BD /* Pods_Example.framework */,
 			);
@@ -361,6 +373,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Source/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -388,6 +404,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Source/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
