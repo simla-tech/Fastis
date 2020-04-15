@@ -66,14 +66,9 @@ class ViewController: UIViewController {
         self.configureUI()
         self.configureSubviews()
         self.configureConstraints()
-        self.configureFastis()
     }
     
     // MARK: - Configuration
-    
-    private func configureFastis() {
-        FastisConfig.default.monthHeader.labelColor = .red
-    }
     
     private func configureUI() {
         self.view.backgroundColor = .white

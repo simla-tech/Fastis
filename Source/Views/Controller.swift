@@ -182,11 +182,6 @@ public class FastisController<Value: FastisValue>: UIViewController, JTACMonthVi
         self.configureInitialState()
     }
     
-    @available(*, unavailable, message: "Use .present(above:) instead")
-    public override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
-        super.present(viewControllerToPresent, animated: flag, completion: completion)
-    }
-    
     /**
      Present FastisController above current top view controller
      
@@ -383,7 +378,7 @@ public class FastisController<Value: FastisValue>: UIViewController, JTACMonthVi
         var startDate = dateFormatter.date(from: "2000 01 01")!
         var endDate = dateFormatter.date(from: "2030 12 01")!
         
-        if let maximumDate = self.privateMinimumDate,
+        if let maximumDate = self.privateMaximumDate,
             let endOfNextMonth = self.currentCalendar.date(byAdding: .month, value: 2, to: maximumDate)?
                 .endOfMonth(in: self.currentCalendar) {
             endDate = endOfNextMonth
@@ -412,8 +407,8 @@ public class FastisController<Value: FastisValue>: UIViewController, JTACMonthVi
         header.configure(for: range.start)
         if self.privateSelectMonthOnHeaderTap, Value.mode == .range {
             header.tapHandler = {
-                var fromDate = range.start.startOfMonth(in: self.currentCalendar).startOfDay(in: self.currentCalendar)
-                var toDate = range.end.endOfMonth(in: self.currentCalendar).endOfDay(in: self.currentCalendar)
+                var fromDate = range.start.startOfMonth(in: self.currentCalendar)
+                var toDate = range.end.endOfMonth(in: self.currentCalendar)
                 if let minDate = self.minimumDate {
                     if toDate < minDate { return }
                     else if fromDate < minDate {
@@ -471,7 +466,7 @@ public class FastisController<Value: FastisValue>: UIViewController, JTACMonthVi
     }
     
     public func calendarSizeForMonths(_ calendar: JTACMonthView?) -> MonthSize? {
-        return FastisConfig.default.monthHeader.size
+        return self.config.monthHeader.size
     }
     
 }
