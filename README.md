@@ -53,7 +53,7 @@ To integrate Fastis into your Xcode project using Carthage, specify it in your `
 github "retailcrm/Fastis" ~> 1.0.0
 ```
 
-Run `carthage update` to build the framework and drag the built `Fastis.framework` into your Xcode project.
+Run `carthage update` to build the framework, drag the built `Fastis.framework`, `SnapKit.framewok`, `PrettyCards.framework` and `JTAppleCalendar.framework` into your Xcode project.
 
 ### Swift Package Manager
 
