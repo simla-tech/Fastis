@@ -3,6 +3,8 @@
 </p>
 
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Swift](https://img.shields.io/badge/Swift-5-green.svg?style=flat)](https://swift.org)
+[![Xcode](https://img.shields.io/badge/Xcode-11-blue.svg?style=flat)](https://developer.apple.com/xcode)
 
 Fastis is a fully customizable UI component for picking dates and ranges created using [JTAppleCalendar](https://github.com/patchthecode/JTAppleCalendar) library.
 
@@ -151,7 +153,7 @@ In Fasis available some prepared shortcuts for each mode:
 
 Also you can create your own shortcut:     
 
-```
+```swift
 var customShortcut = FastisShortcut(name: "Today") {
 	let now = Date()
 	return FastisRange(from: now.startOfDay(), to: now.endOfDay())

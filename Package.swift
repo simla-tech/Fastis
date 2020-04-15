@@ -33,8 +33,15 @@ let package = Package(
     products: [
         .library(name: "Fastis", targets: ["Fastis"]),
     ],
+    dependencies: [
+        .package(url: "https://github.com/patchthecode/JTAppleCalendar", from: "8.0.3"),
+        .package(url: "https://github.com/SnapKit/SnapKit", from: "5.0.1"),
+        .package(url: "https://github.com/ilia3546/PrettyCards", from: "1.0.3")
+    ],
     targets: [
-        .target(name: "Fastis", path: "Source")
+        .target(name: "Fastis",
+                dependencies: ["JTAppleCalendar", "SnapKit", "PrettyCards"],
+                path: "Source")
     ],
     swiftLanguageVersions: [
         .v5
