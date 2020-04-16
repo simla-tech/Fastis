@@ -164,7 +164,7 @@ public class FastisController<Value: FastisValue>: UIViewController, JTACMonthVi
     
     // MARK: - Lifecycle
     
-    init(config: FastisConfig = .default) {
+    public init(config: FastisConfig = .default) {
         self.config = config
         self.appearance = config.controller
         super.init(nibName: nil, bundle: nil)

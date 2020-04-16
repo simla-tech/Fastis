@@ -33,7 +33,7 @@ public struct FastisRange: FastisValue, Hashable {
         return FastisRange(from: fromDate, to: toDate)
     }
     
-    var onSameDay: Bool {
+    public var onSameDay: Bool {
         return self.fromDate.isInSameDay(date: self.toDate)
     }
     
