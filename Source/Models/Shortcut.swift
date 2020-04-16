@@ -14,6 +14,11 @@ public struct FastisShortcut<Value: FastisValue>: Hashable {
     public var name: String
     public var action: () -> Value
     
+    public init(name: String, action: @escaping () -> Value) {
+        self.name = name
+        self.action = action
+    }
+    
     public func hash(into hasher: inout Hasher) {
         hasher.combine(self.id)
     }
@@ -36,14 +41,14 @@ public struct FastisShortcut<Value: FastisValue>: Hashable {
 extension FastisShortcut where Value == FastisRange {
     
     public static var today: FastisShortcut {
-        return FastisShortcut(name: "Today") { () -> Value in
+        return FastisShortcut(name: "Today") {
             let now = Date()
             return FastisRange(from: now.startOfDay(), to: now.endOfDay())
         }
     }
     
     public static var lastWeek: FastisShortcut {
-        return FastisShortcut(name: "Last week") { () -> Value in
+        return FastisShortcut(name: "Last week") {
             let now = Date()
             let weekAgo = Calendar.current.date(byAdding: .day, value: -7, to: now)!
             return FastisRange(from: weekAgo.startOfDay(), to: now.endOfDay())
@@ -51,7 +56,7 @@ extension FastisShortcut where Value == FastisRange {
     }
     
     public static var lastMonth: FastisShortcut {
-        return FastisShortcut(name: "Last month") { () -> Value in
+        return FastisShortcut(name: "Last month") {
             let now = Date()
             let monthAgo = Calendar.current.date(byAdding: .month, value: -1, to: now)!
             return FastisRange(from: monthAgo.startOfDay(), to: now.endOfDay())
