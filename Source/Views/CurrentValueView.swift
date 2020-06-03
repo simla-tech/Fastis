@@ -44,7 +44,7 @@ class CurrentValueView<Value: FastisValue>: UIView {
     
     private lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.locale = .autoupdatingCurrent
+        formatter.locale = self.config.locale
         formatter.dateFormat = self.config.format
         return formatter
     }()
@@ -155,5 +155,6 @@ extension FastisConfig {
         public var clearButtonTintColor: UIColor = .darkGray
         public var insets: UIEdgeInsets = UIEdgeInsets(top: 8, left: 0, bottom: 24, right: 0)
         public var format: String = "d MMMM"
+        public var locale: Locale = .autoupdatingCurrent
     }
 }
