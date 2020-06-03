@@ -26,7 +26,6 @@ class WeekView: UIView {
     // MARK: - Variables
     
     private let config: FastisConfig.WeekView
-    public var currentCalendar: Calendar = .current
     
     // MARK: - Lifecycle
     
@@ -50,7 +49,7 @@ class WeekView: UIView {
     }
     
     private func configureSubviews() {
-        var weekDays = self.currentCalendar.shortWeekdaySymbols
+        var weekDays = self.config.calendar.shortWeekdaySymbols
         weekDays.append(weekDays.remove(at: 0))
         for weekdaySimbol in weekDays {
             self.stackView.addArrangedSubview(self.makeWeekLabel(for: weekdaySimbol))
@@ -81,6 +80,7 @@ class WeekView: UIView {
 
 extension FastisConfig {
     public struct WeekView {
+        public var calendar: Calendar = .current
         public var backgroundColor: UIColor = .groupTableViewBackground
         public var textColor: UIColor = .darkGray
         public var textFont: UIFont = .systemFont(ofSize: 10, weight: .bold)
