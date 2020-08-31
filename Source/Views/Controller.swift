@@ -151,6 +151,14 @@ public class FastisController<Value: FastisValue>: UIViewController, JTACMonthVi
     }
     
     /**
+     Allow date range changes
+     
+     Set this variable to `false` if you want to disable date range changes.
+     Next tap after selecting range will start new range selection.
+     */
+    public var allowDateRangeChanges: Bool = true
+    
+    /**
     Maximum selection date. Dates greather then current will be markes as unavailable
     */
     public var maximumDate: Date? {
@@ -332,7 +340,11 @@ public class FastisController<Value: FastisValue>: UIViewController, JTACMonthVi
             var newValue: FastisRange!
             if let currentValue = self.value as? FastisRange {
                 
-                if date.isInSameDay(in: self.currentCalendar, date: currentValue.fromDate) {
+                let dateRangeChangesDisabled = !allowDateRangeChanges
+                let rangeSelected = !currentValue.fromDate.isInSameDay(date: currentValue.toDate)
+                if dateRangeChangesDisabled && rangeSelected  {
+                    newValue = .from(date.startOfDay(in: self.currentCalendar), to: date.endOfDay(in: self.currentCalendar))
+                } else if date.isInSameDay(in: self.currentCalendar, date: currentValue.fromDate) {
                     let newToDate = date.endOfDay(in: self.currentCalendar)
                     newValue = .from(currentValue.fromDate, to: newToDate)
                 } else if date.isInSameDay(in: self.currentCalendar, date: currentValue.toDate) {
@@ -493,7 +505,6 @@ extension FastisController where Value == FastisRange {
             return self.privateSelectMonthOnHeaderTap
         }
     }
-    
 }
 
 extension FastisController where Value == Date {

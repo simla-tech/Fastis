@@ -84,7 +84,7 @@ Run `carthage update` to build the framework, drag the following framework into 
 
 - `Fastis.framework`
 - `SnapKit.framewok`
-- `PrettyCards.framework` 
+- `PrettyCards.framework`
 - `JTAppleCalendar.framework`
 
 ### Swift Package Manager
@@ -164,6 +164,7 @@ var initialValue: Value? = nil
 var minimumDate: Date? = nil
 var maximumDate: Date? = nil
 var selectMonthOnHeaderTap: Bool = true
+var allowDateRangeChanges: Bool = true
 ```
 
 - `shortcuts`- Shortcuts array. Default value is `[]`. See [Shortcuts](#shortcuts) section
@@ -174,6 +175,7 @@ var selectMonthOnHeaderTap: Bool = true
 - `minimumDate`-  Minimal selection date. Dates less then current will be markes as unavailable. Default value is `nil`.
 - `maximumDate`- Maximum selection date. Dates greather then current will be markes as unavailable. Default value is `nil`.
 - `selectMonthOnHeaderTap` (Only for `.range` mode) - Set this variable to `true` if you want to allow select date ranges by tapping on months. Default value is `true`.
+- `allowDateRangeChanges` (Only for `.range` mode) - Set this variable to `false` if you want to if you want to disable date range changes. Next tap after selecting range will start new range selection. Default value is `true`.
 
 ### Shortcuts
 
