@@ -58,6 +58,7 @@ class DayCell: JTACDayCell {
     // MARK: - Variables
     
     private var config: FastisConfig.DayCell = FastisConfig.default.dayCell
+    private var rangedBackgroundViewTopBootomConstraints: [Constraint] = []
     
     // MARK: - Lifecycle
     
@@ -85,6 +86,10 @@ class DayCell: JTACDayCell {
         self.selectionBackgroundView.backgroundColor = config.selectedBackgroundColor
         self.dateLabel.font = config.dateLabelFont
         self.dateLabel.textColor = config.dateLabelColor
+        if let cornerRadius = config.customSelectionViewCornerRadius {
+             self.selectionBackgroundView.layer.cornerRadius = cornerRadius
+        }
+        rangedBackgroundViewTopBootomConstraints.map{ $0.update(inset: config.rangedBackgroundViewInset)}
     }
     
     public func configureSubviews() {
@@ -98,24 +103,25 @@ class DayCell: JTACDayCell {
     }
     
     public func configureConstraints() {
+        let inset = config.rangedBackgroundViewInset
         self.rangedBackgroundViewRoundedLeft.snp.makeConstraints { (maker) in
             maker.left.equalToSuperview()
-            maker.bottom.top.equalToSuperview().inset(3)
+            rangedBackgroundViewTopBootomConstraints.append(maker.bottom.top.equalToSuperview().inset(inset).constraint)
             maker.width.equalToSuperview().dividedBy(2)
         }
         self.rangedBackgroundViewSquaredLeft.snp.makeConstraints { (maker) in
             maker.left.equalToSuperview()
-            maker.bottom.top.equalToSuperview().inset(3)
+            rangedBackgroundViewTopBootomConstraints.append(maker.bottom.top.equalToSuperview().inset(inset).constraint)
             maker.width.equalToSuperview().dividedBy(2)
         }
         self.rangedBackgroundViewRoundedRight.snp.makeConstraints { (maker) in
             maker.right.equalToSuperview()
-            maker.bottom.top.equalToSuperview().inset(3)
+            rangedBackgroundViewTopBootomConstraints.append(maker.bottom.top.equalToSuperview().inset(inset).constraint)
             maker.width.equalToSuperview().dividedBy(2)
         }
         self.rangedBackgroundViewSquaredRight.snp.makeConstraints { (maker) in
             maker.right.equalToSuperview()
-            maker.bottom.top.equalToSuperview().inset(3)
+            rangedBackgroundViewTopBootomConstraints.append(maker.bottom.top.equalToSuperview().inset(inset).constraint)
             maker.width.equalToSuperview().dividedBy(2)
         }
         self.selectionBackgroundView.snp.makeConstraints { (maker) in
@@ -307,9 +313,12 @@ extension FastisConfig {
         public var rangeViewCornerRadius: CGFloat = 6
         public var onRangeBackgroundColor: UIColor = UIColor.systemBlue.withAlphaComponent(0.2)
         public var onRangeLabelColor: UIColor = .black
+        public var rangedBackgroundViewInset: CGFloat = 3
         
+        /**
+        This property allows to set custom radius for selection view. Circle is default.
+        */
+        public var customSelectionViewCornerRadius: CGFloat?
     }
-    
+
 }
-
-
