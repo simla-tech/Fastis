@@ -15,12 +15,24 @@ public class FastisController<Value: FastisValue>: UIViewController, JTACMonthVi
     // MARK: - Outlets
     
     private lazy var cancelBarButtonItem: UIBarButtonItem = {
+        if let customButton = self.appearance.customCancelButton {
+            customButton.target = self
+            customButton.action = #selector(self.cancel)
+            return customButton
+        }
+        
         let barButtonItem = UIBarButtonItem(title: self.appearance.cancelButtonTitle, style: .plain, target: self, action: #selector(self.cancel))
         barButtonItem.tintColor = self.appearance.barButtonItemsColor
         return barButtonItem
     }()
     
     private lazy var doneBarButtonItem: UIBarButtonItem = {
+        if let customButton = self.appearance.customDoneButton {
+            customButton.target = self
+            customButton.action = #selector(self.done)
+            return customButton
+        }
+        
         let barButtonItem = UIBarButtonItem(title: self.appearance.doneButtonTitle, style: .done, target: self, action: #selector(self.done))
         barButtonItem.tintColor = self.appearance.barButtonItemsColor
         barButtonItem.isEnabled = self.allowToChooseNilDate
@@ -526,5 +538,7 @@ extension FastisConfig {
         public var titleTextAttributes: [NSAttributedString.Key: Any] = [:]
         public var backgroundColor: UIColor = .white
         public var barButtonItemsColor: UIColor = .systemBlue
+        public var customCancelButton: UIBarButtonItem?
+        public var customDoneButton: UIBarButtonItem?
     }
 }
