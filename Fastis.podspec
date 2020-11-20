@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'Fastis'
-  s.version          = '1.0.12'
+  s.version          = '1.0.13'
   s.summary          = "Simple date picker created using JTAppleCalendar library"
   s.description      = <<-DESC
   Fastis is a fully customizable UI component for picking dates and ranges created using JTAppleCalendar library.
