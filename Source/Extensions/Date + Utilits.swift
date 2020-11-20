@@ -11,7 +11,7 @@ import Foundation
 extension Date {
     
     internal func startOfMonth(in calendar: Calendar = .current) -> Date {
-        return calendar.date(from: calendar.dateComponents([.year, .month], from: calendar.startOfDay(for: self)))!
+        return calendar.date(from: calendar.dateComponents([.year, .month], from: calendar.startOfDay(for: self)))!.startOfDay(in: calendar)
     }
     
     internal func endOfMonth(in calendar: Calendar = .current) -> Date {

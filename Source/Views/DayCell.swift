@@ -89,7 +89,9 @@ class DayCell: JTACDayCell {
         if let cornerRadius = config.customSelectionViewCornerRadius {
              self.selectionBackgroundView.layer.cornerRadius = cornerRadius
         }
-        rangedBackgroundViewTopBootomConstraints.map{ $0.update(inset: config.rangedBackgroundViewInset)}
+        self.rangedBackgroundViewTopBootomConstraints.forEach({
+            $0.update(inset: config.rangedBackgroundViewInset)
+        })
     }
     
     public func configureSubviews() {

@@ -99,8 +99,8 @@ class ViewController: UIViewController {
         let fastisController = FastisController(mode: .range)
         fastisController.title = "Choose range"
         fastisController.initialValue = self.currentValue as? FastisRange
-        fastisController.minimumDate = Calendar.current.date(byAdding: .month, value: -1, to: Date())
-        fastisController.maximumDate = Date()
+        fastisController.minimumDate = Calendar.current.date(byAdding: .month, value: -2, to: Date())
+        fastisController.maximumDate = Calendar.current.date(byAdding: .month, value: 3, to: Date())
         fastisController.allowToChooseNilDate = true
         fastisController.shortcuts = [.today, .lastWeek, .lastMonth]
         fastisController.doneHandler = { newValue in
