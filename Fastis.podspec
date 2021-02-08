@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.social_media_url = 'https://retailcrm.pro'
   s.screenshot       = 'https://github.com/retailcrm/Fastis/raw/master/Documentation/top_screen.jpg'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'Ilya Kharlamov' => 'ilia3546@me.com' }
+  s.author           = { 'Ilya Kharlamov' => 'kharlamov@retailcrm.ru' }
   s.source           = { :git => 'https://github.com/retailcrm/Fastis.git', :tag => s.version.to_s }
 
   s.swift_version = '5.0'
