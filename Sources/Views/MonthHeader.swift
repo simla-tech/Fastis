@@ -11,17 +11,17 @@ import SnapKit
 import JTAppleCalendar
 
 class MonthHeader: JTACMonthReusableView {
-    
+
     // MARK: - Outlets
-    
+
     private lazy var monthLabel: UILabel = {
         let label = UILabel()
         label.text = "Month name"
         return label
     }()
-    
+
     // MARK: - Variables
-    
+
     internal var calculatedHeight: CGFloat = 0
     internal var tapHandler: (() -> Void)?
     private var insetConstraint: Constraint?
@@ -29,9 +29,9 @@ class MonthHeader: JTACMonthReusableView {
         let formatter = DateFormatter()
         return formatter
     }()
-    
+
     // MARK: - Lifecycle
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.configureSubviews()
@@ -40,29 +40,29 @@ class MonthHeader: JTACMonthReusableView {
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.viewTapped))
         self.addGestureRecognizer(tapRecognizer)
     }
-    
+
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Configuration
-    
+
     private func configureSubviews() {
         self.addSubview(self.monthLabel)
     }
-    
+
     private func configureConstraints() {
         self.monthLabel.snp.makeConstraints { (maker) in
             self.insetConstraint = maker.edges.equalToSuperview().constraint
         }
     }
-    
+
     internal func configure(for date: Date) {
         self.monthLabel.text = self.monthFormatter.string(from: date).capitalizingFirstLetter()
     }
-    
+
     // MARK: - Actions
-    
+
     internal func applyConfig(_ config: FastisConfig.MonthHeader) {
         self.monthFormatter.dateFormat = config.monthFormat
         self.monthFormatter.locale = config.monthLocale
@@ -71,15 +71,15 @@ class MonthHeader: JTACMonthReusableView {
         self.monthLabel.textAlignment = config.labelAlignment
         self.insetConstraint?.update(inset: config.insets)
     }
-    
+
     @objc private func viewTapped() {
         self.tapHandler?()
     }
-    
+
 }
 
 extension FastisConfig {
-    
+
     public struct MonthHeader {
         public var labelAlignment: NSTextAlignment = .left
         public var labelColor: UIColor = .black
@@ -89,5 +89,5 @@ extension FastisConfig {
         public var monthLocale: Locale = .current
         public var size: MonthSize = .init(defaultSize: 48)
     }
-    
+
 }

@@ -9,24 +9,24 @@
 import Foundation
 
 public struct FastisShortcut<Value: FastisValue>: Hashable {
-   
+
     private var id: UUID = UUID()
     public var name: String
     public var action: () -> Value
-    
+
     public init(name: String, action: @escaping () -> Value) {
         self.name = name
         self.action = action
     }
-    
+
     public func hash(into hasher: inout Hasher) {
         hasher.combine(self.id)
     }
-    
+
     public static func == (lhs: FastisShortcut<Value>, rhs: FastisShortcut<Value>) -> Bool {
         return lhs.id == rhs.id
     }
-    
+
     internal func isEqual(to value: Value) -> Bool {
         if let date1 = self.action() as? Date, let date2 = value as? Date {
             return date1.isInSameDay(date: date2)
@@ -35,18 +35,18 @@ public struct FastisShortcut<Value: FastisValue>: Hashable {
         }
         return false
     }
-       
+
 }
 
 extension FastisShortcut where Value == FastisRange {
-    
+
     public static var today: FastisShortcut {
         return FastisShortcut(name: "Today") {
             let now = Date()
             return FastisRange(from: now.startOfDay(), to: now.endOfDay())
         }
     }
-    
+
     public static var lastWeek: FastisShortcut {
         return FastisShortcut(name: "Last week") {
             let now = Date()
@@ -54,7 +54,7 @@ extension FastisShortcut where Value == FastisRange {
             return FastisRange(from: weekAgo.startOfDay(), to: now.endOfDay())
         }
     }
-    
+
     public static var lastMonth: FastisShortcut {
         return FastisShortcut(name: "Last month") {
             let now = Date()
@@ -62,27 +62,27 @@ extension FastisShortcut where Value == FastisRange {
             return FastisRange(from: monthAgo.startOfDay(), to: now.endOfDay())
         }
     }
-    
+
 }
 
 extension FastisShortcut where Value == Date {
-    
+
     public static var today: FastisShortcut {
         return FastisShortcut(name: "Today") {
             return Date()
         }
     }
-    
+
     public static var yesterday: FastisShortcut {
         return FastisShortcut(name: "Yesterday") {
             return Calendar.current.date(byAdding: .day, value: -1, to: Date())!
         }
     }
-    
+
     public static var tomorrow: FastisShortcut {
         return FastisShortcut(name: "Tomorrow") {
             return Calendar.current.date(byAdding: .day, value: 1, to: Date())!
         }
     }
-    
+
 }

@@ -16,8 +16,11 @@ Pod::Spec.new do |s|
   s.swift_version = '5.0'
   s.ios.deployment_target = '11.0'
 
-  s.source_files = 'Source/**/*.swift'
-  s.resources = "Source/*.xcassets"
+  s.source_files = [
+      "Sources/**/*.swift",
+      "Derived/Sources/*.swift"
+  ]
+  s.resources = "Resources/*.xcassets"
 
   s.dependency 'SnapKit', '~> 5.0.0'
   s.dependency 'JTAppleCalendar', '~> 8.0.0'

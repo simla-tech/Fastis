@@ -10,15 +10,15 @@ import UIKit
 import SnapKit
 
 class ShortcutContainerView<Value: FastisValue>: UIView {
-    
+
     // MARK: - Outlets
-    
+
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.alwaysBounceHorizontal = true
         return scrollView
     }()
-    
+
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -26,14 +26,14 @@ class ShortcutContainerView<Value: FastisValue>: UIView {
         stackView.alignment = .center
         return stackView
     }()
-    
+
     // MARK: - Variables
-    
+
     private let itemConfig: FastisConfig.ShortcutItemView
     private let config: FastisConfig.ShortcutContainerView
     internal var shortcuts: [FastisShortcut<Value>]
     internal var onSelect: ((FastisShortcut<Value>) -> Void)?
-    
+
     internal var selectedShortcut: FastisShortcut<Value>? {
         didSet {
             var indexOfSelectedShortcut: Int?
@@ -47,7 +47,7 @@ class ShortcutContainerView<Value: FastisValue>: UIView {
     }
 
     // MARK: - Lifecycle
-    
+
     init(config: FastisConfig.ShortcutContainerView, itemConfig: FastisConfig.ShortcutItemView, shortcuts: [FastisShortcut<Value>]) {
         self.config = config
         self.itemConfig = itemConfig
@@ -57,17 +57,17 @@ class ShortcutContainerView<Value: FastisValue>: UIView {
         self.configureSubviews()
         self.configureConstaints()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Configuration
-    
+
     func configureUI() {
         self.backgroundColor = self.config.backgroundColor
     }
-    
+
     func configureSubviews() {
         self.scrollView.addSubview(self.stackView)
         self.addSubview(self.scrollView)
@@ -82,7 +82,7 @@ class ShortcutContainerView<Value: FastisValue>: UIView {
             self.stackView.addArrangedSubview(itemView)
         }
     }
-    
+
     func configureConstaints() {
         self.stackView.snp.makeConstraints { (maker) in
             maker.left.top.right.equalToSuperview().inset(self.config.insets).priority(.high)
@@ -93,9 +93,9 @@ class ShortcutContainerView<Value: FastisValue>: UIView {
             maker.edges.equalTo(self.safeAreaLayoutGuide)
         }
     }
-    
+
     // MARK: - Actions
-    
+
 }
 
 extension FastisConfig {

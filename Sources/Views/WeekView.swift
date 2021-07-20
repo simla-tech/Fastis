@@ -10,9 +10,9 @@ import UIKit
 import SnapKit
 
 class WeekView: UIView {
-    
+
     // MARK: - Outlets
-    
+
     public lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.backgroundColor = .clear
@@ -22,13 +22,13 @@ class WeekView: UIView {
         stackView.alignment = .center
         return stackView
     }()
-    
+
     // MARK: - Variables
-    
+
     private let config: FastisConfig.WeekView
-    
+
     // MARK: - Lifecycle
-    
+
     init(config: FastisConfig.WeekView) {
         self.config = config
         super.init(frame: .zero)
@@ -36,18 +36,18 @@ class WeekView: UIView {
         self.configureSubviews()
         self.configureConstaints()
     }
-  
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Configuration
-    
+
     private func configureUI() {
         self.backgroundColor = self.config.backgroundColor
         self.layer.cornerRadius = self.config.cornerRadius
     }
-    
+
     private func configureSubviews() {
         var weekDays = self.config.calendar.shortWeekdaySymbols
         weekDays.append(weekDays.remove(at: 0))
@@ -56,7 +56,7 @@ class WeekView: UIView {
         }
         self.addSubview(self.stackView)
     }
-    
+
     func makeWeekLabel(for simbol: String) -> UILabel {
         let label = UILabel()
         label.text = self.config.uppercaseWeekName ? simbol.uppercased() : simbol
@@ -65,7 +65,7 @@ class WeekView: UIView {
         label.textAlignment = .center
         return label
     }
-    
+
     private func configureConstaints() {
         self.stackView.snp.makeConstraints { (maker) in
             maker.top.bottom.equalToSuperview()
@@ -75,7 +75,7 @@ class WeekView: UIView {
             maker.height.equalTo(self.config.height)
         }
     }
-    
+
 }
 
 extension FastisConfig {

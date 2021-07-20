@@ -9,11 +9,11 @@
 import Foundation
 
 public struct FastisConfig {
-    
+
     public static var `default` = FastisConfig()
-    
+
     private init() {}
-    
+
     public var controller = FastisConfig.Controller()
     public var monthHeader = FastisConfig.MonthHeader()
     public var dayCell = FastisConfig.DayCell()

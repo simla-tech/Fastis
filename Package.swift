@@ -39,11 +39,11 @@ let package = Package(
         .package(url: "https://github.com/ilia3546/PrettyCards", from: "1.0.4")
     ],
     targets: [
-        .target(name: "Fastis",
-                dependencies: ["JTAppleCalendar", "SnapKit", "PrettyCards"],
-                path: "Source")
+        .target(
+            name: "Fastis",
+            dependencies: ["JTAppleCalendar", "SnapKit", "PrettyCards"],
+            sources: ["Resources", "Sources", "Derived/Sources"]
+        )
     ],
-    swiftLanguageVersions: [
-        .v5
-    ]
+    swiftLanguageVersions: [.v5]
 )

@@ -9,7 +9,7 @@
 import Foundation
 
 extension String {
-    
+
     internal func capitalizingFirstLetter() -> String {
         return prefix(1).capitalized + dropFirst()
     }
@@ -17,5 +17,5 @@ extension String {
     internal mutating func capitalizeFirstLetter() {
         self = self.capitalizingFirstLetter()
     }
-    
+
 }

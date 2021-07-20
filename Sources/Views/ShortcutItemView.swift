@@ -11,9 +11,9 @@ import SnapKit
 import PrettyCards
 
 class ShortcutItemView: UIView {
-    
+
     // MARK: - Outlets
-    
+
     private lazy var container: Card = {
         let card = Card()
         card.backgroundColor = self.config.backgroundColor
@@ -25,7 +25,7 @@ class ShortcutItemView: UIView {
         }
         return card
     }()
-    
+
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.font = self.config.font
@@ -33,12 +33,12 @@ class ShortcutItemView: UIView {
         label.textAlignment = .center
         return label
     }()
-    
+
     // MARK: - Variables
-    
+
     private let config: FastisConfig.ShortcutItemView
     internal var tapHandler: (() -> Void)?
-    
+
     internal var isSelected: Bool = false {
         didSet {
             guard self.isSelected != oldValue else { return }
@@ -48,18 +48,18 @@ class ShortcutItemView: UIView {
             }
         }
     }
-    
+
     internal var name: String? {
-        set {
-            self.nameLabel.text = newValue
-        }
         get {
             return self.nameLabel.text
         }
+        set {
+            self.nameLabel.text = newValue
+        }
     }
-    
+
     // MARK: - Lifecycle
-    
+
     init(config: FastisConfig.ShortcutItemView) {
         self.config = config
         super.init(frame: .zero)
@@ -67,22 +67,22 @@ class ShortcutItemView: UIView {
         self.configureSubviews()
         self.configureConstraints()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Configuration
-    
+
     private func configureUI() {
         self.backgroundColor = .clear
     }
-    
+
     private func configureSubviews() {
         self.container.containerView.addSubview(self.nameLabel)
         self.addSubview(self.container)
     }
-    
+
     private func configureConstraints() {
         self.nameLabel.snp.makeConstraints { (maker) in
             maker.edges.equalToSuperview().inset(self.config.insets)
@@ -91,9 +91,9 @@ class ShortcutItemView: UIView {
             maker.edges.equalToSuperview()
         }
     }
-    
+
     // MARK: - Actions
-    
+
 }
 
 extension FastisConfig {

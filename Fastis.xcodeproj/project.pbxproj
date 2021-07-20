@@ -7,163 +7,238 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F308406724478770007DC416 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F308406424478770007DC416 /* SnapKit.framework */; };
-		F308406924478770007DC416 /* JTAppleCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F308406524478770007DC416 /* JTAppleCalendar.framework */; };
-		F308406B24478770007DC416 /* PrettyCards.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F308406624478770007DC416 /* PrettyCards.framework */; };
-		F362EAD824405ADB0006046F /* Fastis.h in Headers */ = {isa = PBXBuildFile; fileRef = F362EAD624405ADB0006046F /* Fastis.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F362EAE724405F150006046F /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F362EAE624405F150006046F /* Controller.swift */; };
-		F36CBED12440ADD800071677 /* MonthHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36CBED02440ADD800071677 /* MonthHeader.swift */; };
-		F36CBED32440ADE400071677 /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36CBED22440ADE400071677 /* DayCell.swift */; };
-		F36CBED52440B35F00071677 /* WeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36CBED42440B35F00071677 /* WeekView.swift */; };
-		F36CBED72440B7D200071677 /* CurrentValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36CBED62440B7D200071677 /* CurrentValueView.swift */; };
-		F36CBED92440B85E00071677 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F36CBED82440B85E00071677 /* Media.xcassets */; };
-		F3A4543224459E2B00E692BD /* Date + Utilits.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A4543124459E2B00E692BD /* Date + Utilits.swift */; };
-		F3A4543424459E3800E692BD /* UIImage + BundleInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A4543324459E3800E692BD /* UIImage + BundleInit.swift */; };
-		F3A4543624459E5600E692BD /* String + CapitalizeFirstLetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A4543524459E5600E692BD /* String + CapitalizeFirstLetter.swift */; };
-		F3A4543A24459EAB00E692BD /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A4543924459EAB00E692BD /* Config.swift */; };
-		F3B3E4B02445C849006320A7 /* Shortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B3E4AF2445C849006320A7 /* Shortcut.swift */; };
-		F3B3E4B22445D952006320A7 /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B3E4B12445D952006320A7 /* Value.swift */; };
-		F3EBC9712445C6F500A646BB /* ShortcutContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EBC9702445C6F500A646BB /* ShortcutContainerView.swift */; };
-		F3EBC9732445C70000A646BB /* ShortcutItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EBC9722445C70000A646BB /* ShortcutItemView.swift */; };
+		045F283A00F28426533FA88B /* JTAppleCalendar.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75F60139CE1C1BAAD05598AE /* JTAppleCalendar.xcframework */; };
+		07D70424D1FAB461487F20F9 /* Assets+Fastis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFF5C0CD26EAD22811D9EC7 /* Assets+Fastis.swift */; };
+		16579940EDB724EA81E8F365 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AEAB3F3243B10A3C630A7F /* Config.swift */; };
+		22366357B4DD56D14C293B3D /* ShortcutContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AB51BA962EAE9B5F6D9DF1 /* ShortcutContainerView.swift */; };
+		2A91AF866706039C6B1043C8 /* UIImage + BundleInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F631928FFC9A2D2343C239D6 /* UIImage + BundleInit.swift */; };
+		349A2FA03F7FC83141C15AF6 /* String + CapitalizeFirstLetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5182D5077D682F731B17B7A5 /* String + CapitalizeFirstLetter.swift */; };
+		36CBE094138ED7D037A8A2D3 /* CurrentValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA7FF94AC0B0B93CFFF54ED /* CurrentValueView.swift */; };
+		3BA352348CA5FB41E3851DFB /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89C0FDFE5681F22F9B91C338 /* Media.xcassets */; };
+		69E3653EFCDE70F26927965E /* PrettyCards.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7B69490A112BE76727F7449 /* PrettyCards.xcframework */; };
+		6B3CCEBC229C36F3D4E1ED59 /* Bundle+Fastis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874D2E49B7C4443B665D8125 /* Bundle+Fastis.swift */; };
+		85AC80C085AF5512C5B0AF7B /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B5D6875A41F9CA8B576B6D /* Controller.swift */; };
+		9B229AFBD1027AA445061294 /* SnapKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = E806A76AF640C7A3442B6D89 /* SnapKit.xcframework */; };
+		9BDB973EC4B203824C2D83C7 /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA65CA5161FC42EA83C0FED9 /* DayCell.swift */; };
+		AC7322FE9A77857B016AAF04 /* Date + Utilits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FDBE08824AA7EB6B49F03 /* Date + Utilits.swift */; };
+		AF9531BBA62BF40BEED37B0B /* MonthHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3748A011AC0ED13A1CAE7E /* MonthHeader.swift */; };
+		B346817B7BA7C5CE368D1BF1 /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35AF49834639C413D55ADBF /* Value.swift */; };
+		C0E20D9D396174A5C16982A3 /* WeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B475168DB21983D8C9F88D3C /* WeekView.swift */; };
+		C943115A587496B6733F4FA2 /* Shortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FB06A3CF853BD3DDE994BA /* Shortcut.swift */; };
+		D19ECD7AE5626D50FE1733C3 /* ShortcutItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91813571814AD725140743AB /* ShortcutItemView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		C3B3FDD712C812F1A2A8F933 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		2304B306CDE2F72C878566BD /* Pods_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9A0CF85646F8F3B3BCD1A324 /* Pods_Fastis.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fastis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F308406424478770007DC416 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
-		F308406524478770007DC416 /* JTAppleCalendar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JTAppleCalendar.framework; path = Carthage/Build/iOS/JTAppleCalendar.framework; sourceTree = "<group>"; };
-		F308406624478770007DC416 /* PrettyCards.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PrettyCards.framework; path = Carthage/Build/iOS/PrettyCards.framework; sourceTree = "<group>"; };
-		F362EAD324405ADB0006046F /* Fastis.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Fastis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F362EAD624405ADB0006046F /* Fastis.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Fastis.h; sourceTree = "<group>"; };
-		F362EAD724405ADB0006046F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F362EAE624405F150006046F /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
-		F36CBED02440ADD800071677 /* MonthHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthHeader.swift; sourceTree = "<group>"; };
-		F36CBED22440ADE400071677 /* DayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCell.swift; sourceTree = "<group>"; };
-		F36CBED42440B35F00071677 /* WeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekView.swift; sourceTree = "<group>"; };
-		F36CBED62440B7D200071677 /* CurrentValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentValueView.swift; sourceTree = "<group>"; };
-		F36CBED82440B85E00071677 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
-		F3A4543124459E2B00E692BD /* Date + Utilits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Utilits.swift"; sourceTree = "<group>"; };
-		F3A4543324459E3800E692BD /* UIImage + BundleInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + BundleInit.swift"; sourceTree = "<group>"; };
-		F3A4543524459E5600E692BD /* String + CapitalizeFirstLetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + CapitalizeFirstLetter.swift"; sourceTree = "<group>"; };
-		F3A4543924459EAB00E692BD /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		F3B3E4AF2445C849006320A7 /* Shortcut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shortcut.swift; sourceTree = "<group>"; };
-		F3B3E4B12445D952006320A7 /* Value.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Value.swift; sourceTree = "<group>"; };
-		F3EBC9702445C6F500A646BB /* ShortcutContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutContainerView.swift; sourceTree = "<group>"; };
-		F3EBC9722445C70000A646BB /* ShortcutItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutItemView.swift; sourceTree = "<group>"; };
+		12AEAB3F3243B10A3C630A7F /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		3F3748A011AC0ED13A1CAE7E /* MonthHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthHeader.swift; sourceTree = "<group>"; };
+		4CFF5C0CD26EAD22811D9EC7 /* Assets+Fastis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Assets+Fastis.swift"; sourceTree = "<group>"; };
+		5182D5077D682F731B17B7A5 /* String + CapitalizeFirstLetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + CapitalizeFirstLetter.swift"; sourceTree = "<group>"; };
+		53FB06A3CF853BD3DDE994BA /* Shortcut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shortcut.swift; sourceTree = "<group>"; };
+		75F60139CE1C1BAAD05598AE /* JTAppleCalendar.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = JTAppleCalendar.xcframework; sourceTree = "<group>"; };
+		7FA7FF94AC0B0B93CFFF54ED /* CurrentValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentValueView.swift; sourceTree = "<group>"; };
+		86B5D6875A41F9CA8B576B6D /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
+		874D2E49B7C4443B665D8125 /* Bundle+Fastis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Fastis.swift"; sourceTree = "<group>"; };
+		89C0FDFE5681F22F9B91C338 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		91813571814AD725140743AB /* ShortcutItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutItemView.swift; sourceTree = "<group>"; };
+		94AB51BA962EAE9B5F6D9DF1 /* ShortcutContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutContainerView.swift; sourceTree = "<group>"; };
+		9A6FDBE08824AA7EB6B49F03 /* Date + Utilits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Utilits.swift"; sourceTree = "<group>"; };
+		AB08B528E41CF1973BD72A40 /* Fastis.podspec */ = {isa = PBXFileReference; path = Fastis.podspec; sourceTree = "<group>"; };
+		AB5F7943C04C278183C8B119 /* README.MD */ = {isa = PBXFileReference; path = README.MD; sourceTree = "<group>"; };
+		AF741D884D5407EC23E9AD06 /* Fastis.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Fastis.plist; sourceTree = "<group>"; };
+		B475168DB21983D8C9F88D3C /* WeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekView.swift; sourceTree = "<group>"; };
+		B75D88D00274E7A37CFE4ED8 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		C7B69490A112BE76727F7449 /* PrettyCards.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = PrettyCards.xcframework; sourceTree = "<group>"; };
+		C8F2E9F3C4EF5B71AABA676C /* Fastis.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Fastis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E35AF49834639C413D55ADBF /* Value.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Value.swift; sourceTree = "<group>"; };
+		E806A76AF640C7A3442B6D89 /* SnapKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = SnapKit.xcframework; sourceTree = "<group>"; };
+		EA65CA5161FC42EA83C0FED9 /* DayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCell.swift; sourceTree = "<group>"; };
+		F631928FFC9A2D2343C239D6 /* UIImage + BundleInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + BundleInit.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		F362EAD024405ADB0006046F /* Frameworks */ = {
+		F0403FB3A2AFB3FF737F10DE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F308406B24478770007DC416 /* PrettyCards.framework in Frameworks */,
-				F308406724478770007DC416 /* SnapKit.framework in Frameworks */,
-				F308406924478770007DC416 /* JTAppleCalendar.framework in Frameworks */,
+				045F283A00F28426533FA88B /* JTAppleCalendar.xcframework in Frameworks */,
+				69E3653EFCDE70F26927965E /* PrettyCards.xcframework in Frameworks */,
+				9B229AFBD1027AA445061294 /* SnapKit.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F362EAC924405ADB0006046F = {
+		03C26D4CD7DFB348E6FF0410 /* Project */ = {
 			isa = PBXGroup;
 			children = (
-				F362EAD524405ADB0006046F /* Source */,
-				F362EAD424405ADB0006046F /* Products */,
-				F3A4542824459C6A00E692BD /* Frameworks */,
+				0C927E781F8DE63BE2A10C5A /* Derived */,
+				534E847C93A900F598FDE21E /* Resources */,
+				4AE535C551C550A4B36037AB /* Sources */,
+				AF0D7D51A993C5181458D187 /* Tuist */,
+				AB08B528E41CF1973BD72A40 /* Fastis.podspec */,
+				B75D88D00274E7A37CFE4ED8 /* Package.swift */,
+				AB5F7943C04C278183C8B119 /* README.MD */,
 			);
+			name = Project;
 			sourceTree = "<group>";
 		};
-		F362EAD424405ADB0006046F /* Products */ = {
+		09F692A2FB693E3339059D92 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F362EAD324405ADB0006046F /* Fastis.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		F362EAD524405ADB0006046F /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				F3A4543024459E1C00E692BD /* Models */,
-				F3A4542F24459E1400E692BD /* Views */,
-				F3A4542E24459DE900E692BD /* Extensions */,
-				F362EAD624405ADB0006046F /* Fastis.h */,
-				F362EAD724405ADB0006046F /* Info.plist */,
-				F36CBED82440B85E00071677 /* Media.xcassets */,
-			);
-			path = Source;
-			sourceTree = "<group>";
-		};
-		F3A4542824459C6A00E692BD /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				F308406524478770007DC416 /* JTAppleCalendar.framework */,
-				F308406624478770007DC416 /* PrettyCards.framework */,
-				F308406424478770007DC416 /* SnapKit.framework */,
-				9A0CF85646F8F3B3BCD1A324 /* Pods_Fastis.framework */,
-				2304B306CDE2F72C878566BD /* Pods_Example.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		F3A4542E24459DE900E692BD /* Extensions */ = {
+		0C927E781F8DE63BE2A10C5A /* Derived */ = {
 			isa = PBXGroup;
 			children = (
-				F3A4543124459E2B00E692BD /* Date + Utilits.swift */,
-				F3A4543324459E3800E692BD /* UIImage + BundleInit.swift */,
-				F3A4543524459E5600E692BD /* String + CapitalizeFirstLetter.swift */,
+				980632CF1BD3A29CB011E766 /* InfoPlists */,
+				884B1CC6BC1C4545F8D5D9B6 /* Sources */,
 			);
-			path = Extensions;
+			path = Derived;
 			sourceTree = "<group>";
 		};
-		F3A4542F24459E1400E692BD /* Views */ = {
+		17DAF8B1DC8F54757F8EDD64 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				F362EAE624405F150006046F /* Controller.swift */,
-				F36CBED02440ADD800071677 /* MonthHeader.swift */,
-				F36CBED22440ADE400071677 /* DayCell.swift */,
-				F36CBED42440B35F00071677 /* WeekView.swift */,
-				F36CBED62440B7D200071677 /* CurrentValueView.swift */,
-				F3EBC9702445C6F500A646BB /* ShortcutContainerView.swift */,
-				F3EBC9722445C70000A646BB /* ShortcutItemView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		F3A4543024459E1C00E692BD /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				F3A4543924459EAB00E692BD /* Config.swift */,
-				F3B3E4AF2445C849006320A7 /* Shortcut.swift */,
-				F3B3E4B12445D952006320A7 /* Value.swift */,
+				12AEAB3F3243B10A3C630A7F /* Config.swift */,
+				53FB06A3CF853BD3DDE994BA /* Shortcut.swift */,
+				E35AF49834639C413D55ADBF /* Value.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
+		34A31AF14742FD6F6DE9A3C2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9A6FDBE08824AA7EB6B49F03 /* Date + Utilits.swift */,
+				5182D5077D682F731B17B7A5 /* String + CapitalizeFirstLetter.swift */,
+				F631928FFC9A2D2343C239D6 /* UIImage + BundleInit.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		495472C3C32348284EFC9119 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				CD58EB0CC783D3F09509A5F7 /* Carthage */,
+			);
+			path = Dependencies;
+			sourceTree = "<group>";
+		};
+		4AE535C551C550A4B36037AB /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				34A31AF14742FD6F6DE9A3C2 /* Extensions */,
+				17DAF8B1DC8F54757F8EDD64 /* Models */,
+				A371A4C145C0ADFE0439C728 /* Views */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		534E847C93A900F598FDE21E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				89C0FDFE5681F22F9B91C338 /* Media.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		576E0834A8D1DCFA4181B144 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C8F2E9F3C4EF5B71AABA676C /* Fastis.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		884B1CC6BC1C4545F8D5D9B6 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				4CFF5C0CD26EAD22811D9EC7 /* Assets+Fastis.swift */,
+				874D2E49B7C4443B665D8125 /* Bundle+Fastis.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		980632CF1BD3A29CB011E766 /* InfoPlists */ = {
+			isa = PBXGroup;
+			children = (
+				AF741D884D5407EC23E9AD06 /* Fastis.plist */,
+			);
+			path = InfoPlists;
+			sourceTree = "<group>";
+		};
+		A371A4C145C0ADFE0439C728 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				86B5D6875A41F9CA8B576B6D /* Controller.swift */,
+				7FA7FF94AC0B0B93CFFF54ED /* CurrentValueView.swift */,
+				EA65CA5161FC42EA83C0FED9 /* DayCell.swift */,
+				3F3748A011AC0ED13A1CAE7E /* MonthHeader.swift */,
+				94AB51BA962EAE9B5F6D9DF1 /* ShortcutContainerView.swift */,
+				91813571814AD725140743AB /* ShortcutItemView.swift */,
+				B475168DB21983D8C9F88D3C /* WeekView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AF0D7D51A993C5181458D187 /* Tuist */ = {
+			isa = PBXGroup;
+			children = (
+				495472C3C32348284EFC9119 /* Dependencies */,
+			);
+			name = Tuist;
+			path = ../../Tuist;
+			sourceTree = "<group>";
+		};
+		BA158D51A99C3FD7F59258BE = {
+			isa = PBXGroup;
+			children = (
+				03C26D4CD7DFB348E6FF0410 /* Project */,
+				09F692A2FB693E3339059D92 /* Frameworks */,
+				576E0834A8D1DCFA4181B144 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CD58EB0CC783D3F09509A5F7 /* Carthage */ = {
+			isa = PBXGroup;
+			children = (
+				75F60139CE1C1BAAD05598AE /* JTAppleCalendar.xcframework */,
+				C7B69490A112BE76727F7449 /* PrettyCards.xcframework */,
+				E806A76AF640C7A3442B6D89 /* SnapKit.xcframework */,
+			);
+			path = Carthage;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		F362EACE24405ADB0006046F /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F362EAD824405ADB0006046F /* Fastis.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
-		F362EAD224405ADB0006046F /* Fastis */ = {
+		D8122A2BFC77AFE34725F352 /* Fastis */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F362EADB24405ADB0006046F /* Build configuration list for PBXNativeTarget "Fastis" */;
+			buildConfigurationList = 3BD19EF6CE24E52018922EC0 /* Build configuration list for PBXNativeTarget "Fastis" */;
 			buildPhases = (
-				F362EACE24405ADB0006046F /* Headers */,
-				F362EACF24405ADB0006046F /* Sources */,
-				F362EAD024405ADB0006046F /* Frameworks */,
-				F362EAD124405ADB0006046F /* Resources */,
+				22D2978A2A92546CFD234230 /* Autocorrect Code */,
+				6A6DE3AF61CD771262883F10 /* Lint Code */,
+				EB4E8B4ABBE479E13758BBCA /* Sources */,
+				2ADADBEC2C11AF7C9085DCC0 /* Resources */,
+				FC3F0E980FDBA69214641580 /* Embed Precompiled Frameworks */,
+				C3B3FDD712C812F1A2A8F933 /* Embed Frameworks */,
+				F0403FB3A2AFB3FF737F10DE /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -171,82 +246,203 @@
 			);
 			name = Fastis;
 			productName = Fastis;
-			productReference = F362EAD324405ADB0006046F /* Fastis.framework */;
+			productReference = C8F2E9F3C4EF5B71AABA676C /* Fastis.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		F362EACA24405ADB0006046F /* Project object */ = {
+		18D0DFAA55E3E6CB74A27D76 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1140;
-				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = "RetailDriver LLC";
 				TargetAttributes = {
-					F362EAD224405ADB0006046F = {
-						CreatedOnToolsVersion = 11.4;
-						LastSwiftMigration = 1140;
-					};
 				};
 			};
-			buildConfigurationList = F362EACD24405ADB0006046F /* Build configuration list for PBXProject "Fastis" */;
+			buildConfigurationList = 137CA457219B39AD58222E74 /* Build configuration list for PBXProject "Fastis" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				en,
 			);
-			mainGroup = F362EAC924405ADB0006046F;
-			productRefGroup = F362EAD424405ADB0006046F /* Products */;
+			mainGroup = BA158D51A99C3FD7F59258BE;
+			productRefGroup = 576E0834A8D1DCFA4181B144 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F362EAD224405ADB0006046F /* Fastis */,
+				D8122A2BFC77AFE34725F352 /* Fastis */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		F362EAD124405ADB0006046F /* Resources */ = {
+		2ADADBEC2C11AF7C9085DCC0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F36CBED92440B85E00071677 /* Media.xcassets in Resources */,
+				3BA352348CA5FB41E3851DFB /* Media.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		22D2978A2A92546CFD234230 /* Autocorrect Code */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Autocorrect Code";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint --path $SRCROOT/Sources --autocorrect --config ../../.swiftlint.yml\nelse\n    echo \"error: SwiftLint does not exist, download it from https://github.com/realm/SwiftLint\"\n    exit 1\nfi";
+		};
+		6A6DE3AF61CD771262883F10 /* Lint Code */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Lint Code";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint --path $SRCROOT/Sources  --config ../../.swiftlint.yml\nelse\n    echo \"error: SwiftLint does not exist, download it from https://github.com/realm/SwiftLint\"\n    exit 1\nfi";
+		};
+		FC3F0E980FDBA69214641580 /* Embed Precompiled Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Precompiled Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "echo \"Skipping, nothing to be embedded.\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
-		F362EACF24405ADB0006046F /* Sources */ = {
+		EB4E8B4ABBE479E13758BBCA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F36CBED72440B7D200071677 /* CurrentValueView.swift in Sources */,
-				F36CBED52440B35F00071677 /* WeekView.swift in Sources */,
-				F3B3E4B22445D952006320A7 /* Value.swift in Sources */,
-				F3B3E4B02445C849006320A7 /* Shortcut.swift in Sources */,
-				F3A4543224459E2B00E692BD /* Date + Utilits.swift in Sources */,
-				F36CBED12440ADD800071677 /* MonthHeader.swift in Sources */,
-				F3EBC9732445C70000A646BB /* ShortcutItemView.swift in Sources */,
-				F3A4543424459E3800E692BD /* UIImage + BundleInit.swift in Sources */,
-				F36CBED32440ADE400071677 /* DayCell.swift in Sources */,
-				F3A4543A24459EAB00E692BD /* Config.swift in Sources */,
-				F362EAE724405F150006046F /* Controller.swift in Sources */,
-				F3EBC9712445C6F500A646BB /* ShortcutContainerView.swift in Sources */,
-				F3A4543624459E5600E692BD /* String + CapitalizeFirstLetter.swift in Sources */,
+				07D70424D1FAB461487F20F9 /* Assets+Fastis.swift in Sources */,
+				6B3CCEBC229C36F3D4E1ED59 /* Bundle+Fastis.swift in Sources */,
+				AC7322FE9A77857B016AAF04 /* Date + Utilits.swift in Sources */,
+				349A2FA03F7FC83141C15AF6 /* String + CapitalizeFirstLetter.swift in Sources */,
+				2A91AF866706039C6B1043C8 /* UIImage + BundleInit.swift in Sources */,
+				16579940EDB724EA81E8F365 /* Config.swift in Sources */,
+				C943115A587496B6733F4FA2 /* Shortcut.swift in Sources */,
+				B346817B7BA7C5CE368D1BF1 /* Value.swift in Sources */,
+				85AC80C085AF5512C5B0AF7B /* Controller.swift in Sources */,
+				36CBE094138ED7D037A8A2D3 /* CurrentValueView.swift in Sources */,
+				9BDB973EC4B203824C2D83C7 /* DayCell.swift in Sources */,
+				AF9531BBA62BF40BEED37B0B /* MonthHeader.swift in Sources */,
+				22366357B4DD56D14C293B3D /* ShortcutContainerView.swift in Sources */,
+				D19ECD7AE5626D50FE1733C3 /* ShortcutItemView.swift in Sources */,
+				C0E20D9D396174A5C16982A3 /* WeekView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		F362EAD924405ADB0006046F /* Debug */ = {
+		26A283AA5CAA90879B29CE83 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../../Tuist/Dependencies/Carthage",
+				);
+				INFOPLIST_FILE = Derived/InfoPlists/Fastis.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.retaildriver.RetailCRM.Fastis;
+				PRODUCT_NAME = Fastis;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		3074670E7E0AD1DE3BA75F77 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../../Tuist/Dependencies/Carthage",
+				);
+				INFOPLIST_FILE = Derived/InfoPlists/Fastis.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.retaildriver.RetailCRM.Fastis;
+				PRODUCT_NAME = Fastis;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_COMPILATION_MODE = singlefile;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		97C6C3F836DC3AE275EBF8A2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -269,6 +465,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -276,7 +473,6 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -294,22 +490,17 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		F362EADA24405ADB0006046F /* Release */ = {
+		ECC31F0349422FDFCA8F5CF7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -332,6 +523,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -339,7 +531,6 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -351,101 +542,34 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
-				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		F362EADC24405ADB0006046F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
-				INFOPLIST_FILE = Source/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.retaildriver.Fastis;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		F362EADD24405ADB0006046F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
-				INFOPLIST_FILE = Source/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.retaildriver.Fastis;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F362EACD24405ADB0006046F /* Build configuration list for PBXProject "Fastis" */ = {
+		137CA457219B39AD58222E74 /* Build configuration list for PBXProject "Fastis" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F362EAD924405ADB0006046F /* Debug */,
-				F362EADA24405ADB0006046F /* Release */,
+				97C6C3F836DC3AE275EBF8A2 /* Debug */,
+				ECC31F0349422FDFCA8F5CF7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F362EADB24405ADB0006046F /* Build configuration list for PBXNativeTarget "Fastis" */ = {
+		3BD19EF6CE24E52018922EC0 /* Build configuration list for PBXNativeTarget "Fastis" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F362EADC24405ADB0006046F /* Debug */,
-				F362EADD24405ADB0006046F /* Release */,
+				3074670E7E0AD1DE3BA75F77 /* Debug */,
+				26A283AA5CAA90879B29CE83 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = F362EACA24405ADB0006046F /* Project object */;
+	rootObject = 18D0DFAA55E3E6CB74A27D76 /* Project object */;
 }
