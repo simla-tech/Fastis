@@ -305,7 +305,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint --path $SRCROOT/Sources --autocorrect --config ../../.swiftlint.yml\nelse\n    echo \"error: SwiftLint does not exist, download it from https://github.com/realm/SwiftLint\"\n    exit 1\nfi";
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint --path $SRCROOT/Sources/** --autocorrect --config ../../.swiftlint.yml\nelse\necho \"error: SwiftLint does not exist, download it from https://github.com/realm/SwiftLint\"\nexit 1\nfi";
 		};
 		6A6DE3AF61CD771262883F10 /* Lint Code */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -323,7 +323,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint --path $SRCROOT/Sources  --config ../../.swiftlint.yml\nelse\n    echo \"error: SwiftLint does not exist, download it from https://github.com/realm/SwiftLint\"\n    exit 1\nfi";
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint --path $SRCROOT/Sources/**  --config ../../.swiftlint.yml\nelse\necho \"error: SwiftLint does not exist, download it from https://github.com/realm/SwiftLint\"\nexit 1\nfi";
 		};
 		FC3F0E980FDBA69214641580 /* Embed Precompiled Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -388,7 +388,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.retaildriver.RetailCRM.Fastis;
+				PRODUCT_BUNDLE_IDENTIFIER = com.retaildriver.retailCRM.Fastis;
 				PRODUCT_NAME = Fastis;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -423,7 +423,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.retaildriver.RetailCRM.Fastis;
+				PRODUCT_BUNDLE_IDENTIFIER = com.retaildriver.retailCRM.Fastis;
 				PRODUCT_NAME = Fastis;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
