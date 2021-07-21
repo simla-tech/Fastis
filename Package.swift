@@ -22,7 +22,6 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-
 import PackageDescription
 
 let package = Package(
@@ -31,7 +30,7 @@ let package = Package(
         .iOS(.v11)
     ],
     products: [
-        .library(name: "Fastis", targets: ["Fastis"]),
+        .library(name: "Fastis", targets: ["Fastis"])
     ],
     dependencies: [
         .package(url: "https://github.com/patchthecode/JTAppleCalendar", from: "8.0.3"),

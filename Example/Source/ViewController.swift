@@ -11,9 +11,9 @@ import SnapKit
 import Fastis
 
 class ViewController: UIViewController {
-    
+
     // MARK: - Outlets
-    
+
     lazy var containerView: UIStackView = {
         let view = UIStackView()
         view.backgroundColor = .clear
@@ -23,28 +23,28 @@ class ViewController: UIViewController {
         view.spacing = 16
         return view
     }()
-    
+
     lazy var currentDateLabel: UILabel = {
         let label = UILabel()
         return label
     }()
-    
+
     lazy var chooseRangeButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Choose range of dates", for: .normal)
         button.addTarget(self, action: #selector(self.chooseRange), for: .touchUpInside)
         return button
     }()
-    
+
     lazy var chooseSingleButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Choose single date", for: .normal)
         button.addTarget(self, action: #selector(self.chooseSingleDate), for: .touchUpInside)
         return button
     }()
-    
+
     // MARK: - Variables
-    
+
     var currentValue: FastisValue? {
         didSet {
             let formatter = DateFormatter()
@@ -60,23 +60,23 @@ class ViewController: UIViewController {
     }
 
     // MARK: - Lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureUI()
         self.configureSubviews()
         self.configureConstraints()
     }
-    
+
     // MARK: - Configuration
-    
+
     private func configureUI() {
         self.view.backgroundColor = .white
         self.navigationItem.title = "Fastis demo"
         self.navigationItem.largeTitleDisplayMode = .always
         self.currentValue = nil
     }
-    
+
     private func configureSubviews() {
         self.containerView.addArrangedSubview(self.currentDateLabel)
         self.containerView.setCustomSpacing(32, after: self.currentDateLabel)
@@ -84,7 +84,7 @@ class ViewController: UIViewController {
         self.containerView.addArrangedSubview(self.chooseSingleButton)
         self.view.addSubview(self.containerView)
     }
-    
+
     private func configureConstraints() {
         self.containerView.snp.makeConstraints { (maker) in
             maker.center.equalTo(self.view.safeAreaLayoutGuide)
@@ -92,7 +92,7 @@ class ViewController: UIViewController {
             maker.bottom.right.lessThanOrEqualTo(self.view.safeAreaLayoutGuide)
         }
     }
-    
+
     // MARK: - Actions
 
     @objc private func chooseRange() {
@@ -108,7 +108,7 @@ class ViewController: UIViewController {
         }
         fastisController.present(above: self)
     }
-    
+
     @objc private func chooseSingleDate() {
         let fastisController = FastisController(mode: .single)
         fastisController.title = "Choose date"
@@ -120,6 +120,5 @@ class ViewController: UIViewController {
         }
         fastisController.present(above: self)
     }
-    
-}
 
+}
