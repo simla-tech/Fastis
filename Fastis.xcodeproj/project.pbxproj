@@ -213,7 +213,11 @@
 				09F692A2FB693E3339059D92 /* Frameworks */,
 				576E0834A8D1DCFA4181B144 /* Products */,
 			);
+			indentWidth = 4;
 			sourceTree = "<group>";
+			tabWidth = 4;
+			usesTabs = 0;
+			wrapsLines = 1;
 		};
 		CD58EB0CC783D3F09509A5F7 /* Carthage */ = {
 			isa = PBXGroup;
