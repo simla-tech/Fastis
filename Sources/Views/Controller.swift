@@ -238,6 +238,11 @@ public class FastisController<Value: FastisValue>: UIViewController, JTACMonthVi
         self.navigationItem.largeTitleDisplayMode = .never
         self.navigationItem.leftBarButtonItem = self.cancelBarButtonItem
         self.navigationItem.rightBarButtonItem = self.doneBarButtonItem
+        if #available(iOS 13, *) {
+            let appearnce = UINavigationBarAppearance()
+            appearnce.configureWithTransparentBackground()
+            self.navigationItem.standardAppearance = appearnce
+        }
     }
 
     private func configureSubviews() {
