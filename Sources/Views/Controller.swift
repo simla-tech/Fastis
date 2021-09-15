@@ -227,20 +227,20 @@ public class FastisController<Value: FastisValue>: UIViewController, JTACMonthVi
     }
 
     // MARK: - Configuration
-    
+
     private func configureUI() {
         self.view.backgroundColor = self.appearance.backgroundColor
         self.navigationController?.navigationBar.titleTextAttributes = self.appearance.titleTextAttributes
-        
+
         let appearnce = UINavigationBarAppearance()
         appearnce.configureWithTransparentBackground()
         self.navigationItem.standardAppearance = appearnce
         self.navigationItem.largeTitleDisplayMode = .never
         self.navigationItem.leftBarButtonItem = self.cancelBarButtonItem
         self.navigationItem.rightBarButtonItem = self.doneBarButtonItem
-        
+
     }
-    
+
     private func configureSubviews() {
         self.calendarView.register(DayCell.self, forCellWithReuseIdentifier: self.dayCellReuseIdentifier)
         self.calendarView.register(MonthHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: self.monthHeaderReuseIdentifier)
