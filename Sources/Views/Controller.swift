@@ -215,9 +215,7 @@ public class FastisController<Value: FastisValue>: UIViewController, JTACMonthVi
         let navVc = UINavigationController(rootViewController: self)
         navVc.modalTransitionStyle = viewController.modalTransitionStyle
         navVc.transitioningDelegate = viewController.transitioningDelegate
-        if #available(iOS 13.0, *) {
-            navVc.isModalInPresentation = viewController.isModalInPresentation
-        }
+        navVc.isModalInPresentation = viewController.isModalInPresentation
         navVc.modalPresentationStyle = .formSheet
         if viewController.preferredContentSize != .zero {
             navVc.preferredContentSize = viewController.preferredContentSize
@@ -229,22 +227,20 @@ public class FastisController<Value: FastisValue>: UIViewController, JTACMonthVi
     }
 
     // MARK: - Configuration
-
+    
     private func configureUI() {
         self.view.backgroundColor = self.appearance.backgroundColor
         self.navigationController?.navigationBar.titleTextAttributes = self.appearance.titleTextAttributes
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
+        
+        let appearnce = UINavigationBarAppearance()
+        appearnce.configureWithTransparentBackground()
+        self.navigationItem.standardAppearance = appearnce
         self.navigationItem.largeTitleDisplayMode = .never
         self.navigationItem.leftBarButtonItem = self.cancelBarButtonItem
         self.navigationItem.rightBarButtonItem = self.doneBarButtonItem
-        if #available(iOS 13, *) {
-            let appearnce = UINavigationBarAppearance()
-            appearnce.configureWithTransparentBackground()
-            self.navigationItem.standardAppearance = appearnce
-        }
+        
     }
-
+    
     private func configureSubviews() {
         self.calendarView.register(DayCell.self, forCellWithReuseIdentifier: self.dayCellReuseIdentifier)
         self.calendarView.register(MonthHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: self.monthHeaderReuseIdentifier)
