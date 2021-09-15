@@ -81,7 +81,7 @@ class WeekView: UIView {
 extension FastisConfig {
     public struct WeekView {
         public var calendar: Calendar = .current
-        public var backgroundColor: UIColor = .groupTableViewBackground
+        public var backgroundColor: UIColor = .white
         public var textColor: UIColor = .darkGray
         public var textFont: UIFont = .systemFont(ofSize: 10, weight: .bold)
         public var height: CGFloat = 28

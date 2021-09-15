@@ -100,7 +100,7 @@ class ShortcutContainerView<Value: FastisValue>: UIView {
 
 extension FastisConfig {
     public struct ShortcutContainerView {
-        public var backgroundColor: UIColor = .groupTableViewBackground
+        public var backgroundColor: UIColor = .white
         public var itemSpacing: CGFloat = 12
         public var insets: UIEdgeInsets = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
     }
