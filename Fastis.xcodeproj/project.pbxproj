@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		045F283A00F28426533FA88B /* JTAppleCalendar.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75F60139CE1C1BAAD05598AE /* JTAppleCalendar.xcframework */; };
 		07D70424D1FAB461487F20F9 /* Assets+Fastis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFF5C0CD26EAD22811D9EC7 /* Assets+Fastis.swift */; };
 		16579940EDB724EA81E8F365 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12AEAB3F3243B10A3C630A7F /* Config.swift */; };
 		22366357B4DD56D14C293B3D /* ShortcutContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AB51BA962EAE9B5F6D9DF1 /* ShortcutContainerView.swift */; };
@@ -15,10 +14,11 @@
 		349A2FA03F7FC83141C15AF6 /* String + CapitalizeFirstLetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5182D5077D682F731B17B7A5 /* String + CapitalizeFirstLetter.swift */; };
 		36CBE094138ED7D037A8A2D3 /* CurrentValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA7FF94AC0B0B93CFFF54ED /* CurrentValueView.swift */; };
 		3BA352348CA5FB41E3851DFB /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89C0FDFE5681F22F9B91C338 /* Media.xcassets */; };
-		69E3653EFCDE70F26927965E /* PrettyCards.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7B69490A112BE76727F7449 /* PrettyCards.xcframework */; };
+		4BB1E11230103B6C4DD48082 /* PrettyCards.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA98456E8C8227FABC6A489C /* PrettyCards.xcframework */; };
+		65CD549A5E5BD944FDB02A51 /* SnapKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 580CE47C61E0E3AEFB0EE88A /* SnapKit.xcframework */; };
 		6B3CCEBC229C36F3D4E1ED59 /* Bundle+Fastis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874D2E49B7C4443B665D8125 /* Bundle+Fastis.swift */; };
 		85AC80C085AF5512C5B0AF7B /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B5D6875A41F9CA8B576B6D /* Controller.swift */; };
-		9B229AFBD1027AA445061294 /* SnapKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = E806A76AF640C7A3442B6D89 /* SnapKit.xcframework */; };
+		9136133325487496D7675872 /* JTAppleCalendar.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 906D4696DBD05298F40BC73F /* JTAppleCalendar.xcframework */; };
 		9BDB973EC4B203824C2D83C7 /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA65CA5161FC42EA83C0FED9 /* DayCell.swift */; };
 		AC7322FE9A77857B016AAF04 /* Date + Utilits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6FDBE08824AA7EB6B49F03 /* Date + Utilits.swift */; };
 		AF9531BBA62BF40BEED37B0B /* MonthHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3748A011AC0ED13A1CAE7E /* MonthHeader.swift */; };
@@ -47,11 +47,12 @@
 		4CFF5C0CD26EAD22811D9EC7 /* Assets+Fastis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Assets+Fastis.swift"; sourceTree = "<group>"; };
 		5182D5077D682F731B17B7A5 /* String + CapitalizeFirstLetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + CapitalizeFirstLetter.swift"; sourceTree = "<group>"; };
 		53FB06A3CF853BD3DDE994BA /* Shortcut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shortcut.swift; sourceTree = "<group>"; };
-		75F60139CE1C1BAAD05598AE /* JTAppleCalendar.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = JTAppleCalendar.xcframework; sourceTree = "<group>"; };
+		580CE47C61E0E3AEFB0EE88A /* SnapKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = SnapKit.xcframework; sourceTree = "<group>"; };
 		7FA7FF94AC0B0B93CFFF54ED /* CurrentValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentValueView.swift; sourceTree = "<group>"; };
 		86B5D6875A41F9CA8B576B6D /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
 		874D2E49B7C4443B665D8125 /* Bundle+Fastis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Fastis.swift"; sourceTree = "<group>"; };
 		89C0FDFE5681F22F9B91C338 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		906D4696DBD05298F40BC73F /* JTAppleCalendar.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = JTAppleCalendar.xcframework; sourceTree = "<group>"; };
 		91813571814AD725140743AB /* ShortcutItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutItemView.swift; sourceTree = "<group>"; };
 		94AB51BA962EAE9B5F6D9DF1 /* ShortcutContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutContainerView.swift; sourceTree = "<group>"; };
 		9A6FDBE08824AA7EB6B49F03 /* Date + Utilits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Utilits.swift"; sourceTree = "<group>"; };
@@ -60,10 +61,9 @@
 		AF741D884D5407EC23E9AD06 /* Fastis.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Fastis.plist; sourceTree = "<group>"; };
 		B475168DB21983D8C9F88D3C /* WeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekView.swift; sourceTree = "<group>"; };
 		B75D88D00274E7A37CFE4ED8 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		C7B69490A112BE76727F7449 /* PrettyCards.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = PrettyCards.xcframework; sourceTree = "<group>"; };
 		C8F2E9F3C4EF5B71AABA676C /* Fastis.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Fastis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA98456E8C8227FABC6A489C /* PrettyCards.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = PrettyCards.xcframework; sourceTree = "<group>"; };
 		E35AF49834639C413D55ADBF /* Value.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Value.swift; sourceTree = "<group>"; };
-		E806A76AF640C7A3442B6D89 /* SnapKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = SnapKit.xcframework; sourceTree = "<group>"; };
 		EA65CA5161FC42EA83C0FED9 /* DayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCell.swift; sourceTree = "<group>"; };
 		F631928FFC9A2D2343C239D6 /* UIImage + BundleInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + BundleInit.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,9 +73,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				045F283A00F28426533FA88B /* JTAppleCalendar.xcframework in Frameworks */,
-				69E3653EFCDE70F26927965E /* PrettyCards.xcframework in Frameworks */,
-				9B229AFBD1027AA445061294 /* SnapKit.xcframework in Frameworks */,
+				9136133325487496D7675872 /* JTAppleCalendar.xcframework in Frameworks */,
+				4BB1E11230103B6C4DD48082 /* PrettyCards.xcframework in Frameworks */,
+				65CD549A5E5BD944FDB02A51 /* SnapKit.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,11 +222,19 @@
 		CD58EB0CC783D3F09509A5F7 /* Carthage */ = {
 			isa = PBXGroup;
 			children = (
-				75F60139CE1C1BAAD05598AE /* JTAppleCalendar.xcframework */,
-				C7B69490A112BE76727F7449 /* PrettyCards.xcframework */,
-				E806A76AF640C7A3442B6D89 /* SnapKit.xcframework */,
+				FD32C696022E561047BFA1DF /* Build */,
 			);
 			path = Carthage;
+			sourceTree = "<group>";
+		};
+		FD32C696022E561047BFA1DF /* Build */ = {
+			isa = PBXGroup;
+			children = (
+				906D4696DBD05298F40BC73F /* JTAppleCalendar.xcframework */,
+				DA98456E8C8227FABC6A489C /* PrettyCards.xcframework */,
+				580CE47C61E0E3AEFB0EE88A /* SnapKit.xcframework */,
+			);
+			path = Build;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -363,7 +371,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../../Tuist/Dependencies/Carthage",
+					"$(SRCROOT)/../../Tuist/Dependencies/Carthage/Build",
 				);
 				INFOPLIST_FILE = Derived/InfoPlists/Fastis.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -380,7 +388,7 @@
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 5.4.2;
+				SWIFT_VERSION = 5.5;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -398,7 +406,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../../Tuist/Dependencies/Carthage",
+					"$(SRCROOT)/../../Tuist/Dependencies/Carthage/Build",
 				);
 				INFOPLIST_FILE = Derived/InfoPlists/Fastis.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -416,7 +424,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.4.2;
+				SWIFT_VERSION = 5.5;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
