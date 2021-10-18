@@ -2,7 +2,6 @@
 	<img alt="Fastis" src="https://github.com/retailcrm/Fastis/raw/master/Documentation/top_screen.jpg" width="356">
 </p>
 
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![SwiftMP compatible](https://img.shields.io/badge/SwiftPM-compatible-brightgreen.svg?style=flat)](https://github.com/apple/swift-package-manager)
 [![Cocoapods compatible](https://img.shields.io/cocoapods/v/Fastis.svg)](https://cocoapods.org/pods/Fastis)
 [![Swift](https://img.shields.io/badge/Swift-5-green.svg?style=flat)](https://swift.org)
@@ -62,30 +61,6 @@ Then, run the following command:
 ```bash
 $ pod install
 ```
-
-### Carthage
-
-[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
-
-You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
-
-```bash
-$ brew update
-$ brew install carthage
-```
-
-To integrate Fastis into your Xcode project using Carthage, specify it in your `Cartfile`:
-
-```ogdl
-github "retailcrm/Fastis" ~> 1.0.0
-```
-
-Run `carthage update` to build the framework, drag the following framework into your Xcode project:
-
-- `Fastis.framework`
-- `SnapKit.framewok`
-- `PrettyCards.framework`
-- `JTAppleCalendar.framework`
 
 ### Swift Package Manager
 

@@ -14,8 +14,5 @@ let project = Project(
             ]
         )
     ],
-    schemes: [
-        Scheme(name: .Fastis)
-    ],
     additionalFiles: ["README.MD", "Package.swift", "Fastis.podspec"]
 )
