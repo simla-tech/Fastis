@@ -24,7 +24,7 @@ Fastis is a fully customizable UI component for picking dates and ranges created
 
 ## Requirements
 
-- iOS 11.0+
+- iOS 13.0+
 - Xcode 11.0+
 - Swift 5.0+
 
@@ -48,7 +48,7 @@ To integrate Fastis into your Xcode project using CocoaPods, specify it in your 
 
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '11.0'
+platform :ios, '13.0'
 use_frameworks!
 
 target '<Your Target Name>' do
