@@ -1,5 +1,5 @@
 <p align="center">
-	<img alt="Fastis" src="https://github.com/retailcrm/Fastis/raw/master/Documentation/top_screen.jpg" width="356">
+	<img alt="Fastis" src="https://github.com/simla-tech/Fastis/raw/master/Documentation/top_screen.jpg" width="356">
 </p>
 
 [![SwiftMP compatible](https://img.shields.io/badge/SwiftPM-compatible-brightgreen.svg?style=flat)](https://github.com/apple/swift-package-manager)
@@ -70,7 +70,7 @@ Once you have your Swift package set up, adding Fastis as a dependency is as eas
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/retailcrm/Fastis.git", .upToNextMajor(from: "1.0.0"))
+    .package(url: "https://github.com/simla-tech/Fastis.git", .upToNextMajor(from: "1.0.0"))
 ]
 ```
 

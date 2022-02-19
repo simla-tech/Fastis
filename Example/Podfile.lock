@@ -1,5 +1,5 @@
 PODS:
-  - Fastis (1.0.13):
+  - Fastis (1.0.15):
     - JTAppleCalendar (~> 8.0.0)
     - PrettyCards (~> 1.0.0)
     - SnapKit (~> 5.0.0)
