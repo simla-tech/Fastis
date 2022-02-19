@@ -1,0 +1,3 @@
+github "SnapKit/SnapKit" ~> 5.0.0
+github "patchthecode/JTAppleCalendar" ~> 8.0.0
+github "ilia3546/PrettyCards" ~> 1.0.0
