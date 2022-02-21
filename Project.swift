@@ -8,9 +8,9 @@ let project = Project(
             name: .Fastis,
             resources: .defaultResourcesPath,
             dependencies: [
+                .target(name: .PrettyCards),
                 .external(name: .JTAppleCalendar),
-                .external(name: .SnapKit),
-                .external(name: .PrettyCards)
+                .external(name: .SnapKit)
             ]
         )
     ],
