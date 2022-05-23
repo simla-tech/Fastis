@@ -1,5 +1,5 @@
 //
-//  String + CapitalizeFirstLetter.swift
+//  String+CapitalizeFirstLetter.swift
 //  Fastis
 //
 //  Created by Ilya Kharlamov on 14.04.2020.

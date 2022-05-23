@@ -1,5 +1,5 @@
 //
-//  UIImage + BundleInit.swift
+//  UIImage+BundleInit.swift
 //  Fastis
 //
 //  Created by Ilya Kharlamov on 14.04.2020.
