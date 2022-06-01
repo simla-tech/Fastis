@@ -10,7 +10,7 @@ import UIKit
 import JTAppleCalendar
 import SnapKit
 
-public class FastisController<Value: FastisValue>: UIViewController, JTACMonthViewDelegate, JTACMonthViewDataSource {
+open class FastisController<Value: FastisValue>: UIViewController, JTACMonthViewDelegate, JTACMonthViewDataSource {
 
     // MARK: - Outlets
 
@@ -112,7 +112,7 @@ public class FastisController<Value: FastisValue>: UIViewController, JTACMonthVi
     /**
      Shortcuts array
      
-     You can use prepered shortcuts depending on the current mode.
+     You can use prepared shortcuts depending on the current mode.
      
      - For `.single` mode: `.today`, `.tomorrow`, `.yesterday`
      - For `.range` mode: `.today`, `.lastWeek`, `.lastMonth`
@@ -131,7 +131,7 @@ public class FastisController<Value: FastisValue>: UIViewController, JTACMonthVi
     /**
      Allow to choose `nil` date
      
-     If you set `true` done button will be wlways enabled
+     If you set `true` done button will be always enabled
      */
     public var allowToChooseNilDate: Bool = false
 
@@ -146,12 +146,12 @@ public class FastisController<Value: FastisValue>: UIViewController, JTACMonthVi
     public var doneHandler: ((Value?) -> Void)?
 
     /**
-     And initial value which will be selected bu default
+     And initial value which will be selected by default
      */
     public var initialValue: Value?
 
     /**
-     Minimal selection date. Dates less then current will be markes as unavailable
+     Minimal selection date. Dates less then current will be marked as unavailable
      */
     public var minimumDate: Date? {
         get {
@@ -171,7 +171,7 @@ public class FastisController<Value: FastisValue>: UIViewController, JTACMonthVi
     public var allowDateRangeChanges: Bool = true
 
     /**
-    Maximum selection date. Dates greather then current will be markes as unavailable
+    Maximum selection date. Dates greather then current will be marked as unavailable
     */
     public var maximumDate: Date? {
         get {
@@ -190,7 +190,7 @@ public class FastisController<Value: FastisValue>: UIViewController, JTACMonthVi
         super.init(nibName: nil, bundle: nil)
     }
 
-    required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
