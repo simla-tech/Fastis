@@ -51,8 +51,8 @@ class WeekView: UIView {
     private func configureSubviews() {
         var weekDays = self.config.calendar.shortWeekdaySymbols
         weekDays.append(weekDays.remove(at: 0))
-        for weekdaySimbol in weekDays {
-            self.stackView.addArrangedSubview(self.makeWeekLabel(for: weekdaySimbol))
+        for weekdaySymbol in weekDays {
+            self.stackView.addArrangedSubview(self.makeWeekLabel(for: weekdaySymbol))
         }
         self.addSubview(self.stackView)
     }
