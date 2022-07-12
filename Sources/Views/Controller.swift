@@ -171,7 +171,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
     public var allowDateRangeChanges: Bool = true
 
     /**
-    Maximum selection date. Dates greather then current will be marked as unavailable
+    Maximum selection date. Dates greater then current will be marked as unavailable
     */
     public var maximumDate: Date? {
         get {

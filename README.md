@@ -148,7 +148,7 @@ var allowDateRangeChanges: Bool = true
 - `doneHandler`- The block to execute after "Done" button will be tapped. Default value is `nil`.
 - `initialValue`- And initial value which will be selected bu default. Default value is `nil`.
 - `minimumDate`-  Minimal selection date. Dates less then current will be markes as unavailable. Default value is `nil`.
-- `maximumDate`- Maximum selection date. Dates greather then current will be markes as unavailable. Default value is `nil`.
+- `maximumDate`- Maximum selection date. Dates greater then current will be markes as unavailable. Default value is `nil`.
 - `selectMonthOnHeaderTap` (Only for `.range` mode) - Set this variable to `true` if you want to allow select date ranges by tapping on months. Default value is `true`.
 - `allowDateRangeChanges` (Only for `.range` mode) - Set this variable to `false` if you want to if you want to disable date range changes. Next tap after selecting range will start new range selection. Default value is `true`.
 
