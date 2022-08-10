@@ -232,9 +232,9 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         self.view.backgroundColor = self.appearance.backgroundColor
         self.navigationController?.navigationBar.titleTextAttributes = self.appearance.titleTextAttributes
 
-        let appearnce = UINavigationBarAppearance()
-        appearnce.configureWithTransparentBackground()
-        self.navigationItem.standardAppearance = appearnce
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        self.navigationItem.standardAppearance = appearance
         self.navigationItem.largeTitleDisplayMode = .never
         self.navigationItem.leftBarButtonItem = self.cancelBarButtonItem
         self.navigationItem.rightBarButtonItem = self.doneBarButtonItem
