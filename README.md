@@ -92,7 +92,7 @@ class MyViewController: UIViewController {
         let fastisController = FastisController(mode: .range)
         fastisController.title = "Choose range"
         fastisController.maximumDate = Date()
-        fastisController.allowsToChooseNilDate = true
+        fastisController.allowToChooseNilDate = true
         fastisController.shortcuts = [.today, .lastWeek]
         fastisController.doneHandler = { resultRange in
             ...
