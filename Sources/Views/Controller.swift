@@ -213,9 +213,6 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
      */
     public func present(above viewController: UIViewController, animated flag: Bool = true, completion: (() -> Void)? = nil) {
         let navVc = UINavigationController(rootViewController: self)
-        navVc.modalTransitionStyle = viewController.modalTransitionStyle
-        navVc.transitioningDelegate = viewController.transitioningDelegate
-        navVc.isModalInPresentation = viewController.isModalInPresentation
         navVc.modalPresentationStyle = .formSheet
         if viewController.preferredContentSize != .zero {
             navVc.preferredContentSize = viewController.preferredContentSize
