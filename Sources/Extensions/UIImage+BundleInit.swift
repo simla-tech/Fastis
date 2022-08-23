@@ -8,13 +8,10 @@
 
 import UIKit
 
-private class BundleId {}
-
 extension UIImage {
 
     internal convenience init?(named: String) {
-        let podBundle = Bundle(for: BundleId.self)
-        self.init(named: named, in: podBundle, compatibleWith: nil)
+        self.init(named: named, in: Bundle.module, compatibleWith: nil)
     }
 
 }

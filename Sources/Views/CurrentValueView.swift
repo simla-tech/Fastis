@@ -151,7 +151,7 @@ extension FastisConfig {
         public var placeholderedTextColor: UIColor = .lightGray
         public var textColor: UIColor = .black
         public var textFont: UIFont = .systemFont(ofSize: 17, weight: .regular)
-        public var clearButtonImage: UIImage = UIImage(asset: FastisAsset.iconClear)!
+        public var clearButtonImage: UIImage = UIImage(named: "icon_clear")!
         public var clearButtonTintColor: UIColor = .darkGray
         public var insets: UIEdgeInsets = UIEdgeInsets(top: 8, left: 0, bottom: 24, right: 0)
         public var format: String = "d MMMM"
