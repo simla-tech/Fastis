@@ -58,7 +58,7 @@ class DayCell: JTACDayCell {
     // MARK: - Variables
 
     private var config: FastisConfig.DayCell = FastisConfig.default.dayCell
-    private var rangedBackgroundViewTopBootomConstraints: [Constraint] = []
+    private var rangedBackgroundViewTopBottomConstraints: [Constraint] = []
 
     // MARK: - Lifecycle
 
@@ -89,8 +89,8 @@ class DayCell: JTACDayCell {
         if let cornerRadius = config.customSelectionViewCornerRadius {
              self.selectionBackgroundView.layer.cornerRadius = cornerRadius
         }
-        self.rangedBackgroundViewTopBootomConstraints.forEach({
-            $0.update(inset: config.rangedBackgroundViewInset)
+        self.rangedBackgroundViewTopBottomConstraints.forEach({
+            $0.update(inset: config.rangedBackgroundViewVerticalInset)
         })
     }
 
@@ -105,25 +105,25 @@ class DayCell: JTACDayCell {
     }
 
     public func configureConstraints() {
-        let inset = config.rangedBackgroundViewInset
+        let inset = config.rangedBackgroundViewVerticalInset
         self.rangedBackgroundViewRoundedLeft.snp.makeConstraints { (maker) in
             maker.left.equalToSuperview()
-            rangedBackgroundViewTopBootomConstraints.append(maker.bottom.top.equalToSuperview().inset(inset).constraint)
+            rangedBackgroundViewTopBottomConstraints.append(maker.bottom.top.equalToSuperview().inset(inset).constraint)
             maker.width.equalToSuperview().dividedBy(2)
         }
         self.rangedBackgroundViewSquaredLeft.snp.makeConstraints { (maker) in
             maker.left.equalToSuperview()
-            rangedBackgroundViewTopBootomConstraints.append(maker.bottom.top.equalToSuperview().inset(inset).constraint)
+            rangedBackgroundViewTopBottomConstraints.append(maker.bottom.top.equalToSuperview().inset(inset).constraint)
             maker.width.equalToSuperview().dividedBy(2)
         }
         self.rangedBackgroundViewRoundedRight.snp.makeConstraints { (maker) in
             maker.right.equalToSuperview()
-            rangedBackgroundViewTopBootomConstraints.append(maker.bottom.top.equalToSuperview().inset(inset).constraint)
+            rangedBackgroundViewTopBottomConstraints.append(maker.bottom.top.equalToSuperview().inset(inset).constraint)
             maker.width.equalToSuperview().dividedBy(2)
         }
         self.rangedBackgroundViewSquaredRight.snp.makeConstraints { (maker) in
             maker.right.equalToSuperview()
-            rangedBackgroundViewTopBootomConstraints.append(maker.bottom.top.equalToSuperview().inset(inset).constraint)
+            rangedBackgroundViewTopBottomConstraints.append(maker.bottom.top.equalToSuperview().inset(inset).constraint)
             maker.width.equalToSuperview().dividedBy(2)
         }
         self.selectionBackgroundView.snp.makeConstraints { (maker) in
@@ -303,22 +303,82 @@ class DayCell: JTACDayCell {
 
 extension FastisConfig {
 
+    /**
+     Day cells (selection parameters, font, etc.)
+     
+     Configurable in FastisConfig.``FastisConfig/dayCell-swift.property`` property
+     */
     public struct DayCell {
 
+        /**
+         Font of date label in cell
+         
+         Default value — `.systemFont(ofSize: 17)`
+         */
         public var dateLabelFont: UIFont = .systemFont(ofSize: 17)
-        public var dateLabelColor: UIColor = .black
-        public var dateLabelUnavailableColor: UIColor = .lightGray
-
-        public var selectedBackgroundColor: UIColor = .systemBlue
-        public var selectedLabelColor: UIColor = .white
-
-        public var rangeViewCornerRadius: CGFloat = 6
-        public var onRangeBackgroundColor: UIColor = UIColor.systemBlue.withAlphaComponent(0.2)
-        public var onRangeLabelColor: UIColor = .black
-        public var rangedBackgroundViewInset: CGFloat = 3
 
         /**
-        This property allows to set custom radius for selection view. Circle is default.
+         Color of date label in cell
+         
+         Default value — `.label`
+         */
+        public var dateLabelColor: UIColor = .label
+
+        /**
+         Color of date label in cell when date is unavailable for select
+         
+         Default value — `.tertiaryLabel`
+         */
+        public var dateLabelUnavailableColor: UIColor = .tertiaryLabel
+
+        /**
+         Color of background of cell when date is selected
+         
+         Default value — `.systemBlue`
+         */
+        public var selectedBackgroundColor: UIColor = .systemBlue
+
+        /**
+         Color of date label in cell when date is selected
+
+         Default value — `.white`
+         */
+        public var selectedLabelColor: UIColor = .white
+
+        /**
+         Corner radius of cell when date is a start or end of selected range
+
+         Default value — `6pt`
+         */
+        public var rangeViewCornerRadius: CGFloat = 6
+
+        /**
+         Color of background of cell when date is a part of selected range
+         
+         Default value — `.systemBlue.withAlphaComponent(0.2)`
+         */
+        public var onRangeBackgroundColor: UIColor = .systemBlue.withAlphaComponent(0.2)
+
+        /**
+         Color of date label in cell when date is a part of selected range
+         
+         Default value — `.label`
+         */
+        public var onRangeLabelColor: UIColor = .label
+
+        /**
+         Inset of cell's background view when date is a part of selected range
+         
+         Default value — `3pt`
+         */
+        public var rangedBackgroundViewVerticalInset: CGFloat = 3
+
+        /**
+         This property allows to set custom radius for selection view
+         
+         If this value is not `nil` then selection view will have corner radius `.height / 2`
+         
+         Default value — `nil`
         */
         public var customSelectionViewCornerRadius: CGFloat?
     }

@@ -8,13 +8,13 @@
 
 import Foundation
 
-extension String {
+internal extension String {
 
-    internal func capitalizingFirstLetter() -> String {
+    func capitalizingFirstLetter() -> String {
         return prefix(1).capitalized + dropFirst()
     }
 
-    internal mutating func capitalizeFirstLetter() {
+    mutating func capitalizeFirstLetter() {
         self = self.capitalizingFirstLetter()
     }
 

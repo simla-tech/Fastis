@@ -80,14 +80,61 @@ class MonthHeader: JTACMonthReusableView {
 
 extension FastisConfig {
 
+    /**
+     Month titles
+     
+     Configurable in FastisConfig.``FastisConfig/monthHeader-swift.property`` property
+     */
     public struct MonthHeader {
+
+        /**
+         Text alignment for month title label
+         
+         Default value — `.left`
+         */
         public var labelAlignment: NSTextAlignment = .left
-        public var labelColor: UIColor = .black
+
+        /**
+         Text color for month title label
+         
+         Default value — `.label`
+         */
+        public var labelColor: UIColor = .label
+
+        /**
+         Text font for month title label
+         
+         Default value — `.systemFont(ofSize: 17, weight: .semibold)`
+         */
         public var labelFont: UIFont = .systemFont(ofSize: 17, weight: .semibold)
+
+        /**
+         Insets for month title label
+         
+         Default value — `UIEdgeInsets(top: 24, left: 8, bottom: 4, right: 16)`
+         */
         public var insets: UIEdgeInsets = UIEdgeInsets(top: 24, left: 8, bottom: 4, right: 16)
+
+        /**
+         Format of displayed month value
+         
+         Default value — `"LLLL yyyy"`
+         */
         public var monthFormat: String = "LLLL yyyy"
+
+        /**
+         Locale of displayed month value
+         
+         Default value — `.current`
+         */
         public var monthLocale: Locale = .current
-        public var size: MonthSize = .init(defaultSize: 48)
+
+        /**
+         Height of month view
+         
+         Default value — `48pt`
+         */
+        public var height: MonthSize = MonthSize(defaultSize: 48)
     }
 
 }

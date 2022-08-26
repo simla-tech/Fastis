@@ -10,6 +10,44 @@ import UIKit
 import JTAppleCalendar
 import SnapKit
 
+/**
+ Main controller of Fastis framework. Use it to create and present dade picker
+ 
+ Usage example:
+ ```swift
+ let fastisController = FastisController(mode: .range)
+ fastisController.title = "Choose range"
+ fastisController.maximumDate = Date()
+ fastisController.allowToChooseNilDate = true
+ fastisController.shortcuts = [.today, .lastWeek]
+ fastisController.doneHandler = { resultRange in
+     ...
+ }
+ fastisController.present(above: self)
+ ```
+ 
+ **Single and range modes**
+
+ If you want to get a single date you have to use `Date` type:
+
+ ```swift
+ let fastisController = FastisController(mode: .single)
+ fastisController.initialValue = Date()
+ fastisController.doneHandler = { resultDate in
+     print(resultDate) // resultDate is Date
+ }
+ ```
+
+ If you want to get a date range you have to use `FastisRange` type:
+
+ ```swift
+ let fastisController = FastisController(mode: .range)
+ fastisController.initialValue = FastisRange(from: Date(), to: Date()) // or .from(Date(), to: Date())
+ fastisController.doneHandler = { resultRange in
+     print(resultRange) // resultDate is FastisRange
+ }
+ ```
+ */
 open class FastisController<Value: FastisValue>: UIViewController, JTACMonthViewDelegate, JTACMonthViewDataSource {
 
     // MARK: - Outlets
@@ -184,6 +222,8 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
 
     // MARK: - Lifecycle
 
+    /// Initiate FastisController
+    /// - Parameter config: Configuration parameters
     public init(config: FastisConfig = .default) {
         self.config = config
         self.appearance = config.controller
@@ -209,7 +249,6 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         - viewController: view controller which will present FastisController
         - flag: Pass true to animate the presentation; otherwise, pass false.
         - completion: The block to execute after the presentation finishes. This block has no return value and takes no parameters. You may specify nil for this parameter.
-     
      */
     public func present(above viewController: UIViewController, animated flag: Bool = true, completion: (() -> Void)? = nil) {
         let navVc = UINavigationController(rootViewController: self)
@@ -227,15 +266,9 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
 
     private func configureUI() {
         self.view.backgroundColor = self.appearance.backgroundColor
-        self.navigationController?.navigationBar.titleTextAttributes = self.appearance.titleTextAttributes
-
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithTransparentBackground()
-        self.navigationItem.standardAppearance = appearance
         self.navigationItem.largeTitleDisplayMode = .never
         self.navigationItem.leftBarButtonItem = self.cancelBarButtonItem
         self.navigationItem.rightBarButtonItem = self.doneBarButtonItem
-
     }
 
     private func configureSubviews() {
@@ -486,7 +519,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
     }
 
     public func calendarSizeForMonths(_ calendar: JTACMonthView?) -> MonthSize? {
-        return self.config.monthHeader.size
+        return self.config.monthHeader.height
     }
 
 }
@@ -528,13 +561,55 @@ extension FastisController where Value == Date {
 }
 
 extension FastisConfig {
+
+    /**
+     Configuration of base view controller (`cancelButtonTitle`, `doneButtonTitle`, etc.)
+     
+     Configurable in FastisConfig.``FastisConfig/controller-swift.property`` property
+     */
     public struct Controller {
+
+        /**
+         Cancel button title
+         
+         Default value — `"Cancel"`
+         */
         public var cancelButtonTitle: String = "Cancel"
+
+        /**
+         Done button title
+         
+         Default value — `"Done"`
+         */
         public var doneButtonTitle: String = "Done"
-        public var titleTextAttributes: [NSAttributedString.Key: Any] = [:]
-        public var backgroundColor: UIColor = .white
+
+        /**
+         Controller's background color
+         
+         Default value — `.systemBackground`
+         */
+        public var backgroundColor: UIColor = .systemBackground
+
+        /**
+         Bar button items tint color
+         
+         Default value — `.systemBlue`
+         */
         public var barButtonItemsColor: UIColor = .systemBlue
+
+        /**
+         Custom cancel button in navigation bar
+         
+         Default value — `nil`
+         */
         public var customCancelButton: UIBarButtonItem?
+
+        /**
+         Custom done button in navigation bar
+         
+         Default value — `nil`
+         */
         public var customDoneButton: UIBarButtonItem?
+
     }
 }

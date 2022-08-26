@@ -13,17 +13,17 @@ class CurrentValueView<Value: FastisValue>: UIView {
 
     // MARK: - Outlets
 
-    public lazy var label: UILabel = {
+    private lazy var label: UILabel = {
         let label = UILabel()
-        label.textColor = self.config.placeholderedTextColor
+        label.textColor = self.config.placeholderTextColor
         label.text = self.config.placeholderTextForRanges
         label.font = self.config.textFont
         return label
     }()
 
-    public lazy var clearButton: UIButton = {
+    private lazy var clearButton: UIButton = {
         let button = UIButton(type: .system)
-        button.addTarget(self, action: #selector(self.clear), for: .touchUpInside)
+        button.addTarget(self, action: #selector(CurrentValueView.clear), for: .touchUpInside)
         button.setImage(self.config.clearButtonImage, for: .normal)
         button.tintColor = self.config.clearButtonTintColor
         button.alpha = 0
@@ -31,7 +31,7 @@ class CurrentValueView<Value: FastisValue>: UIView {
         return button
     }()
 
-    public lazy var containerView: UIView = {
+    private lazy var containerView: UIView = {
         let view = UIView()
         view.backgroundColor = .clear
         return view
@@ -40,7 +40,9 @@ class CurrentValueView<Value: FastisValue>: UIView {
     // MARK: - Variables
 
     private let config: FastisConfig.CurrentValueView
-    public var onClear: (() -> Void)?
+
+    /// Clear button tap handler
+    internal var onClear: (() -> Void)?
 
     private lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -49,7 +51,7 @@ class CurrentValueView<Value: FastisValue>: UIView {
         return formatter
     }()
 
-    public var currentValue: Value? {
+    internal var currentValue: Value? {
         didSet {
             self.updateStateForCurrentValue()
         }
@@ -57,12 +59,12 @@ class CurrentValueView<Value: FastisValue>: UIView {
 
     // MARK: - Lifecycle
 
-    init(config: FastisConfig.CurrentValueView) {
+    internal init(config: FastisConfig.CurrentValueView) {
         self.config = config
         super.init(frame: .zero)
         self.configureUI()
         self.configureSubviews()
-        self.configureConstaints()
+        self.configureConstraints()
         self.updateStateForCurrentValue()
     }
 
@@ -82,7 +84,7 @@ class CurrentValueView<Value: FastisValue>: UIView {
         self.addSubview(self.containerView)
     }
 
-    private func configureConstaints() {
+    private func configureConstraints() {
         self.clearButton.snp.makeConstraints { (maker) in
             maker.right.top.bottom.centerY.equalToSuperview()
         }
@@ -119,7 +121,7 @@ class CurrentValueView<Value: FastisValue>: UIView {
 
         } else {
 
-            self.label.textColor = self.config.placeholderedTextColor
+            self.label.textColor = self.config.placeholderTextColor
             self.clearButton.alpha = 0
             self.clearButton.isUserInteractionEnabled = false
 
@@ -138,23 +140,89 @@ class CurrentValueView<Value: FastisValue>: UIView {
 
     // MARK: - Actions
 
-    @objc func clear() {
+    @objc private func clear() {
         self.onClear?()
     }
 
 }
 
 extension FastisConfig {
+
+    /**
+     Current value view appearance (clear button, date format, etc.)
+     
+     Configurable in FastisConfig.``FastisConfig/currentValueView-swift.property`` property
+     */
     public struct CurrentValueView {
+
+        /**
+         Placeholder text in .range mode
+         
+         Default value — `"Select date range"`
+         */
         public var placeholderTextForRanges: String = "Select date range"
+
+        /**
+         Placeholder text in .single mode
+         
+         Default value — `"Select date"`
+         */
         public var placeholderTextForSingle: String = "Select date"
-        public var placeholderedTextColor: UIColor = .lightGray
-        public var textColor: UIColor = .black
+
+        /**
+         Color of the placeholder for value label
+         
+         Default value — `.tertiaryLabel`
+         */
+        public var placeholderTextColor: UIColor = .tertiaryLabel
+
+        /**
+         Color of the value label
+         
+         Default value — `.label`
+         */
+        public var textColor: UIColor = .label
+
+        /**
+         Font of the value label
+         
+         Default value — `.systemFont(ofSize: 17, weight: .regular)`
+         */
         public var textFont: UIFont = .systemFont(ofSize: 17, weight: .regular)
-        public var clearButtonImage: UIImage = UIImage(named: "icon_clear")!
-        public var clearButtonTintColor: UIColor = .darkGray
+
+        /**
+         Clear button image
+         
+         Default value — `UIImage(systemName: "xmark.circle")`
+         */
+        public var clearButtonImage: UIImage? = UIImage(systemName: "xmark.circle")
+
+        /**
+         Clear button tint color
+         
+         Default value — `.systemGray3`
+         */
+        public var clearButtonTintColor: UIColor = .systemGray3
+
+        /**
+         Insets of value view
+         
+         Default value — `UIEdgeInsets(top: 8, left: 0, bottom: 24, right: 0)`
+         */
         public var insets: UIEdgeInsets = UIEdgeInsets(top: 8, left: 0, bottom: 24, right: 0)
+
+        /**
+         Format of current value
+         
+         Default value — `"d MMMM"`
+         */
         public var format: String = "d MMMM"
+
+        /**
+         Locale of formatter
+         
+         Default value — `Locale.autoupdatingCurrent`
+         */
         public var locale: Locale = .autoupdatingCurrent
     }
 }

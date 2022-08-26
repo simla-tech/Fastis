@@ -8,22 +8,38 @@
 
 import Foundation
 
+/// Mode of ``FastisValue`` entity
 public enum FastisMode {
-    case single, range
+    case single
+    case range
 }
 
+/// Value of ``FastisController``
 public protocol FastisValue {
-    static var mode: FastisMode { get set }
+
+    /// Mode of value for ``FastisController``
+    static var mode: FastisMode { get }
+
+    /// Helper function for ``FastisController``
     func outOfRange(minDate: Date?, maxDate: Date?) -> Bool
 }
 
+/// Range value for ``FastisController``
 public struct FastisRange: FastisValue, Hashable {
 
+    /// Start of the range
     public var fromDate: Date
+
+    /// End of the range
     public var toDate: Date
 
-    public static var mode: FastisMode = .range
+    /// Mode of value for ``FastisController``. Always `.range`
+    public static let mode: FastisMode = .range
 
+    /// Creates a new FastisRange
+    /// - Parameters:
+    ///   - fromDate: Start of the range
+    ///   - toDate: End of the range
     public init(from fromDate: Date, to toDate: Date) {
         self.fromDate = fromDate
         self.toDate = toDate
@@ -52,6 +68,8 @@ public enum FastisModeRange {
 }
 
 extension Date: FastisValue {
+
+    /// Mode of value for ``FastisController``. Always `.single`
     public static var mode: FastisMode = .single
 
     public func outOfRange(minDate: Date?, maxDate: Date?) -> Bool {

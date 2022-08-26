@@ -3,11 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		99D66FB2506B44156C714D4F /* Pods_FastisExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB137E4877EBDC6E87A77A4B /* Pods_FastisExample.framework */; };
+		F381AF9628B8C7190046383A /* Fastis in Frameworks */ = {isa = PBXBuildFile; productRef = F381AF9528B8C7190046383A /* Fastis */; };
 		F3FCEE47244780FE000F966E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FCEE46244780FE000F966E /* AppDelegate.swift */; };
 		F3FCEE4B244780FE000F966E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FCEE4A244780FE000F966E /* ViewController.swift */; };
 		F3FCEE5024478100000F966E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3FCEE4F24478100000F966E /* Assets.xcassets */; };
@@ -15,9 +15,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C49955908C269C4F65B964A4 /* Pods-FastisExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FastisExample.release.xcconfig"; path = "Target Support Files/Pods-FastisExample/Pods-FastisExample.release.xcconfig"; sourceTree = "<group>"; };
 		CB137E4877EBDC6E87A77A4B /* Pods_FastisExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FastisExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E25E93A7E35340B90A233761 /* Pods-FastisExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FastisExample.debug.xcconfig"; path = "Target Support Files/Pods-FastisExample/Pods-FastisExample.debug.xcconfig"; sourceTree = "<group>"; };
+		F31CFB6B28B8C32D00364F6A /* Fastis */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Fastis; path = ..; sourceTree = "<group>"; };
 		F3FCEE43244780FE000F966E /* FastisExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FastisExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3FCEE46244780FE000F966E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3FCEE4A244780FE000F966E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -31,7 +30,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				99D66FB2506B44156C714D4F /* Pods_FastisExample.framework in Frameworks */,
+				F381AF9628B8C7190046383A /* Fastis in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,21 +45,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		77E40117D86F77B00DD048D5 /* Pods */ = {
+		F31CFB6A28B8C32D00364F6A /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				E25E93A7E35340B90A233761 /* Pods-FastisExample.debug.xcconfig */,
-				C49955908C269C4F65B964A4 /* Pods-FastisExample.release.xcconfig */,
+				F31CFB6B28B8C32D00364F6A /* Fastis */,
 			);
-			path = Pods;
+			name = Packages;
 			sourceTree = "<group>";
 		};
 		F3FCEE3A244780FE000F966E = {
 			isa = PBXGroup;
 			children = (
+				F31CFB6A28B8C32D00364F6A /* Packages */,
 				F3FCEE45244780FE000F966E /* Source */,
 				F3FCEE44244780FE000F966E /* Products */,
-				77E40117D86F77B00DD048D5 /* Pods */,
 				6EEA20A76D9EBA8BC37D650E /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -92,17 +90,18 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F3FCEE5724478100000F966E /* Build configuration list for PBXNativeTarget "FastisExample" */;
 			buildPhases = (
-				9DACD7D74396BF89D45BC906 /* [CP] Check Pods Manifest.lock */,
 				F3FCEE3F244780FE000F966E /* Sources */,
 				F3FCEE40244780FE000F966E /* Frameworks */,
 				F3FCEE41244780FE000F966E /* Resources */,
-				BA2EB5FD26FEAF6059570E8C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = FastisExample;
+			packageProductDependencies = (
+				F381AF9528B8C7190046383A /* Fastis */,
+			);
 			productName = FastisExample;
 			productReference = F3FCEE43244780FE000F966E /* FastisExample.app */;
 			productType = "com.apple.product-type.application";
@@ -151,48 +150,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		9DACD7D74396BF89D45BC906 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FastisExample-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BA2EB5FD26FEAF6059570E8C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FastisExample/Pods-FastisExample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FastisExample/Pods-FastisExample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FastisExample/Pods-FastisExample-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F3FCEE3F244780FE000F966E /* Sources */ = {
@@ -336,17 +293,19 @@
 		};
 		F3FCEE5824478100000F966E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E25E93A7E35340B90A233761 /* Pods-FastisExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 48KFD5698Q;
 				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Fastis;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.retaildriver.FastisExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -356,17 +315,19 @@
 		};
 		F3FCEE5924478100000F966E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C49955908C269C4F65B964A4 /* Pods-FastisExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 48KFD5698Q;
 				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Fastis;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.retaildriver.FastisExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -396,6 +357,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F381AF9528B8C7190046383A /* Fastis */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Fastis;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F3FCEE3B244780FE000F966E /* Project object */;
 }

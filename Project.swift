@@ -6,7 +6,6 @@ let project = Project(
     targets: [
         Target(
             name: .Fastis,
-            resources: .defaultResourcesPath,
             dependencies: [
                 .target(name: .PrettyCards),
                 .external(name: .JTAppleCalendar),
