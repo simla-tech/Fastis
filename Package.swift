@@ -1,4 +1,4 @@
-// swift-tools-version:5.0
+// swift-tools-version:5.5
 //
 //  SnapKit
 //
@@ -41,7 +41,7 @@ let package = Package(
         .target(
             name: "Fastis",
             dependencies: ["JTAppleCalendar", "SnapKit", "PrettyCards"],
-            sources: ["Resources", "Sources", "Derived/Sources"]
+            path: "Sources"
         )
     ],
     swiftLanguageVersions: [.v5]

@@ -34,7 +34,7 @@ class WeekView: UIView {
         super.init(frame: .zero)
         self.configureUI()
         self.configureSubviews()
-        self.configureConstaints()
+        self.configureConstraints()
     }
 
     required init?(coder: NSCoder) {
@@ -66,7 +66,7 @@ class WeekView: UIView {
         return label
     }
 
-    private func configureConstaints() {
+    private func configureConstraints() {
         self.stackView.snp.makeConstraints { (maker) in
             maker.top.bottom.equalToSuperview()
             maker.left.right.equalToSuperview().inset(4)
@@ -79,13 +79,62 @@ class WeekView: UIView {
 }
 
 extension FastisConfig {
+
+    /**
+     Top header view with week day names
+
+     Configurable in FastisConfig.``FastisConfig/weekView-swift.property`` property
+     */
     public struct WeekView {
+
+        /**
+         Calendar which is used to get a `.shortWeekdaySymbols`
+         
+         Default value — `.current`
+         */
         public var calendar: Calendar = .current
-        public var backgroundColor: UIColor = .white
-        public var textColor: UIColor = .darkGray
+
+        /**
+         Background color of the view
+         
+         Default value — `.secondarySystemBackground`
+         */
+        public var backgroundColor: UIColor = .secondarySystemBackground
+
+        /**
+         Text color of labels
+         
+         Default value — `.secondaryLabel`
+         */
+        public var textColor: UIColor = .secondaryLabel
+
+        /**
+         Text font of labels
+         
+         Default value — `.systemFont(ofSize: 10, weight: .bold)`
+         */
         public var textFont: UIFont = .systemFont(ofSize: 10, weight: .bold)
+
+        /**
+         Height of the view
+         
+         Default value — `28pt`
+         */
         public var height: CGFloat = 28
+
+        /**
+         Corner radius of the view
+         
+         Default value — `8pt`
+         */
         public var cornerRadius: CGFloat = 8
+
+        /**
+         Make week names uppercased
+         
+         Default value — `true`
+         */
         public var uppercaseWeekName: Bool = true
+
     }
 }

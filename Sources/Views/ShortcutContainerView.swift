@@ -55,7 +55,7 @@ class ShortcutContainerView<Value: FastisValue>: UIView {
         super.init(frame: .zero)
         self.configureUI()
         self.configureSubviews()
-        self.configureConstaints()
+        self.configureConstraints()
     }
 
     required init?(coder: NSCoder) {
@@ -83,7 +83,7 @@ class ShortcutContainerView<Value: FastisValue>: UIView {
         }
     }
 
-    func configureConstaints() {
+    func configureConstraints() {
         self.stackView.snp.makeConstraints { (maker) in
             maker.left.top.right.equalToSuperview().inset(self.config.insets).priority(.high)
             maker.bottom.equalToSuperview().inset(self.config.insets).priority(.low)
@@ -99,9 +99,34 @@ class ShortcutContainerView<Value: FastisValue>: UIView {
 }
 
 extension FastisConfig {
+
+    /**
+     Bottom view with shortcuts
+     
+     Configurable in FastisConfig.``FastisConfig/shortcutContainerView-swift.property`` property
+     */
     public struct ShortcutContainerView {
-        public var backgroundColor: UIColor = .white
+
+        /**
+         Background color of container
+         
+         Default value — `.secondarySystemBackground`
+         */
+        public var backgroundColor: UIColor = .secondarySystemBackground
+
+        /**
+         Spacing between items
+         
+         Default value — `12pt`
+         */
         public var itemSpacing: CGFloat = 12
+
+        /**
+         Container inner inset
+         
+         Default value — `UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)`
+         */
         public var insets: UIEdgeInsets = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+
     }
 }
