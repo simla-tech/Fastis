@@ -32,6 +32,7 @@ class DayCell: JTACDayCell {
         view.layer.masksToBounds = true
         view.isHidden = true
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+        view.layer.cornerCurve = .continuous
         return view
     }()
 
@@ -40,6 +41,7 @@ class DayCell: JTACDayCell {
         view.layer.masksToBounds = true
         view.isHidden = true
         view.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+        view.layer.cornerCurve = .continuous
         return view
     }()
 
@@ -66,7 +68,7 @@ class DayCell: JTACDayCell {
         super.init(frame: frame)
         self.configureSubviews()
         self.configureConstraints()
-        self.applyConfig(FastisConfig.default.dayCell)
+        self.applyConfig(.default)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -75,7 +77,10 @@ class DayCell: JTACDayCell {
 
     // MARK: - Configurations
 
-    public func applyConfig(_ config: FastisConfig.DayCell) {
+    public func applyConfig(_ config: FastisConfig) {
+        self.backgroundColor = config.controller.backgroundColor
+
+        let config = config.dayCell
         self.config = config
         self.rangedBackgroundViewSquaredRight.backgroundColor = config.onRangeBackgroundColor
         self.rangedBackgroundViewSquaredLeft.backgroundColor = config.onRangeBackgroundColor
@@ -109,22 +114,22 @@ class DayCell: JTACDayCell {
         self.rangedBackgroundViewRoundedLeft.snp.makeConstraints { (maker) in
             maker.left.equalToSuperview()
             rangedBackgroundViewTopBottomConstraints.append(maker.bottom.top.equalToSuperview().inset(inset).constraint)
-            maker.width.equalToSuperview().dividedBy(2)
+            maker.right.equalTo(self.contentView.snp.centerX)
         }
         self.rangedBackgroundViewSquaredLeft.snp.makeConstraints { (maker) in
             maker.left.equalToSuperview()
             rangedBackgroundViewTopBottomConstraints.append(maker.bottom.top.equalToSuperview().inset(inset).constraint)
-            maker.width.equalToSuperview().dividedBy(2)
+            maker.right.equalTo(self.contentView.snp.centerX)
         }
         self.rangedBackgroundViewRoundedRight.snp.makeConstraints { (maker) in
             maker.right.equalToSuperview()
             rangedBackgroundViewTopBottomConstraints.append(maker.bottom.top.equalToSuperview().inset(inset).constraint)
-            maker.width.equalToSuperview().dividedBy(2)
+            maker.left.equalTo(self.contentView.snp.centerX)
         }
         self.rangedBackgroundViewSquaredRight.snp.makeConstraints { (maker) in
-            maker.right.equalToSuperview()
+            maker.right.equalToSuperview().offset(1) // Add small offset to prevent spacing between cells
             rangedBackgroundViewTopBottomConstraints.append(maker.bottom.top.equalToSuperview().inset(inset).constraint)
-            maker.width.equalToSuperview().dividedBy(2)
+            maker.left.equalTo(self.contentView.snp.centerX)
         }
         self.selectionBackgroundView.snp.makeConstraints { (maker) in
             maker.height.equalTo(100).priority(.low)
@@ -274,6 +279,7 @@ class DayCell: JTACDayCell {
 
         self.selectionBackgroundView.isHidden = config.isSelectedViewHidden
         self.isUserInteractionEnabled = config.dateLabelText != nil && config.isDateEnabled
+        self.clipsToBounds = config.dateLabelText == nil
 
         if let dateLabelText = config.dateLabelText {
             self.dateLabel.isHidden = false

@@ -336,7 +336,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
                                                    maximumDate: self.privateMaximumDate,
                                                    rangeValue: self.value as? FastisRange)
             self.viewConfigs[indexPath] = newConfig
-            cell.applyConfig(self.config.dayCell)
+            cell.applyConfig(self.config)
             cell.configure(for: newConfig)
         }
     }
