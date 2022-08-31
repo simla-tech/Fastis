@@ -1,6 +1,4 @@
-<p align="center">
-	<img alt="Fastis" src="https://github.com/simla-tech/Fastis/raw/master/Documentation/top_screen.jpg" width="356">
-</p>
+<img alt="Fastis" src="https://user-images.githubusercontent.com/4445510/187741251-d46c8a76-b8a5-428b-9a14-03411e0ba8f2.png" width="100%">
 
 [![SwiftMP compatible](https://img.shields.io/badge/SwiftPM-compatible-brightgreen.svg?style=flat)](https://github.com/apple/swift-package-manager)
 [![Cocoapods compatible](https://img.shields.io/cocoapods/v/Fastis.svg)](https://cocoapods.org/pods/Fastis)
