@@ -133,8 +133,8 @@ class DayCell: JTACDayCell {
         }
         self.selectionBackgroundView.snp.makeConstraints { (maker) in
             maker.height.equalTo(100).priority(.low)
-            maker.top.left.greaterThanOrEqualToSuperview()
-            maker.right.bottom.lessThanOrEqualToSuperview()
+            maker.top.left.greaterThanOrEqualToSuperview().offset(1)
+            maker.right.bottom.lessThanOrEqualToSuperview().offset(-1)
             maker.center.equalToSuperview()
             maker.width.equalTo(self.selectionBackgroundView.snp.height)
         }
