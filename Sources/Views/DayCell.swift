@@ -240,7 +240,7 @@ class DayCell: JTACDayCell {
         case rounded
         case hidden
     }
-    
+
     struct RangeViewConfig: Hashable {
 
         var leftSideState: RangeSideState = .hidden
@@ -292,7 +292,7 @@ class DayCell: JTACDayCell {
         case .hidden:
             self.rightRangeView.isHidden = true
         }
-        
+
         switch config.rangeView.leftSideState {
         case .squared:
             self.leftRangeView.isHidden = false
