@@ -1,7 +1,7 @@
-<img alt="Fastis" src="https://user-images.githubusercontent.com/4445510/187741251-d46c8a76-b8a5-428b-9a14-03411e0ba8f2.png" width="100%">
+<img alt="Fastis" src="https://user-images.githubusercontent.com/4445510/187880045-cb66b662-095b-4173-b795-b1e732cc2166.png" width="100%">
 
 [![SwiftMP compatible](https://img.shields.io/badge/SwiftPM-compatible-brightgreen.svg?style=flat)](https://github.com/apple/swift-package-manager)
-[![Cocoapods compatible](https://img.shields.io/cocoapods/v/Fastis.svg)](https://cocoapods.org/pods/Fastis)
+[![CocoaPods compatible](https://img.shields.io/cocoapods/v/Fastis.svg)](https://cocoapods.org/pods/Fastis)
 [![Swift](https://img.shields.io/badge/Swift-5-green.svg?style=flat)](https://swift.org)
 [![Xcode](https://img.shields.io/badge/Xcode-11-blue.svg?style=flat)](https://developer.apple.com/xcode)
 [![License](https://img.shields.io/badge/license-mit-brightgreen.svg?style=flat)](https://en.wikipedia.org/wiki/MIT_License)
@@ -78,7 +78,7 @@ Carthage isn't supported.
 
 ### Manually
 
-If you prefer not to use either of the dependency mentioned above managers, you can manually integrate Fastis into your project.
+If you prefer not to use either of the dependency managers mentioned above, you can manually integrate Fastis into your project.
 
 
 ## Usage
@@ -90,7 +90,7 @@ import Fastis
 
 class MyViewController: UIViewController {
 
-   func chooseDate() {
+    func chooseDate() {
         let fastisController = FastisController(mode: .range)
         fastisController.title = "Choose range"
         fastisController.maximumDate = Date()
@@ -113,7 +113,7 @@ If you want to get a single date, you have to use the `Date` type:
 let fastisController = FastisController(mode: .single)
 fastisController.initialValue = Date()
 fastisController.doneHandler = { resultDate in
-	print(resultDate) // resultDate is Date
+    print(resultDate) // resultDate is Date
 }
 ```
 
@@ -123,7 +123,7 @@ If you want to get a date range, you have to use the `FastisRange` type:
 let fastisController = FastisController(mode: .range)
 fastisController.initialValue = FastisRange(from: Date(), to: Date()) // or .from(Date(), to: Date())
 fastisController.doneHandler = { resultRange in
-	print(resultRange) // resultDate is FastisRange
+    print(resultRange) // resultDate is FastisRange
 }
 ```
 
@@ -167,8 +167,8 @@ Also, you can create your own shortcut:
 
 ```swift
 var customShortcut = FastisShortcut(name: "Today") {
-	let now = Date()
-	return FastisRange(from: now.startOfDay(), to: now.endOfDay())
+    let now = Date()
+    return FastisRange(from: now.startOfDay(), to: now.endOfDay())
 }
 fastisController.shortcuts = [customShortcut, .lastWeek]
 ```
