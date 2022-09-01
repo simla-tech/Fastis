@@ -20,7 +20,6 @@ Pod::Spec.new do |s|
       "Sources/**/*.swift",
   ]
 
-  s.dependency 'SnapKit', '~> 5.0.0'
   s.dependency 'JTAppleCalendar', '~> 8.0.0'
   s.dependency 'PrettyCards', '~> 1.0.0'
 

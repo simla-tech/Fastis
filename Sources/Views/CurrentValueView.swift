@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SnapKit
 
 class CurrentValueView<Value: FastisValue>: UIView {
 
@@ -18,6 +17,7 @@ class CurrentValueView<Value: FastisValue>: UIView {
         label.textColor = self.config.placeholderTextColor
         label.text = self.config.placeholderTextForRanges
         label.font = self.config.textFont
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -28,12 +28,14 @@ class CurrentValueView<Value: FastisValue>: UIView {
         button.tintColor = self.config.clearButtonTintColor
         button.alpha = 0
         button.isUserInteractionEnabled = false
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 
     private lazy var containerView: UIView = {
         let view = UIView()
         view.backgroundColor = .clear
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
@@ -85,17 +87,25 @@ class CurrentValueView<Value: FastisValue>: UIView {
     }
 
     private func configureConstraints() {
-        self.clearButton.snp.makeConstraints { (maker) in
-            maker.right.top.bottom.centerY.equalToSuperview()
-        }
-        self.label.snp.makeConstraints { (maker) in
-            maker.top.bottom.centerX.equalToSuperview()
-            maker.right.lessThanOrEqualTo(self.clearButton.snp.left)
-            maker.left.greaterThanOrEqualToSuperview()
-        }
-        self.containerView.snp.makeConstraints { (maker) in
-            maker.edges.equalToSuperview().inset(self.config.insets)
-        }
+        NSLayoutConstraint.activate([
+            self.clearButton.rightAnchor.constraint(equalTo: self.containerView.rightAnchor),
+            self.clearButton.topAnchor.constraint(equalTo: self.containerView.topAnchor),
+            self.clearButton.bottomAnchor.constraint(equalTo: self.containerView.bottomAnchor),
+            self.clearButton.centerYAnchor.constraint(equalTo: self.containerView.centerYAnchor)
+        ])
+        NSLayoutConstraint.activate([
+            self.label.topAnchor.constraint(equalTo: self.containerView.topAnchor),
+            self.label.bottomAnchor.constraint(equalTo: self.containerView.bottomAnchor),
+            self.label.centerXAnchor.constraint(equalTo: self.containerView.centerXAnchor),
+            self.label.rightAnchor.constraint(lessThanOrEqualTo: self.clearButton.leftAnchor),
+            self.label.leftAnchor.constraint(greaterThanOrEqualTo: self.containerView.leftAnchor)
+        ])
+        NSLayoutConstraint.activate([
+            self.containerView.topAnchor.constraint(equalTo: self.topAnchor, constant: self.config.insets.top),
+            self.containerView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: self.config.insets.left),
+            self.containerView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -self.config.insets.right),
+            self.containerView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -self.config.insets.bottom)
+        ])
     }
 
     private func updateStateForCurrentValue() {

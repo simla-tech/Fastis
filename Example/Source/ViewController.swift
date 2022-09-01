@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SnapKit
 import Fastis
 
 class ViewController: UIViewController {
@@ -21,6 +20,7 @@ class ViewController: UIViewController {
         view.distribution = .fill
         view.alignment = .center
         view.spacing = 16
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
@@ -86,11 +86,14 @@ class ViewController: UIViewController {
     }
 
     private func configureConstraints() {
-        self.containerView.snp.makeConstraints { (maker) in
-            maker.center.equalTo(self.view.safeAreaLayoutGuide)
-            maker.left.top.greaterThanOrEqualTo(self.view.safeAreaLayoutGuide)
-            maker.bottom.right.lessThanOrEqualTo(self.view.safeAreaLayoutGuide)
-        }
+        NSLayoutConstraint.activate([
+            self.containerView.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor),
+            self.containerView.centerYAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerYAnchor),
+            self.containerView.leftAnchor.constraint(greaterThanOrEqualTo: self.view.safeAreaLayoutGuide.leftAnchor),
+            self.containerView.topAnchor.constraint(greaterThanOrEqualTo: self.view.safeAreaLayoutGuide.topAnchor),
+            self.containerView.rightAnchor.constraint(lessThanOrEqualTo: self.view.safeAreaLayoutGuide.rightAnchor),
+            self.containerView.bottomAnchor.constraint(lessThanOrEqualTo: self.view.safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
 
     // MARK: - Actions

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SnapKit
 
 class ShortcutContainerView<Value: FastisValue>: UIView {
 
@@ -16,6 +15,7 @@ class ShortcutContainerView<Value: FastisValue>: UIView {
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.alwaysBounceHorizontal = true
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
 
@@ -24,6 +24,7 @@ class ShortcutContainerView<Value: FastisValue>: UIView {
         stackView.axis = .horizontal
         stackView.spacing = self.config.itemSpacing
         stackView.alignment = .center
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
 
@@ -84,14 +85,19 @@ class ShortcutContainerView<Value: FastisValue>: UIView {
     }
 
     func configureConstraints() {
-        self.stackView.snp.makeConstraints { (maker) in
-            maker.left.top.right.equalToSuperview().inset(self.config.insets).priority(.high)
-            maker.bottom.equalToSuperview().inset(self.config.insets).priority(.low)
-        }
-        self.scrollView.snp.makeConstraints { (maker) in
-            maker.height.equalTo(self.stackView).offset(self.config.insets.top + self.config.insets.bottom)
-            maker.edges.equalTo(self.safeAreaLayoutGuide)
-        }
+        NSLayoutConstraint.activate([
+            self.stackView.leftAnchor.constraint(equalTo: self.scrollView.contentLayoutGuide.leftAnchor, constant: self.config.insets.left),
+            self.stackView.rightAnchor.constraint(equalTo: self.scrollView.contentLayoutGuide.rightAnchor, constant: -self.config.insets.right),
+            self.stackView.topAnchor.constraint(equalTo: self.scrollView.contentLayoutGuide.topAnchor, constant: self.config.insets.top),
+            self.stackView.bottomAnchor.constraint(equalTo: self.scrollView.contentLayoutGuide.bottomAnchor, constant: -self.config.insets.bottom)
+        ])
+        NSLayoutConstraint.activate([
+            self.scrollView.heightAnchor.constraint(equalTo: self.stackView.heightAnchor, constant: self.config.insets.top + self.config.insets.bottom),
+            self.scrollView.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor),
+            self.scrollView.rightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.rightAnchor),
+            self.scrollView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+            self.scrollView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
 
     // MARK: - Actions

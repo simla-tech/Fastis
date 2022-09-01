@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SnapKit
 
 class WeekView: UIView {
 
@@ -20,6 +19,7 @@ class WeekView: UIView {
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         stackView.alignment = .center
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
 
@@ -44,6 +44,7 @@ class WeekView: UIView {
     // MARK: - Configuration
 
     private func configureUI() {
+        self.translatesAutoresizingMaskIntoConstraints = false
         self.backgroundColor = self.config.backgroundColor
         self.layer.cornerRadius = self.config.cornerRadius
     }
@@ -57,9 +58,9 @@ class WeekView: UIView {
         self.addSubview(self.stackView)
     }
 
-    func makeWeekLabel(for simbol: String) -> UILabel {
+    func makeWeekLabel(for symbol: String) -> UILabel {
         let label = UILabel()
-        label.text = self.config.uppercaseWeekName ? simbol.uppercased() : simbol
+        label.text = self.config.uppercaseWeekName ? symbol.uppercased() : symbol
         label.font = self.config.textFont
         label.textColor = self.config.textColor
         label.textAlignment = .center
@@ -67,13 +68,15 @@ class WeekView: UIView {
     }
 
     private func configureConstraints() {
-        self.stackView.snp.makeConstraints { (maker) in
-            maker.top.bottom.equalToSuperview()
-            maker.left.right.equalToSuperview().inset(4)
-        }
-        self.snp.makeConstraints { (maker) in
-            maker.height.equalTo(self.config.height)
-        }
+        NSLayoutConstraint.activate([
+            self.stackView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 4),
+            self.stackView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -4),
+            self.stackView.topAnchor.constraint(equalTo: self.topAnchor),
+            self.stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        ])
+        NSLayoutConstraint.activate([
+            self.heightAnchor.constraint(equalToConstant: self.config.height)
+        ])
     }
 
 }

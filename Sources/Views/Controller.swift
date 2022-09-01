@@ -8,7 +8,6 @@
 
 import UIKit
 import JTAppleCalendar
-import SnapKit
 
 /**
  Main controller of Fastis framework. Use it to create and present dade picker
@@ -79,6 +78,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
 
     private lazy var calendarView: JTACMonthView = {
         let monthView = JTACMonthView()
+        monthView.translatesAutoresizingMaskIntoConstraints = false
         monthView.backgroundColor = self.appearance.backgroundColor
         monthView.ibCalendarDelegate = self
         monthView.ibCalendarDataSource = self
@@ -94,12 +94,15 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
     }()
 
     private lazy var weekView: WeekView = {
-        return WeekView(config: self.config.weekView)
+        let view = WeekView(config: self.config.weekView)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
 
     private lazy var currentValueView: CurrentValueView<Value> = {
         let view = CurrentValueView<Value>(config: self.config.currentValueView)
         view.currentValue = self.value
+        view.translatesAutoresizingMaskIntoConstraints = false
         view.onClear = {
             self.value = nil
             self.viewConfigs.removeAll()
@@ -115,6 +118,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
 
     private lazy var shortcutContainerView: ShortcutContainerView<Value> = {
         let view = ShortcutContainerView<Value>(config: self.config.shortcutContainerView, itemConfig: self.config.shortcutItemView, shortcuts: self.shortcuts)
+        view.translatesAutoresizingMaskIntoConstraints = false
         if let value = self.value {
             view.selectedShortcut = self.shortcuts.first(where: { $0.isEqual(to: value) })
         }
@@ -283,27 +287,36 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
     }
 
     private func configureConstraints() {
-        self.currentValueView.snp.makeConstraints { (maker) in
-            maker.top.equalTo(self.view.safeAreaLayoutGuide)
-            maker.left.right.equalToSuperview().inset(12)
-        }
-        self.weekView.snp.makeConstraints { (maker) in
-            maker.top.equalTo(self.currentValueView.snp.bottom)
-            maker.left.right.equalToSuperview().inset(12)
-        }
+        NSLayoutConstraint.activate([
+            self.currentValueView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            self.currentValueView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 12),
+            self.currentValueView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -12)
+        ])
+        NSLayoutConstraint.activate([
+            self.weekView.topAnchor.constraint(equalTo: self.currentValueView.bottomAnchor),
+            self.weekView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 12),
+            self.weekView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -12)
+        ])
         if !self.shortcuts.isEmpty {
-            self.shortcutContainerView.snp.makeConstraints { (maker) in
-                maker.bottom.left.right.equalToSuperview()
-            }
+            NSLayoutConstraint.activate([
+                self.shortcutContainerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+                self.shortcutContainerView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
+                self.shortcutContainerView.rightAnchor.constraint(equalTo: self.view.rightAnchor)
+            ])
         }
-        self.calendarView.snp.makeConstraints { (maker) in
-            maker.top.equalTo(self.weekView.snp.bottom)
-            maker.left.right.equalToSuperview().inset(16)
-            if !self.shortcuts.isEmpty {
-                maker.bottom.equalTo(self.shortcutContainerView.snp.top)
-            } else {
-                maker.bottom.equalToSuperview()
-            }
+        NSLayoutConstraint.activate([
+            self.calendarView.topAnchor.constraint(equalTo: self.weekView.bottomAnchor),
+            self.calendarView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16),
+            self.calendarView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16)
+        ])
+        if !self.shortcuts.isEmpty {
+            NSLayoutConstraint.activate([
+                self.calendarView.bottomAnchor.constraint(equalTo: self.shortcutContainerView.topAnchor)
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                self.calendarView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+            ])
         }
     }
 

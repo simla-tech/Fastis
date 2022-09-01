@@ -8,8 +8,7 @@ let project = Project(
             name: .Fastis,
             dependencies: [
                 .target(name: .PrettyCards),
-                .external(name: .JTAppleCalendar),
-                .external(name: .SnapKit)
+                .external(name: .JTAppleCalendar)
             ]
         )
     ],

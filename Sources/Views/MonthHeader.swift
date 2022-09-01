@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SnapKit
 import JTAppleCalendar
 
 class MonthHeader: JTACMonthReusableView {
@@ -17,18 +16,20 @@ class MonthHeader: JTACMonthReusableView {
     private lazy var monthLabel: UILabel = {
         let label = UILabel()
         label.text = "Month name"
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
     // MARK: - Variables
 
+    private var leftAnchorConstraint: NSLayoutConstraint?
+    private var rightAnchorConstraint: NSLayoutConstraint?
+    private var topAnchorConstraint: NSLayoutConstraint?
+    private var bottomAnchorConstraint: NSLayoutConstraint?
+
     internal var calculatedHeight: CGFloat = 0
     internal var tapHandler: (() -> Void)?
-    private var insetConstraint: Constraint?
-    private lazy var monthFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        return formatter
-    }()
+    private lazy var monthFormatter = DateFormatter()
 
     // MARK: - Lifecycle
 
@@ -52,9 +53,13 @@ class MonthHeader: JTACMonthReusableView {
     }
 
     private func configureConstraints() {
-        self.monthLabel.snp.makeConstraints { (maker) in
-            self.insetConstraint = maker.edges.equalToSuperview().constraint
-        }
+        self.leftAnchorConstraint = self.monthLabel.leftAnchor.constraint(equalTo: self.leftAnchor)
+        self.rightAnchorConstraint = self.monthLabel.rightAnchor.constraint(equalTo: self.rightAnchor)
+        self.topAnchorConstraint = self.monthLabel.topAnchor.constraint(equalTo: self.topAnchor)
+        self.bottomAnchorConstraint = self.monthLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        NSLayoutConstraint.activate([
+            self.leftAnchorConstraint, self.rightAnchorConstraint, self.topAnchorConstraint, self.bottomAnchorConstraint
+        ].compactMap({ $0 }))
     }
 
     internal func configure(for date: Date) {
@@ -69,7 +74,10 @@ class MonthHeader: JTACMonthReusableView {
         self.monthLabel.font = config.labelFont
         self.monthLabel.textColor = config.labelColor
         self.monthLabel.textAlignment = config.labelAlignment
-        self.insetConstraint?.update(inset: config.insets)
+        self.leftAnchorConstraint?.constant = config.insets.left
+        self.rightAnchorConstraint?.constant = -config.insets.right
+        self.topAnchorConstraint?.constant = config.insets.top
+        self.bottomAnchorConstraint?.constant = -config.insets.bottom
     }
 
     @objc private func viewTapped() {

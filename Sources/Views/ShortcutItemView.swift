@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SnapKit
 import PrettyCards
 
 class ShortcutItemView: UIView {
@@ -23,6 +22,7 @@ class ShortcutItemView: UIView {
         card.tapHandler = {
             self.tapHandler?()
         }
+        card.translatesAutoresizingMaskIntoConstraints = false
         return card
     }()
 
@@ -31,6 +31,7 @@ class ShortcutItemView: UIView {
         label.font = self.config.font
         label.textColor = self.config.textColor
         label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -84,12 +85,18 @@ class ShortcutItemView: UIView {
     }
 
     private func configureConstraints() {
-        self.nameLabel.snp.makeConstraints { (maker) in
-            maker.edges.equalToSuperview().inset(self.config.insets)
-        }
-        self.container.snp.makeConstraints { (maker) in
-            maker.edges.equalToSuperview()
-        }
+        NSLayoutConstraint.activate([
+            self.nameLabel.leftAnchor.constraint(equalTo: self.container.containerView.leftAnchor, constant: self.config.insets.left),
+            self.nameLabel.rightAnchor.constraint(equalTo: self.container.containerView.rightAnchor, constant: -self.config.insets.right),
+            self.nameLabel.topAnchor.constraint(equalTo: self.container.containerView.topAnchor, constant: self.config.insets.top),
+            self.nameLabel.bottomAnchor.constraint(equalTo: self.container.containerView.bottomAnchor, constant: -self.config.insets.bottom)
+        ])
+        NSLayoutConstraint.activate([
+            self.container.leftAnchor.constraint(equalTo: self.leftAnchor),
+            self.container.rightAnchor.constraint(equalTo: self.rightAnchor),
+            self.container.topAnchor.constraint(equalTo: self.topAnchor),
+            self.container.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        ])
     }
 
     // MARK: - Actions
