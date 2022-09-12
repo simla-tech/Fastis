@@ -177,6 +177,7 @@ fastisController.shortcuts = [customShortcut, .lastWeek]
 
 Fastis can be customised global or local. `FastisConfig` have some sections:
 
+- `calendar` - Base calendar that used to render UI. Default value is `.current`
 - `controller` - base view controller (`cancelButtonTitle`, `doneButtonTitle`, etc.)
 - `monthHeader` - month titles
 - `dayCell` - day cells (selection parameters, font, etc.)
