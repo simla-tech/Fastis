@@ -133,7 +133,13 @@ class DayCell: JTACDayCell {
         NSLayoutConstraint.activate(self.rangeViewBottomAnchorConstraints)
     }
 
-    public static func makeViewConfig(for state: CellState, minimumDate: Date?, maximumDate: Date?, rangeValue: FastisRange?) -> ViewConfig {
+    public static func makeViewConfig(
+        for state: CellState,
+        minimumDate: Date?,
+        maximumDate: Date?,
+        rangeValue: FastisRange?,
+        calendar: Calendar
+    ) -> ViewConfig {
 
         var config = ViewConfig()
 
@@ -162,10 +168,10 @@ class DayCell: JTACDayCell {
 
                 if showRangeView {
 
-                    if state.day == .monday {
+                    if state.day.rawValue == calendar.firstWeekday {
                         config.rangeView.leftSideState = .rounded
                         config.rangeView.rightSideState = .squared
-                    } else if state.day == .sunday {
+                    } else if state.day.rawValue == calendar.lastWeekday {
                         config.rangeView.leftSideState = .squared
                         config.rangeView.rightSideState = .rounded
                     } else {
@@ -201,10 +207,10 @@ class DayCell: JTACDayCell {
             case .left, .right, .middle:
                 config.isSelectedViewHidden = position == .middle
 
-                if position == .right && state.day == .monday {
+                if position == .right && state.day.rawValue == calendar.firstWeekday {
                     config.rangeView.leftSideState = .rounded
 
-                } else if position == .left && state.day == .sunday {
+                } else if position == .left && state.day.rawValue == calendar.lastWeekday {
                     config.rangeView.rightSideState = .rounded
 
                 } else if position == .left {
@@ -213,11 +219,11 @@ class DayCell: JTACDayCell {
                 } else if position == .right {
                     config.rangeView.leftSideState = .squared
 
-                } else if state.day == .monday {
+                } else if state.day.rawValue == calendar.firstWeekday {
                     config.rangeView.leftSideState = .rounded
                     config.rangeView.rightSideState = .squared
 
-                } else if state.day == .sunday {
+                } else if state.day.rawValue == calendar.lastWeekday {
                     config.rangeView.leftSideState = .squared
                     config.rangeView.rightSideState = .rounded
 

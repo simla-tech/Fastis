@@ -94,7 +94,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
     }()
 
     private lazy var weekView: WeekView = {
-        let view = WeekView(config: self.config.weekView)
+        let view = WeekView(calendar: self.config.calendar, config: self.config.weekView)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -139,7 +139,6 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
     private let dayCellReuseIdentifier = "DayCellReuseIdentifier"
     private let monthHeaderReuseIdentifier = "MonthHeaderReuseIdentifier"
     private var viewConfigs: [IndexPath: DayCell.ViewConfig] = [:]
-    private var currentCalendar: Calendar = .autoupdatingCurrent
     private var privateMinimumDate: Date?
     private var privateMaximumDate: Date?
     private var privateSelectMonthOnHeaderTap: Bool = false
@@ -347,7 +346,8 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
             let newConfig = DayCell.makeViewConfig(for: cellState,
                                                    minimumDate: self.privateMinimumDate,
                                                    maximumDate: self.privateMaximumDate,
-                                                   rangeValue: self.value as? FastisRange)
+                                                   rangeValue: self.value as? FastisRange,
+                                                   calendar: self.config.calendar)
             self.viewConfigs[indexPath] = newConfig
             cell.applyConfig(self.config)
             cell.configure(for: newConfig)
@@ -399,23 +399,23 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
                 let dateRangeChangesDisabled = !allowDateRangeChanges
                 let rangeSelected = !currentValue.fromDate.isInSameDay(date: currentValue.toDate)
                 if dateRangeChangesDisabled && rangeSelected {
-                    newValue = .from(date.startOfDay(in: self.currentCalendar), to: date.endOfDay(in: self.currentCalendar))
-                } else if date.isInSameDay(in: self.currentCalendar, date: currentValue.fromDate) {
-                    let newToDate = date.endOfDay(in: self.currentCalendar)
+                    newValue = .from(date.startOfDay(in: self.config.calendar), to: date.endOfDay(in: self.config.calendar))
+                } else if date.isInSameDay(in: self.config.calendar, date: currentValue.fromDate) {
+                    let newToDate = date.endOfDay(in: self.config.calendar)
                     newValue = .from(currentValue.fromDate, to: newToDate)
-                } else if date.isInSameDay(in: self.currentCalendar, date: currentValue.toDate) {
-                    let newFromDate = date.startOfDay(in: self.currentCalendar)
+                } else if date.isInSameDay(in: self.config.calendar, date: currentValue.toDate) {
+                    let newFromDate = date.startOfDay(in: self.config.calendar)
                     newValue = .from(newFromDate, to: currentValue.toDate)
                 } else if date < currentValue.fromDate {
-                    let newFromDate = date.startOfDay(in: self.currentCalendar)
+                    let newFromDate = date.startOfDay(in: self.config.calendar)
                     newValue = .from(newFromDate, to: currentValue.toDate)
                 } else {
-                    let newToDate = date.endOfDay(in: self.currentCalendar)
+                    let newToDate = date.endOfDay(in: self.config.calendar)
                     newValue = .from(currentValue.fromDate, to: newToDate)
                 }
 
             } else {
-                newValue = .from(date.startOfDay(in: self.currentCalendar), to: date.endOfDay(in: self.currentCalendar))
+                newValue = .from(date.startOfDay(in: self.config.calendar), to: date.endOfDay(in: self.config.calendar))
             }
 
             self.value = newValue as? Value
@@ -441,30 +441,30 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
 
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy MM dd"
-        dateFormatter.timeZone = self.currentCalendar.timeZone
-        dateFormatter.locale = self.currentCalendar.locale
+        dateFormatter.timeZone = self.config.calendar.timeZone
+        dateFormatter.locale = self.config.calendar.locale
         var startDate = dateFormatter.date(from: "2000 01 01")!
         var endDate = dateFormatter.date(from: "2030 12 01")!
 
         if let maximumDate = self.privateMaximumDate,
-            let endOfNextMonth = self.currentCalendar.date(byAdding: .month, value: 2, to: maximumDate)?
-                .endOfMonth(in: self.currentCalendar) {
+            let endOfNextMonth = self.config.calendar.date(byAdding: .month, value: 2, to: maximumDate)?
+                .endOfMonth(in: self.config.calendar) {
             endDate = endOfNextMonth
         }
 
         if let minimumDate = self.privateMinimumDate,
-            let startOfPreviousMonth = self.currentCalendar.date(byAdding: .month, value: -2, to: minimumDate)?
-                .startOfMonth(in: self.currentCalendar) {
+            let startOfPreviousMonth = self.config.calendar.date(byAdding: .month, value: -2, to: minimumDate)?
+                .startOfMonth(in: self.config.calendar) {
             startDate = startOfPreviousMonth
         }
 
         let parameters = ConfigurationParameters(startDate: startDate,
                                                  endDate: endDate,
                                                  numberOfRows: 6,
-                                                 calendar: self.currentCalendar,
+                                                 calendar: self.config.calendar,
                                                  generateInDates: .forAllMonths,
                                                  generateOutDates: .tillEndOfRow,
-                                                 firstDayOfWeek: .monday,
+                                                 firstDayOfWeek: nil,
                                                  hasStrictBoundaries: true)
         return parameters
     }
@@ -475,16 +475,16 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         header.configure(for: range.start)
         if self.privateSelectMonthOnHeaderTap, Value.mode == .range {
             header.tapHandler = {
-                var fromDate = range.start.startOfMonth(in: self.currentCalendar)
-                var toDate = range.start.endOfMonth(in: self.currentCalendar)
+                var fromDate = range.start.startOfMonth(in: self.config.calendar)
+                var toDate = range.start.endOfMonth(in: self.config.calendar)
                 if let minDate = self.minimumDate {
                     if toDate < minDate { return } else if fromDate < minDate {
-                        fromDate = minDate.startOfDay(in: self.currentCalendar)
+                        fromDate = minDate.startOfDay(in: self.config.calendar)
                     }
                 }
                 if let maxDate = self.maximumDate {
                     if fromDate > maxDate { return } else if toDate > maxDate {
-                        toDate = maxDate.endOfDay(in: self.currentCalendar)
+                        toDate = maxDate.endOfDay(in: self.config.calendar)
                     }
                 }
                 let newValue: FastisRange = .from(fromDate, to: toDate)

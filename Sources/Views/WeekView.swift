@@ -26,11 +26,13 @@ class WeekView: UIView {
     // MARK: - Variables
 
     private let config: FastisConfig.WeekView
+    private let calendar: Calendar
 
     // MARK: - Lifecycle
 
-    init(config: FastisConfig.WeekView) {
+    init(calendar: Calendar, config: FastisConfig.WeekView) {
         self.config = config
+        self.calendar = calendar
         super.init(frame: .zero)
         self.configureUI()
         self.configureSubviews()
@@ -50,9 +52,11 @@ class WeekView: UIView {
     }
 
     private func configureSubviews() {
-        var weekDays = self.config.calendar.shortWeekdaySymbols
-        weekDays.append(weekDays.remove(at: 0))
-        for weekdaySymbol in weekDays {
+        let numDays = self.calendar.shortStandaloneWeekdaySymbols.count
+        let first = self.calendar.firstWeekday - 1
+        let end = first + numDays - 1
+        let days = (first...end).map({ self.calendar.shortStandaloneWeekdaySymbols[$0 % numDays] })
+        for weekdaySymbol in days {
             self.stackView.addArrangedSubview(self.makeWeekLabel(for: weekdaySymbol))
         }
         self.addSubview(self.stackView)
@@ -95,6 +99,7 @@ extension FastisConfig {
          
          Default value — `.current`
          */
+        @available(*, unavailable, message: "Use FastisConfig.calendar propery instead")
         public var calendar: Calendar = .current
 
         /**
