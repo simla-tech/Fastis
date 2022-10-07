@@ -122,7 +122,8 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         if let value = self.value {
             view.selectedShortcut = self.shortcuts.first(where: { $0.isEqual(to: value) })
         }
-        view.onSelect = { selectedShortcut in
+        view.onSelect = { [weak self] selectedShortcut in
+            guard let self = self else { return }
             let newValue = selectedShortcut.action()
             if !newValue.outOfRange(minDate: self.privateMinimumDate, maxDate: self.privateMaximumDate) {
                 self.value = newValue
