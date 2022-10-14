@@ -10,6 +10,7 @@ Fastis is a fully customisable UI component for picking dates and ranges created
 
 - [Requirements](#requirements)
 - [Features](#features)
+- [Android implementation](#android-implementation)
 - [Installation](#installation)
 - [Usage](#usage)
 	- [Quick Start](#quick-start)
@@ -31,6 +32,10 @@ Fastis is a fully customisable UI component for picking dates and ranges created
 - [x] Flexible customization
 - [x] Shortcuts for dates and ranges
 - [x] Single date and date range modes
+
+## Android implementation
+
+* [appmonkey8010/AMCalendar](https://github.com/appmonkey8010/AMCalendar)
 
 ## Installation
 
