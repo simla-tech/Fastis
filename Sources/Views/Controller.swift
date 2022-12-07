@@ -103,7 +103,8 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         let view = CurrentValueView<Value>(config: self.config.currentValueView)
         view.currentValue = self.value
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.onClear = {
+        view.onClear = { [weak self] in
+            guard let self else { return }
             self.value = nil
             self.viewConfigs.removeAll()
             self.calendarView.deselectAllDates()

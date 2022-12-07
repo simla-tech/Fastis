@@ -9,7 +9,7 @@
 import UIKit
 import JTAppleCalendar
 
-class DayCell: JTACDayCell {
+final class DayCell: JTACDayCell {
 
     // MARK: - Outlets
 

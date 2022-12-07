@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WeekView: UIView {
+final class WeekView: UIView {
 
     // MARK: - Outlets
 

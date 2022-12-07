@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CurrentValueView<Value: FastisValue>: UIView {
+final class CurrentValueView<Value: FastisValue>: UIView {
 
     // MARK: - Outlets
 

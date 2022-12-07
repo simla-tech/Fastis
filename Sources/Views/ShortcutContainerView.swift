@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ShortcutContainerView<Value: FastisValue>: UIView {
+final class ShortcutContainerView<Value: FastisValue>: UIView {
 
     // MARK: - Outlets
 

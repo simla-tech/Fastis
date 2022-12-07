@@ -9,7 +9,7 @@
 import UIKit
 import JTAppleCalendar
 
-class MonthHeader: JTACMonthReusableView {
+final class MonthHeader: JTACMonthReusableView {
 
     // MARK: - Outlets
 

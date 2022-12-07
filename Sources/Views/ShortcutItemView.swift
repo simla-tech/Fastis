@@ -9,7 +9,7 @@
 import UIKit
 import PrettyCards
 
-class ShortcutItemView: UIView {
+final class ShortcutItemView: UIView {
 
     // MARK: - Outlets
 
