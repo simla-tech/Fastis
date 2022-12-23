@@ -6,8 +6,8 @@
 //  Copyright © 2020 DIGITAL RETAIL TECHNOLOGIES, S.L. All rights reserved.
 //
 
-import UIKit
 import PrettyCards
+import UIKit
 
 final class ShortcutItemView: UIView {
 
@@ -40,7 +40,7 @@ final class ShortcutItemView: UIView {
     private let config: FastisConfig.ShortcutItemView
     internal var tapHandler: (() -> Void)?
 
-    internal var isSelected: Bool = false {
+    internal var isSelected = false {
         didSet {
             guard self.isSelected != oldValue else { return }
             UIView.animate(withDuration: 0.1) {
@@ -52,7 +52,7 @@ final class ShortcutItemView: UIView {
 
     internal var name: String? {
         get {
-            return self.nameLabel.text
+            self.nameLabel.text
         }
         set {
             self.nameLabel.text = newValue
@@ -69,6 +69,7 @@ final class ShortcutItemView: UIView {
         self.configureConstraints()
     }
 
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -103,77 +104,77 @@ final class ShortcutItemView: UIView {
 
 }
 
-extension FastisConfig {
+public extension FastisConfig {
 
     /**
      Shortcut item in the bottom view
 
      Configurable in FastisConfig.``FastisConfig/shortcutItemView-swift.property`` property
      */
-    public struct ShortcutItemView {
+    struct ShortcutItemView {
 
         /**
          Corner radius of item
-         
+
          Default value — `6pt`
          */
         public var cornerRadius: CGFloat = 6
 
         /**
          Animation on touch
-         
+
          Default value — `.zoomOut`
          */
         public var tapAnimation: Card.Animation = .zoomOut
 
         /**
          Background color of item
-         
+
          Default value — `.systemBackground`
          */
         public var backgroundColor: UIColor = .systemBackground
 
         /**
          Background color of item when it value equals selected date
-         
+
          Default value — `.systemBlue`
          */
         public var selectedBackgroundColor: UIColor = .systemBlue
 
         /**
          Font of label in item
-         
+
          Default value — `.systemFont(ofSize: 15, weight: .regular)`
          */
         public var font: UIFont = .systemFont(ofSize: 15, weight: .regular)
 
         /**
          Text color of label in item
-         
+
          Default value — `.label`
          */
         public var textColor: UIColor = .label
 
         /**
          Text color of label in item when it value equals selected date
-         
+
          Default value — `.white`
          */
         public var textColorOnSelected: UIColor = .white
 
         /**
          Shadow of item
-         
+
          Default value — `Card.Shadow.small`
          */
         public var shadow: CardShadowProtocol = Card.Shadow.small
 
         /**
          Inner inset of item
-         
+
          Default value — `UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)`
          */
-        public var insets: UIEdgeInsets = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
+        public var insets = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
 
     }
 

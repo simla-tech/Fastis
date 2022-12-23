@@ -6,8 +6,8 @@
 //  Copyright © 2020 DIGITAL RETAIL TECHNOLOGIES, S.L. All rights reserved.
 //
 
-import UIKit
 import Fastis
+import UIKit
 
 class ViewController: UIViewController {
 
@@ -98,7 +98,8 @@ class ViewController: UIViewController {
 
     // MARK: - Actions
 
-    @objc private func chooseRange() {
+    @objc
+    private func chooseRange() {
         let fastisController = FastisController(mode: .range)
         fastisController.title = "Choose range"
         fastisController.initialValue = self.currentValue as? FastisRange
@@ -112,7 +113,8 @@ class ViewController: UIViewController {
         fastisController.present(above: self)
     }
 
-    @objc private func chooseSingleDate() {
+    @objc
+    private func chooseSingleDate() {
         let fastisController = FastisController(mode: .single)
         fastisController.title = "Choose date"
         fastisController.initialValue = self.currentValue as? Date

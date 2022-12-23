@@ -39,6 +39,7 @@ final class WeekView: UIView {
         self.configureConstraints()
     }
 
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -55,7 +56,7 @@ final class WeekView: UIView {
         let numDays = self.calendar.shortStandaloneWeekdaySymbols.count
         let first = self.calendar.firstWeekday - 1
         let end = first + numDays - 1
-        let days = (first...end).map({ self.calendar.shortStandaloneWeekdaySymbols[$0 % numDays] })
+        let days = (first ... end).map({ self.calendar.shortStandaloneWeekdaySymbols[$0 % numDays] })
         for weekdaySymbol in days {
             self.stackView.addArrangedSubview(self.makeWeekLabel(for: weekdaySymbol))
         }
@@ -85,18 +86,18 @@ final class WeekView: UIView {
 
 }
 
-extension FastisConfig {
+public extension FastisConfig {
 
     /**
      Top header view with week day names
 
      Configurable in FastisConfig.``FastisConfig/weekView-swift.property`` property
      */
-    public struct WeekView {
+    struct WeekView {
 
         /**
          Calendar which is used to get a `.shortWeekdaySymbols`
-         
+
          Default value — `.current`
          */
         @available(*, unavailable, message: "Use FastisConfig.calendar propery instead")
@@ -104,45 +105,45 @@ extension FastisConfig {
 
         /**
          Background color of the view
-         
+
          Default value — `.secondarySystemBackground`
          */
         public var backgroundColor: UIColor = .secondarySystemBackground
 
         /**
          Text color of labels
-         
+
          Default value — `.secondaryLabel`
          */
         public var textColor: UIColor = .secondaryLabel
 
         /**
          Text font of labels
-         
+
          Default value — `.systemFont(ofSize: 10, weight: .bold)`
          */
         public var textFont: UIFont = .systemFont(ofSize: 10, weight: .bold)
 
         /**
          Height of the view
-         
+
          Default value — `28pt`
          */
         public var height: CGFloat = 28
 
         /**
          Corner radius of the view
-         
+
          Default value — `8pt`
          */
         public var cornerRadius: CGFloat = 8
 
         /**
          Make week names uppercased
-         
+
          Default value — `true`
          */
-        public var uppercaseWeekName: Bool = true
+        public var uppercaseWeekName = true
 
     }
 }

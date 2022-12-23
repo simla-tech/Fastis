@@ -46,15 +46,15 @@ public struct FastisRange: FastisValue, Hashable {
     }
 
     public static func from(_ fromDate: Date, to toDate: Date) -> FastisRange {
-        return FastisRange(from: fromDate, to: toDate)
+        FastisRange(from: fromDate, to: toDate)
     }
 
     public var onSameDay: Bool {
-        return self.fromDate.isInSameDay(date: self.toDate)
+        self.fromDate.isInSameDay(date: self.toDate)
     }
 
     public func outOfRange(minDate: Date?, maxDate: Date?) -> Bool {
-        return self.fromDate < minDate ?? self.fromDate || self.toDate > maxDate ?? self.toDate
+        self.fromDate < minDate ?? self.fromDate || self.toDate > maxDate ?? self.toDate
     }
 
 }
@@ -73,7 +73,7 @@ extension Date: FastisValue {
     public static var mode: FastisMode = .single
 
     public func outOfRange(minDate: Date?, maxDate: Date?) -> Bool {
-        return self < minDate ?? self || self > maxDate ?? self
+        self < minDate ?? self || self > maxDate ?? self
     }
 
 }

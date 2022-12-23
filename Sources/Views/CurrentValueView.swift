@@ -70,6 +70,7 @@ final class CurrentValueView<Value: FastisValue>: UIView {
         self.updateStateForCurrentValue()
     }
 
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -150,87 +151,88 @@ final class CurrentValueView<Value: FastisValue>: UIView {
 
     // MARK: - Actions
 
-    @objc private func clear() {
+    @objc
+    private func clear() {
         self.onClear?()
     }
 
 }
 
-extension FastisConfig {
+public extension FastisConfig {
 
     /**
      Current value view appearance (clear button, date format, etc.)
-     
+
      Configurable in FastisConfig.``FastisConfig/currentValueView-swift.property`` property
      */
-    public struct CurrentValueView {
+    struct CurrentValueView {
 
         /**
          Placeholder text in .range mode
-         
+
          Default value — `"Select date range"`
          */
-        public var placeholderTextForRanges: String = "Select date range"
+        public var placeholderTextForRanges = "Select date range"
 
         /**
          Placeholder text in .single mode
-         
+
          Default value — `"Select date"`
          */
-        public var placeholderTextForSingle: String = "Select date"
+        public var placeholderTextForSingle = "Select date"
 
         /**
          Color of the placeholder for value label
-         
+
          Default value — `.tertiaryLabel`
          */
         public var placeholderTextColor: UIColor = .tertiaryLabel
 
         /**
          Color of the value label
-         
+
          Default value — `.label`
          */
         public var textColor: UIColor = .label
 
         /**
          Font of the value label
-         
+
          Default value — `.systemFont(ofSize: 17, weight: .regular)`
          */
         public var textFont: UIFont = .systemFont(ofSize: 17, weight: .regular)
 
         /**
          Clear button image
-         
+
          Default value — `UIImage(systemName: "xmark.circle")`
          */
         public var clearButtonImage: UIImage? = UIImage(systemName: "xmark.circle")
 
         /**
          Clear button tint color
-         
+
          Default value — `.systemGray3`
          */
         public var clearButtonTintColor: UIColor = .systemGray3
 
         /**
          Insets of value view
-         
+
          Default value — `UIEdgeInsets(top: 8, left: 0, bottom: 24, right: 0)`
          */
-        public var insets: UIEdgeInsets = UIEdgeInsets(top: 8, left: 0, bottom: 24, right: 0)
+        public var insets = UIEdgeInsets(top: 8, left: 0, bottom: 24, right: 0)
 
         /**
          Format of current value
-         
+
          Default value — `"d MMMM"`
          */
-        public var format: String = "d MMMM"
+        public var format = "d MMMM"
 
         /**
          Locale of formatter
-         
+
          Default value — `Locale.autoupdatingCurrent`
          */
         public var locale: Locale = .autoupdatingCurrent

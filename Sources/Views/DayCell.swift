@@ -6,8 +6,8 @@
 //  Copyright © 2020 DIGITAL RETAIL TECHNOLOGIES, S.L. All rights reserved.
 //
 
-import UIKit
 import JTAppleCalendar
+import UIKit
 
 final class DayCell: JTACDayCell {
 
@@ -58,6 +58,7 @@ final class DayCell: JTACDayCell {
         self.applyConfig(.default)
     }
 
+    @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -77,7 +78,7 @@ final class DayCell: JTACDayCell {
         self.dateLabel.font = config.dateLabelFont
         self.dateLabel.textColor = config.dateLabelColor
         if let cornerRadius = config.customSelectionViewCornerRadius {
-             self.selectionBackgroundView.layer.cornerRadius = cornerRadius
+            self.selectionBackgroundView.layer.cornerRadius = cornerRadius
         }
         self.rangeViewTopAnchorConstraints.forEach({ $0.constant = config.rangedBackgroundViewVerticalInset })
         self.rangeViewBottomAnchorConstraints.forEach({ $0.constant = -config.rangedBackgroundViewVerticalInset })
@@ -105,7 +106,8 @@ final class DayCell: JTACDayCell {
         ])
         NSLayoutConstraint.activate([
             self.rightRangeView.leftAnchor.constraint(equalTo: self.contentView.centerXAnchor),
-            self.rightRangeView.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: 1) // Add small offset to prevent spacing between cells
+            // Add small offset to prevent spacing between cells
+            self.rightRangeView.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: 1)
         ])
         NSLayoutConstraint.activate([
             {
@@ -150,7 +152,7 @@ final class DayCell: JTACDayCell {
             if let value = rangeValue {
 
                 let calendar = Calendar.current
-                var showRangeView: Bool = false
+                var showRangeView = false
 
                 if state.dateBelongsTo == .followingMonthWithinBoundary {
                     let endOfPreviousMonth = calendar.date(byAdding: .month, value: -1, to: state.date)!.endOfMonth(in: calendar)
@@ -187,10 +189,10 @@ final class DayCell: JTACDayCell {
 
         config.dateLabelText = state.text
 
-        if let minimumDate = minimumDate, state.date < minimumDate.startOfDay() {
+        if let minimumDate, state.date < minimumDate.startOfDay() {
             config.isDateEnabled = false
             return config
-        } else if let maximumDate = maximumDate, state.date > maximumDate.endOfDay() {
+        } else if let maximumDate, state.date > maximumDate.endOfDay() {
             config.isDateEnabled = false
             return config
         }
@@ -204,13 +206,15 @@ final class DayCell: JTACDayCell {
             case .full:
                 config.isSelectedViewHidden = false
 
-            case .left, .right, .middle:
+            case .left,
+                 .right,
+                 .middle:
                 config.isSelectedViewHidden = position == .middle
 
-                if position == .right && state.day.rawValue == calendar.firstWeekday {
+                if position == .right, state.day.rawValue == calendar.firstWeekday {
                     config.rangeView.leftSideState = .rounded
 
-                } else if position == .left && state.day.rawValue == calendar.lastWeekday {
+                } else if position == .left, state.day.rawValue == calendar.lastWeekday {
                     config.rangeView.rightSideState = .rounded
 
                 } else if position == .left {
@@ -253,16 +257,16 @@ final class DayCell: JTACDayCell {
         var rightSideState: RangeSideState = .hidden
 
         var isHidden: Bool {
-            return self.leftSideState == .hidden && self.rightSideState == .hidden
+            self.leftSideState == .hidden && self.rightSideState == .hidden
         }
 
     }
 
     struct ViewConfig {
         var dateLabelText: String?
-        var isSelectedViewHidden: Bool = true
-        var isDateEnabled: Bool = true
-        var rangeView: RangeViewConfig = RangeViewConfig()
+        var isSelectedViewHidden = true
+        var isDateEnabled = true
+        var rangeView = RangeViewConfig()
     }
 
     internal func configure(for config: ViewConfig) {
@@ -314,39 +318,39 @@ final class DayCell: JTACDayCell {
 
 }
 
-extension FastisConfig {
+public extension FastisConfig {
 
     /**
      Day cells (selection parameters, font, etc.)
-     
+
      Configurable in FastisConfig.``FastisConfig/dayCell-swift.property`` property
      */
-    public struct DayCell {
+    struct DayCell {
 
         /**
          Font of date label in cell
-         
+
          Default value — `.systemFont(ofSize: 17)`
          */
         public var dateLabelFont: UIFont = .systemFont(ofSize: 17)
 
         /**
          Color of date label in cell
-         
+
          Default value — `.label`
          */
         public var dateLabelColor: UIColor = .label
 
         /**
          Color of date label in cell when date is unavailable for select
-         
+
          Default value — `.tertiaryLabel`
          */
         public var dateLabelUnavailableColor: UIColor = .tertiaryLabel
 
         /**
          Color of background of cell when date is selected
-         
+
          Default value — `.systemBlue`
          */
         public var selectedBackgroundColor: UIColor = .systemBlue
@@ -367,32 +371,32 @@ extension FastisConfig {
 
         /**
          Color of background of cell when date is a part of selected range
-         
+
          Default value — `.systemBlue.withAlphaComponent(0.2)`
          */
         public var onRangeBackgroundColor: UIColor = .systemBlue.withAlphaComponent(0.2)
 
         /**
          Color of date label in cell when date is a part of selected range
-         
+
          Default value — `.label`
          */
         public var onRangeLabelColor: UIColor = .label
 
         /**
          Inset of cell's background view when date is a part of selected range
-         
+
          Default value — `3pt`
          */
         public var rangedBackgroundViewVerticalInset: CGFloat = 3
 
         /**
-         This property allows to set custom radius for selection view
-         
-         If this value is not `nil` then selection view will have corner radius `.height / 2`
-         
-         Default value — `nil`
-        */
+          This property allows to set custom radius for selection view
+
+          If this value is not `nil` then selection view will have corner radius `.height / 2`
+
+          Default value — `nil`
+         */
         public var customSelectionViewCornerRadius: CGFloat?
     }
 

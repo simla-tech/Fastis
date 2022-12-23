@@ -13,14 +13,14 @@ public struct FastisConfig {
 
     /**
      The default configuration.
-     
+
      Fastis can be customized global or local.
-     
+
      Modify this variable to customize all Fastis controllers in your app:
      ```swift
      FastisConfig.default.monthHeader.labelColor = .red
      ```
-     
+
      Or you can copy and modify this config for some special controller:
      ```swift
      let config: FastisConfig = .default
@@ -30,11 +30,11 @@ public struct FastisConfig {
      */
     public static var `default` = FastisConfig()
 
-    private init() {}
+    private init() { }
 
     /**
      Base calendar used to build a view
-     
+
      Default value — `.current`
      */
     public var calendar: Calendar = .current
