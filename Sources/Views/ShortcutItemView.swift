@@ -19,8 +19,8 @@ final class ShortcutItemView: UIView {
         card.cornerRadius = self.config.cornerRadius
         card.animation = self.config.tapAnimation
         card.setShadow(self.config.shadow)
-        card.tapHandler = {
-            self.tapHandler?()
+        card.tapHandler = { [weak self] in
+            self?.tapHandler?()
         }
         card.translatesAutoresizingMaskIntoConstraints = false
         return card

@@ -515,7 +515,8 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         header.applyConfig(self.config.monthHeader)
         header.configure(for: range.start)
         if self.privateSelectMonthOnHeaderTap, Value.mode == .range {
-            header.tapHandler = {
+            header.tapHandler = { [weak self, weak calendar] in
+                guard let self, let calendar else { return }
                 var fromDate = range.start.startOfMonth(in: self.config.calendar)
                 var toDate = range.start.endOfMonth(in: self.config.calendar)
                 if let minDate = self.minimumDate {
