@@ -78,8 +78,8 @@ final class ShortcutContainerView<Value: FastisValue>: UIView {
             itemView.tag = i
             itemView.name = item.name
             itemView.isSelected = item == self.selectedShortcut
-            itemView.tapHandler = {
-                self.onSelect?(item)
+            itemView.tapHandler = { [weak self] in
+                self?.onSelect?(item)
             }
             self.stackView.addArrangedSubview(itemView)
         }
