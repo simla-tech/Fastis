@@ -96,14 +96,6 @@ public extension FastisConfig {
     struct WeekView {
 
         /**
-         Calendar which is used to get a `.shortWeekdaySymbols`
-
-         Default value — `.current`
-         */
-        @available(*, unavailable, message: "Use FastisConfig.calendar propery instead")
-        public var calendar: Calendar = .current
-
-        /**
          Background color of the view
 
          Default value — `.secondarySystemBackground`
