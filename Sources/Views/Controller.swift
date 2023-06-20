@@ -247,7 +247,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
     public init(config: FastisConfig = .default) {
         self.config = config
         self.appearance = config.controller
-        self.dayFormatter.locale = Locale.current
+        self.dayFormatter.locale = config.calendar.locale
         self.dayFormatter.dateFormat = "d"
         super.init(nibName: nil, bundle: nil)
     }
