@@ -158,6 +158,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
     private var privateMinimumDate: Date?
     private var privateMaximumDate: Date?
     private var privateSelectMonthOnHeaderTap = false
+    private var dayFormatter = DateFormatter()
     private var value: Value? {
         didSet {
             self.updateSelectedShortcut()
@@ -246,6 +247,8 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
     public init(config: FastisConfig = .default) {
         self.config = config
         self.appearance = config.controller
+        self.dayFormatter.locale = config.calendar.locale
+        self.dayFormatter.dateFormat = "d"
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -364,13 +367,18 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         if let cachedConfig = self.viewConfigs[indexPath] {
             cell.configure(for: cachedConfig)
         } else {
-            let newConfig = DayCell.makeViewConfig(
+            var newConfig = DayCell.makeViewConfig(
                 for: cellState,
                 minimumDate: self.privateMinimumDate,
                 maximumDate: self.privateMaximumDate,
                 rangeValue: self.value as? FastisRange,
                 calendar: self.config.calendar
             )
+
+            if newConfig.dateLabelText != nil {
+                newConfig.dateLabelText = self.dayFormatter.string(from: date)
+            }
+
             self.viewConfigs[indexPath] = newConfig
             cell.applyConfig(self.config)
             cell.configure(for: newConfig)
