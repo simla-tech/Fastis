@@ -89,7 +89,7 @@ final class DayCell: JTACDayCell {
         self.contentView.addSubview(self.rightRangeView)
         self.contentView.addSubview(self.selectionBackgroundView)
         self.contentView.addSubview(self.dateLabel)
-        self.selectionBackgroundView.layer.cornerRadius = .minimum(self.frame.width, self.frame.height) / 2
+        self.selectionBackgroundView.layer.cornerRadius = min(self.frame.width, self.frame.height) / 2
     }
 
     public func configureConstraints() {
