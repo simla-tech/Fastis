@@ -279,11 +279,12 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
     open override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 
-        guard self.isDone else {
+        if self.isDone {
+            self.dismissHandler?(.done(self.value))
+        } else {
             self.dismissHandler?(.cancel)
-            return
         }
-        self.dismissHandler?(.done(self.value))
+
     }
 
     /**
