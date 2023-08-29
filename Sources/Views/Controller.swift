@@ -19,8 +19,13 @@ import UIKit
  fastisController.maximumDate = Date()
  fastisController.allowToChooseNilDate = true
  fastisController.shortcuts = [.today, .lastWeek]
- fastisController.doneHandler = { resultRange in
-     ...
+ fastisController.dismissHandler = { [weak self] action in
+     switch action {
+     case .done(let newValue):
+        ...
+     case .cancel:
+        ...
+     }
  }
  fastisController.present(above: self)
  ```
@@ -32,8 +37,13 @@ import UIKit
  ```swift
  let fastisController = FastisController(mode: .single)
  fastisController.initialValue = Date()
- fastisController.doneHandler = { resultDate in
-     print(resultDate) // resultDate is Date
+ fastisController.dismissHandler = { [weak self] action in
+     switch action {
+     case .done(let resultDate):
+        print(resultDate) // resultDate is Date
+     case .cancel:
+        ...
+     }
  }
  ```
 
@@ -42,8 +52,13 @@ import UIKit
  ```swift
  let fastisController = FastisController(mode: .range)
  fastisController.initialValue = FastisRange(from: Date(), to: Date()) // or .from(Date(), to: Date())
- fastisController.doneHandler = { resultRange in
-     print(resultRange) // resultDate is FastisRange
+ fastisController.dismissHandler = { [weak self] action in
+     switch action {
+     case .done(let resultRange):
+        print(resultRange) // resultRange is FastisRange
+     case .cancel:
+        ...
+     }
  }
  ```
  */
