@@ -101,8 +101,13 @@ class MyViewController: UIViewController {
         fastisController.maximumDate = Date()
         fastisController.allowToChooseNilDate = true
         fastisController.shortcuts = [.today, .lastWeek]
-        fastisController.doneHandler = { resultRange in
-            ...
+        fastisController.dismissHandler = { [weak self] action in
+            switch action {
+            case .done(let newValue):
+                ...
+            case .cancel:
+                ...
+            }
         }
         fastisController.present(above: self)
     }
@@ -117,8 +122,13 @@ If you want to get a single date, you have to use the `Date` type:
 ```swift
 let fastisController = FastisController(mode: .single)
 fastisController.initialValue = Date()
-fastisController.doneHandler = { resultDate in
-    print(resultDate) // resultDate is Date
+fastisController.dismissHandler = { [weak self] action in
+    switch action {
+    case .done(let resultDate):
+        print(resultDate) // resultDate is Date
+    case .cancel:
+        ...
+    }
 }
 ```
 
@@ -127,8 +137,13 @@ If you want to get a date range, you have to use the `FastisRange` type:
 ```swift
 let fastisController = FastisController(mode: .range)
 fastisController.initialValue = FastisRange(from: Date(), to: Date()) // or .from(Date(), to: Date())
-fastisController.doneHandler = { resultRange in
-    print(resultRange) // resultDate is FastisRange
+fastisController.dismissHandler = { [weak self] action in
+    switch action {
+    case .done(let resultRange):
+        print(resultRange) // resultRange is FastisRange
+    case .cancel:
+        ...
+    }
 }
 ```
 
@@ -139,8 +154,7 @@ FastisController has the following default configuration parameters:
 ```swift
 var shortcuts: [FastisShortcut<Value>] = []
 var allowsToChooseNilDate: Bool = false
-var dismissHandler: (() -> Void)? = nil
-var doneHandler: ((Value?) -> Void)? = nil
+var dismissHandler: ((DismissAction) -> Void)? = nil
 var initialValue: Value? = nil
 var minimumDate: Date? = nil
 var maximumDate: Date? = nil
@@ -150,8 +164,7 @@ var allowDateRangeChanges: Bool = true
 
 - `shortcuts`- Shortcuts array. The default value is `[]`. See [Shortcuts](#shortcuts) section
 - `allowsToChooseNilDate`- Allow to choose `nil` date. If you set `true`, the done button will always be enabled. The default value is `false`.
-- `dismissHandler`- The block to execute after the dismissal finishes. The default value is `nil`.
-- `doneHandler`- The block to execute after the "Done" button will be tapped. The default value is `nil`.
+- `dismissHandler`- The block to execute after the dismissal finishes. The default value is `nil`. Return DismissAction.done(FastisValue?) after the "Done" button will be tapped or DismissAction.cancel when controller dismissed without tapped the "Done" button.
 - `initialValue`- And initial value which will be selected by default. The default value is `nil`.
 - `minimumDate`-  Minimal selection date. Dates less than current will be marked as unavailable. The default value is `nil`.
 - `maximumDate`- Maximum selection date. Dates more significant than current will be marked as unavailable. The default value is `nil`.

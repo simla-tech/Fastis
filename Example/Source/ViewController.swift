@@ -107,8 +107,13 @@ class ViewController: UIViewController {
         fastisController.maximumDate = Calendar.current.date(byAdding: .month, value: 3, to: Date())
         fastisController.allowToChooseNilDate = true
         fastisController.shortcuts = [.today, .lastWeek, .lastMonth]
-        fastisController.doneHandler = { [weak self] newValue in
-            self?.currentValue = newValue
+        fastisController.dismissHandler = { [weak self] action in
+            switch action {
+            case .done(let newValue):
+                self?.currentValue = newValue
+            case .cancel:
+                print("any actions")
+            }
         }
         fastisController.present(above: self)
     }
@@ -120,8 +125,13 @@ class ViewController: UIViewController {
         fastisController.initialValue = self.currentValue as? Date
         fastisController.maximumDate = Date()
         fastisController.shortcuts = [.today, .yesterday, .tomorrow]
-        fastisController.doneHandler = { [weak self] newDate in
-            self?.currentValue = newDate
+        fastisController.dismissHandler = { [weak self] action in
+            switch action {
+            case .done(let newValue):
+                self?.currentValue = newValue
+            case .cancel:
+                print("any actions")
+            }
         }
         fastisController.present(above: self)
     }
