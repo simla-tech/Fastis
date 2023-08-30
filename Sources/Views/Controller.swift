@@ -181,6 +181,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
             self.doneBarButtonItem.isEnabled = self.allowToChooseNilDate || self.value != nil
         }
     }
+
     private var isDone = false
 
     /**
@@ -213,6 +214,12 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
      The block to execute after the dismissal finishes, return two variable .done(FastisValue?) and .cancel
      */
     public var dismissHandler: ((DismissAction) -> Void)?
+
+    /**
+     The block to execute after "Done" button will be tapped
+     */
+    @available(*, unavailable, message: "use dismissHandler: ((DismissAction) -> Void)?")
+    public var doneHandler: ((Value?) -> Void)?
 
     /**
      And initial value which will be selected by default
@@ -276,8 +283,8 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         self.configureInitialState()
     }
 
-    open override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+    override open func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
 
         if self.isDone {
             self.dismissHandler?(.done(self.value))
