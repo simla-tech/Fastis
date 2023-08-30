@@ -67,11 +67,6 @@ public enum FastisModeRange {
     case range
 }
 
-public enum DismissAction {
-    case done(FastisValue?)
-    case cancel
-}
-
 extension Date: FastisValue {
 
     /// Mode of value for ``FastisController``. Always `.single`

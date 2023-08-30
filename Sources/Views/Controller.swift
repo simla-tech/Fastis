@@ -769,3 +769,17 @@ public extension FastisConfig {
 
     }
 }
+
+public extension FastisController {
+
+    /**
+     Parameter to return in the dismissHandler
+
+     `.done(Value?)` - If a date is selected.
+     `.cancel` - if controller closed without date selection
+     */
+    enum DismissAction {
+        case done(Value?)
+        case cancel
+    }
+}
