@@ -160,16 +160,19 @@ var minimumDate: Date? = nil
 var maximumDate: Date? = nil
 var selectMonthOnHeaderTap: Bool = true
 var allowDateRangeChanges: Bool = true
+var closeOnSelectionImmediately: Bool = false
+    
 ```
 
 - `shortcuts`- Shortcuts array. The default value is `[]`. See [Shortcuts](#shortcuts) section
-- `allowsToChooseNilDate`- Allow to choose `nil` date. If you set `true`, the done button will always be enabled. The default value is `false`.
+- `allowsToChooseNilDate`- Allow to choose `nil` date. If you set `true`, the done button will always be enabled. And in `.single` mode you can reset the date when you tapped on it again. The default value is `false`.
 - `dismissHandler`- The block to execute after the dismissal finishes. The default value is `nil`. Return DismissAction.done(FastisValue?) after the "Done" button will be tapped or DismissAction.cancel when controller dismissed without tapped the "Done" button.
 - `initialValue`- And initial value which will be selected by default. The default value is `nil`.
 - `minimumDate`-  Minimal selection date. Dates less than current will be marked as unavailable. The default value is `nil`.
 - `maximumDate`- Maximum selection date. Dates more significant than current will be marked as unavailable. The default value is `nil`.
 - `selectMonthOnHeaderTap` (Only for `.range` mode) - Set this variable to `true` if you want to allow select date ranges by tapping on months. The default value is `true`.
 - `allowDateRangeChanges` (Only for `.range` mode) - Set this variable to `false` if you want to disable date range changes. Next tap after selecting a range will start a new range selection. The default value is `true`.
+- `closeOnSelectionImmediately` (Only for `.single` mode) - Set this variable to `true` if you want to hide view of the selected date and close the controller right after the date is selected. The default value is `false`
 
 ### Shortcuts
 
