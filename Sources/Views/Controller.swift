@@ -218,7 +218,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
     /**
      The block to execute after "Done" button will be tapped
      */
-    @available(*, deprecated, message: "use dismissHandler: ((DismissAction) -> Void)?")
+    @available(*, unavailable, message: "use dismissHandler: ((DismissAction) -> Void)?")
     public var doneHandler: ((Value?) -> Void)?
 
     /**
