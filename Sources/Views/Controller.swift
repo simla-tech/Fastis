@@ -37,6 +37,7 @@ import UIKit
  ```swift
  let fastisController = FastisController(mode: .single)
  fastisController.initialValue = Date()
+ fastisController.closeOnSelectionImmediately = true
  fastisController.dismissHandler = { [weak self] action in
      switch action {
      case .done(let resultDate):
@@ -129,15 +130,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         view.currentValue = self.value
         view.translatesAutoresizingMaskIntoConstraints = false
         view.onClear = { [weak self] in
-            guard let self else { return }
-            self.value = nil
-            self.viewConfigs.removeAll()
-            self.calendarView.deselectAllDates()
-            self.calendarView.visibleDates { segment in
-                UIView.performWithoutAnimation {
-                    self.calendarView.reloadItems(at: (segment.outdates + segment.indates).map(\.indexPath))
-                }
-            }
+            self?.clear()
         }
         return view
     }()
@@ -183,6 +176,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
     }
 
     private var isDone = false
+    private var privateCloseOnSelectionImmediately = false
 
     /**
      Shortcuts array
@@ -206,7 +200,8 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
     /**
      Allow to choose `nil` date
 
-     If you set `true` done button will be always enabled
+     If you set `true` done button will be always enabled.
+     And in `.single` mode you can reset the date when you tapped on it again
      */
     public var allowToChooseNilDate = false
 
@@ -330,7 +325,9 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: self.monthHeaderReuseIdentifier
         )
-        self.view.addSubview(self.currentValueView)
+        if !self.privateCloseOnSelectionImmediately {
+            self.view.addSubview(self.currentValueView)
+        }
         self.view.addSubview(self.weekView)
         self.view.addSubview(self.calendarView)
         if !self.shortcuts.isEmpty {
@@ -339,16 +336,24 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
     }
 
     private func configureConstraints() {
-        NSLayoutConstraint.activate([
-            self.currentValueView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            self.currentValueView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 12),
-            self.currentValueView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -12)
-        ])
-        NSLayoutConstraint.activate([
-            self.weekView.topAnchor.constraint(equalTo: self.currentValueView.bottomAnchor),
-            self.weekView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 12),
-            self.weekView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -12)
-        ])
+        if !self.privateCloseOnSelectionImmediately {
+            NSLayoutConstraint.activate([
+                self.currentValueView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+                self.currentValueView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 12),
+                self.currentValueView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -12)
+            ])
+            NSLayoutConstraint.activate([
+                self.weekView.topAnchor.constraint(equalTo: self.currentValueView.bottomAnchor),
+                self.weekView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 12),
+                self.weekView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -12)
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                self.weekView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+                self.weekView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 12),
+                self.weekView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -12)
+            ])
+        }
         if !self.shortcuts.isEmpty {
             NSLayoutConstraint.activate([
                 self.shortcutContainerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
@@ -448,9 +453,17 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
 
         switch Value.mode {
         case .single:
-            self.value = date as? Value
-            self.selectValue(date as? Value, in: calendar)
-            return
+            let oldDate = self.value as? Date
+            if oldDate == date, self.allowToChooseNilDate {
+                self.clear()
+            } else {
+                self.value = date as? Value
+                self.selectValue(date as? Value, in: calendar)
+            }
+
+            if self.privateCloseOnSelectionImmediately, self.value != nil {
+                self.done()
+            }
 
         case .range:
             var newValue: FastisRange!
@@ -496,6 +509,17 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         calendar.visibleDates { segment in
             UIView.performWithoutAnimation {
                 calendar.reloadItems(at: (segment.outdates + segment.indates).map(\.indexPath))
+            }
+        }
+    }
+
+    private func clear() {
+        self.value = nil
+        self.viewConfigs.removeAll()
+        self.calendarView.deselectAllDates()
+        self.calendarView.visibleDates { segment in
+            UIView.performWithoutAnimation {
+                self.calendarView.reloadItems(at: (segment.outdates + segment.indates).map(\.indexPath))
             }
         }
     }
@@ -676,6 +700,18 @@ public extension FastisController where Value == Date {
     ///   - config: Custom configuration parameters. Default value is equal to `FastisConfig.default`
     convenience init(mode: FastisModeSingle, config: FastisConfig = .default) {
         self.init(config: config)
+    }
+
+    /**
+     Set this variable to `true` if you want to hide view of the selected date and close the controller right after the date is selected
+     */
+    var closeOnSelectionImmediately: Bool {
+        get {
+            self.privateCloseOnSelectionImmediately
+        }
+        set {
+            self.privateCloseOnSelectionImmediately = newValue
+        }
     }
 
 }
