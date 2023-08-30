@@ -703,7 +703,7 @@ public extension FastisController where Value == Date {
     }
 
     /**
-     Set this variable to `true` if you want to hide view of the selected date and close the controller right after the date is selected
+     Set this variable to `true` if you want to hide view of the selected date and close the controller right after the date is selected. Default value — `"False"`
      */
     var closeOnSelectionImmediately: Bool {
         get {
