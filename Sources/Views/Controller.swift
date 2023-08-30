@@ -778,7 +778,6 @@ public extension FastisController {
      `.done(Value?)` - If a date is selected.
      `.cancel` - if controller closed without date selection
      */
-
     enum DismissAction {
         case done(Value?)
         case cancel
