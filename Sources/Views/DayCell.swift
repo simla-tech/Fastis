@@ -20,6 +20,13 @@ final class DayCell: JTACDayCell {
         return label
     }()
 
+    lazy var circleView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .red
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     lazy var selectionBackgroundView: UIView = {
         let view = UIView()
         view.isHidden = true
@@ -46,6 +53,7 @@ final class DayCell: JTACDayCell {
     // MARK: - Variables
 
     private var config: FastisConfig.DayCell = FastisConfig.default.dayCell
+    private var todayConfig: FastisConfig.TodayCell? = FastisConfig.default.todayCell
     private var rangeViewTopAnchorConstraints: [NSLayoutConstraint] = []
     private var rangeViewBottomAnchorConstraints: [NSLayoutConstraint] = []
 
@@ -63,13 +71,22 @@ final class DayCell: JTACDayCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.circleView.removeFromSuperview()
+    }
+
     // MARK: - Configurations
 
     public func applyConfig(_ config: FastisConfig) {
         self.backgroundColor = config.controller.backgroundColor
 
+        let todayConfig = config.todayCell
         let config = config.dayCell
+
+        self.todayConfig = todayConfig
         self.config = config
+
         self.rightRangeView.backgroundColor = config.onRangeBackgroundColor
         self.leftRangeView.backgroundColor = config.onRangeBackgroundColor
         self.rightRangeView.layer.cornerRadius = config.rangeViewCornerRadius
@@ -95,10 +112,8 @@ final class DayCell: JTACDayCell {
     public func configureConstraints() {
         let inset = self.config.rangedBackgroundViewVerticalInset
         NSLayoutConstraint.activate([
-            self.dateLabel.leftAnchor.constraint(equalTo: self.contentView.leftAnchor),
-            self.dateLabel.rightAnchor.constraint(equalTo: self.contentView.rightAnchor),
-            self.dateLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor),
-            self.dateLabel.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor)
+            self.dateLabel.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
+            self.dateLabel.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor)
         ])
         NSLayoutConstraint.activate([
             self.leftRangeView.leftAnchor.constraint(equalTo: self.contentView.leftAnchor),
@@ -267,6 +282,7 @@ final class DayCell: JTACDayCell {
         var isSelectedViewHidden = true
         var isDateEnabled = true
         var rangeView = RangeViewConfig()
+        var isToday = false
     }
 
     internal func configure(for config: ViewConfig) {
@@ -278,14 +294,11 @@ final class DayCell: JTACDayCell {
         if let dateLabelText = config.dateLabelText {
             self.dateLabel.isHidden = false
             self.dateLabel.text = dateLabelText
-            if !config.isDateEnabled {
-                self.dateLabel.textColor = self.config.dateLabelUnavailableColor
-            } else if !config.isSelectedViewHidden {
-                self.dateLabel.textColor = self.config.selectedLabelColor
-            } else if !config.rangeView.isHidden {
-                self.dateLabel.textColor = self.config.onRangeLabelColor
+
+            if config.isToday, let todayConfig {
+                self.configureTodayCell(viewConfig: config, todayConfig: todayConfig)
             } else {
-                self.dateLabel.textColor = self.config.dateLabelColor
+                self.configureDayCell(viewConfig: config)
             }
 
         } else {
@@ -316,6 +329,46 @@ final class DayCell: JTACDayCell {
 
     }
 
+    private func configureDayCell(viewConfig: ViewConfig) {
+        if !viewConfig.isDateEnabled {
+            self.dateLabel.textColor = self.config.dateLabelUnavailableColor
+        } else if !viewConfig.isSelectedViewHidden {
+            self.dateLabel.textColor = self.config.selectedLabelColor
+        } else if !viewConfig.rangeView.isHidden {
+            self.dateLabel.textColor = self.config.onRangeLabelColor
+        } else {
+            self.dateLabel.textColor = self.config.dateLabelColor
+        }
+    }
+
+    private func configureTodayCell(viewConfig: ViewConfig, todayConfig: FastisConfig.TodayCell) {
+        self.dateLabel.font = todayConfig.dateLabelFont
+
+        if !viewConfig.isDateEnabled {
+            self.dateLabel.textColor = todayConfig.dateLabelUnavailableColor
+            self.circleView.backgroundColor = todayConfig.circleViewUnavailableColor
+        } else if !viewConfig.isSelectedViewHidden {
+            self.dateLabel.textColor = todayConfig.selectedLabelColor
+            self.circleView.backgroundColor = todayConfig.circleViewSelectedColor
+        } else if !viewConfig.rangeView.isHidden {
+            self.dateLabel.textColor = todayConfig.onRangeLabelColor
+            self.circleView.backgroundColor = todayConfig.onRangeLabelColor
+        } else {
+            self.dateLabel.textColor = todayConfig.dateLabelColor
+            self.circleView.backgroundColor = todayConfig.circleViewColor
+        }
+
+        self.circleView.layer.cornerRadius = todayConfig.circleSize * 0.5
+        self.circleView.removeFromSuperview()
+        self.contentView.addSubview(self.circleView)
+        NSLayoutConstraint.activate([
+            self.circleView.centerXAnchor.constraint(equalTo: self.dateLabel.centerXAnchor),
+            self.circleView.topAnchor.constraint(equalTo: self.dateLabel.bottomAnchor, constant: todayConfig.circleVerticalInset),
+            self.circleView.widthAnchor.constraint(equalToConstant: todayConfig.circleSize),
+            self.circleView.heightAnchor.constraint(equalToConstant: todayConfig.circleSize)
+        ])
+    }
+
 }
 
 public extension FastisConfig {
@@ -325,7 +378,7 @@ public extension FastisConfig {
 
      Configurable in FastisConfig.``FastisConfig/dayCell-swift.property`` property
      */
-    struct DayCell {
+    class DayCell {
 
         /**
          Font of date label in cell
@@ -398,6 +451,51 @@ public extension FastisConfig {
           Default value — `nil`
          */
         public var customSelectionViewCornerRadius: CGFloat?
+    }
+
+    final class TodayCell: DayCell {
+
+        /**
+         Size circle view in cell
+
+         Default value — `4pt`
+         */
+        public var circleSize: CGFloat = 4
+
+        /**
+         Color of circle view in cell
+
+         Default value — `.label`
+         */
+        public var circleViewColor: UIColor = .systemBlue
+
+        /**
+         Color of circle view in cell when date is unavailable for select
+
+         Default value — `.tertiaryLabel`
+         */
+        public var circleViewUnavailableColor: UIColor = .tertiaryLabel
+
+        /**
+         Color of circle view in cell when date is selected
+
+         Default value — `.white`
+         */
+        public var circleViewSelectedColor: UIColor = .white
+
+        /**
+         Color of circle view in cell when date is a part of selected range
+
+         Default value — `.label`
+         */
+        public var circleViewOnRangeColor: UIColor = .systemBlue
+
+        /**
+         Inset circle view from date label
+
+         Default value — `5pt`
+         */
+        public var circleVerticalInset: CGFloat = 3
     }
 
 }

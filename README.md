@@ -202,6 +202,7 @@ Fastis can be customised global or local. `FastisConfig` have some sections:
 - `controller` - base view controller (`cancelButtonTitle`, `doneButtonTitle`, etc.)
 - `monthHeader` - month titles
 - `dayCell` - day cells (selection parameters, font, etc.)
+- `todayCell` - today cell (selection parameters, font, circle view, etc.). If you set `todayCell` to `nil`, view will use `dayCell` instead
 - `weekView` - top header view with weekday names
 - `currentValueView` - current value view appearance (clear button, date format, etc.)
 - `shortcutContainerView` - bottom view with shortcuts
@@ -220,6 +221,17 @@ var customConfig = FastisConfig.default
 customConfig.controller.dayCell.dateLabelColor = .blue
 let fastisController = FastisController(mode: .range, config: customConfig)
 ```
+To customise a today cell:
+
+```swift
+let config = FastisConfig.withCurrentDate
+config.todayCell.dateLabelColor = .red
+config.todayCell.onRangeLabelColor = .red
+config.todayCell.circleSize = 4
+config.todayCell.circleViewColor = .red
+```
+
+If you don't want to customzie today date cell, just set `config.todayCell = nil` and today cell will use `dayCell` config.
 
 ## Credits
 

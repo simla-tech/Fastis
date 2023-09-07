@@ -418,6 +418,10 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
                 newConfig.dateLabelText = self.dayFormatter.string(from: date)
             }
 
+            if Calendar.current.isDateInToday(date) {
+                newConfig.isToday = true
+            }
+
             self.viewConfigs[indexPath] = newConfig
             cell.applyConfig(self.config)
             cell.configure(for: newConfig)
