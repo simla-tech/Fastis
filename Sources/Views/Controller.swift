@@ -214,7 +214,11 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
      The block to execute after "Done" button will be tapped
      */
     @available(*, unavailable, message: "use dismissHandler: ((DismissAction) -> Void)?")
-    public var doneHandler: ((Value?) -> Void)?
+    public var doneHandler: ((Value?) -> Void)? {
+        get { nil }
+        // swiftlint:disable:next unused_setter_value
+        set { }
+    }
 
     /**
      And initial value which will be selected by default
