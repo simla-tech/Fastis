@@ -32,7 +32,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/patchthecode/JTAppleCalendar", from: "8.0.3"),
-        .package(url: "https://github.com/ilia3546/PrettyCards", from: "1.0.4")
+        .package(url: "https://github.com/simla-tech/PrettyCards", from: "1.0.4")
     ],
     targets: [
         .target(
