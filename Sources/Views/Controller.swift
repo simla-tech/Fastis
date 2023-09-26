@@ -200,8 +200,9 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
     /**
      Allow to choose `nil` date
 
-     If you set `true` done button will be always enabled.
-     And in `.single` mode you can reset the date when you tapped on it again
+     When `allowToChooseNilDate` is `true`:
+     * "Done" button will be always enabled
+     * You will be able to reset selection by you tapping on selected date again
      */
     public var allowToChooseNilDate = false
 
@@ -470,33 +471,45 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
             }
 
         case .range:
-            var newValue: FastisRange!
-            if let currentValue = self.value as? FastisRange {
 
-                let dateRangeChangesDisabled = !self.allowDateRangeChanges
-                let rangeSelected = !currentValue.fromDate.isInSameDay(date: currentValue.toDate)
-                if dateRangeChangesDisabled, rangeSelected {
-                    newValue = .from(date.startOfDay(in: self.config.calendar), to: date.endOfDay(in: self.config.calendar))
-                } else if date.isInSameDay(in: self.config.calendar, date: currentValue.fromDate) {
-                    let newToDate = date.endOfDay(in: self.config.calendar)
-                    newValue = .from(currentValue.fromDate, to: newToDate)
-                } else if date.isInSameDay(in: self.config.calendar, date: currentValue.toDate) {
-                    let newFromDate = date.startOfDay(in: self.config.calendar)
-                    newValue = .from(newFromDate, to: currentValue.toDate)
-                } else if date < currentValue.fromDate {
-                    let newFromDate = date.startOfDay(in: self.config.calendar)
-                    newValue = .from(newFromDate, to: currentValue.toDate)
-                } else {
-                    let newToDate = date.endOfDay(in: self.config.calendar)
-                    newValue = .from(currentValue.fromDate, to: newToDate)
-                }
+            if self.allowToChooseNilDate,
+               let oldValue = self.value as? FastisRange,
+               date.isInSameDay(in: self.config.calendar, date: oldValue.fromDate),
+               date.isInSameDay(in: self.config.calendar, date: oldValue.toDate)
+            {
+                self.clear()
 
             } else {
-                newValue = .from(date.startOfDay(in: self.config.calendar), to: date.endOfDay(in: self.config.calendar))
-            }
 
-            self.value = newValue as? Value
-            self.selectValue(newValue as? Value, in: calendar)
+                let newValue: FastisRange = {
+                    guard let oldValue = self.value as? FastisRange else {
+                        return .from(date.startOfDay(in: self.config.calendar), to: date.endOfDay(in: self.config.calendar))
+                    }
+
+                    let dateRangeChangesDisabled = !self.allowDateRangeChanges
+                    let rangeSelected = !oldValue.fromDate.isInSameDay(date: oldValue.toDate)
+                    if dateRangeChangesDisabled, rangeSelected {
+                        return .from(date.startOfDay(in: self.config.calendar), to: date.endOfDay(in: self.config.calendar))
+                    } else if date.isInSameDay(in: self.config.calendar, date: oldValue.fromDate) {
+                        let newToDate = date.endOfDay(in: self.config.calendar)
+                        return .from(oldValue.fromDate, to: newToDate)
+                    } else if date.isInSameDay(in: self.config.calendar, date: oldValue.toDate) {
+                        let newFromDate = date.startOfDay(in: self.config.calendar)
+                        return .from(newFromDate, to: oldValue.toDate)
+                    } else if date < oldValue.fromDate {
+                        let newFromDate = date.startOfDay(in: self.config.calendar)
+                        return .from(newFromDate, to: oldValue.toDate)
+                    } else {
+                        let newToDate = date.endOfDay(in: self.config.calendar)
+                        return .from(oldValue.fromDate, to: newToDate)
+                    }
+
+                }()
+
+                self.value = newValue as? Value
+                self.selectValue(newValue as? Value, in: calendar)
+
+            }
 
         }
 
@@ -521,11 +534,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         self.value = nil
         self.viewConfigs.removeAll()
         self.calendarView.deselectAllDates()
-        self.calendarView.visibleDates { segment in
-            UIView.performWithoutAnimation {
-                self.calendarView.reloadItems(at: (segment.outdates + segment.indates).map(\.indexPath))
-            }
-        }
+        self.calendarView.reloadData()
     }
 
     // MARK: - JTACMonthViewDelegate
@@ -707,7 +716,9 @@ public extension FastisController where Value == Date {
     }
 
     /**
-     Set this variable to `true` if you want to hide view of the selected date and close the controller right after the date is selected. Default value — `"False"`
+     Set this variable to `true` if you want to hide view of the selected date and close the controller right after the date is selected.
+
+     Default value — `"False"`
      */
     var closeOnSelectionImmediately: Bool {
         get {

@@ -24,10 +24,7 @@ class ViewController: UIViewController {
         return view
     }()
 
-    lazy var currentDateLabel: UILabel = {
-        let label = UILabel()
-        return label
-    }()
+    private lazy var currentDateLabel = UILabel()
 
     lazy var chooseRangeButton: UIButton = {
         let button = UIButton(type: .system)

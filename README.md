@@ -165,7 +165,7 @@ var closeOnSelectionImmediately: Bool = false
 ```
 
 - `shortcuts`- Shortcuts array. The default value is `[]`. See [Shortcuts](#shortcuts) section
-- `allowsToChooseNilDate`- Allow to choose `nil` date. If you set `true`, the done button will always be enabled. And in `.single` mode you can reset the date when you tapped on it again. The default value is `false`.
+- `allowsToChooseNilDate`- Allow to choose `nil` date. If you set `true`, the done button will always be enabled and you will be able to reset selection by you tapping on selected date again. The default value is `false`.
 - `dismissHandler`- The block to execute after the dismissal finishes. The default value is `nil`. Return DismissAction.done(FastisValue?) after the "Done" button will be tapped or DismissAction.cancel when controller dismissed without tapped the "Done" button.
 - `initialValue`- And initial value which will be selected by default. The default value is `nil`.
 - `minimumDate`-  Minimal selection date. Dates less than current will be marked as unavailable. The default value is `nil`.
