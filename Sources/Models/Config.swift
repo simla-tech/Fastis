@@ -27,6 +27,26 @@ public struct FastisConfig {
      config.monthHeader.labelColor = .red
      let controller = FastisController(mode: .single, config: config)
      ```
+     Default configuration set showCurrentDate to false. In this case current day will not be indicate
+     WithCurrentDate configuration set showCurrentDateto true. In this case current day will be indicate
+
+     You can customized indication current day:
+     ```swift
+     let config = FastisConfig.withCurrentDate
+     // date label
+     config.todayCell.dateLabelColor = .red
+     config.todayCell.selectedLabelColor = .orange
+     config.todayCell.onRangeLabelColor = .green
+     config.todayCell.dateLabelUnavailableColor = .cyan
+
+     // circle view
+     config.todayCell.circleSize = 4
+     config.todayCell.circleVerticalInset = 5
+     config.todayCell.circleViewColor = .red
+     config.todayCell.circleViewSelectedColor = .orange
+     config.todayCell.circleViewOnRangeColor = .green
+     config.todayCell.circleViewUnavailableColor = .cyan
+     ```
      */
     public static var `default` = FastisConfig()
 
@@ -47,6 +67,9 @@ public struct FastisConfig {
 
     /// Day cells (selection parameters, font, etc.)
     public var dayCell = FastisConfig.DayCell()
+
+    /// Today cell (selection parameters, font, etc.)
+    public var todayCell: FastisConfig.TodayCell? = FastisConfig.TodayCell()
 
     /// Top header view with week day names
     public var weekView = FastisConfig.WeekView()

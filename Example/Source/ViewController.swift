@@ -13,7 +13,7 @@ class ViewController: UIViewController {
 
     // MARK: - Outlets
 
-    lazy var containerView: UIStackView = {
+    private lazy var containerView: UIStackView = {
         let view = UIStackView()
         view.backgroundColor = .clear
         view.axis = .vertical
@@ -26,14 +26,14 @@ class ViewController: UIViewController {
 
     private lazy var currentDateLabel = UILabel()
 
-    lazy var chooseRangeButton: UIButton = {
+    private lazy var chooseRangeButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Choose range of dates", for: .normal)
         button.addTarget(self, action: #selector(self.chooseRange), for: .touchUpInside)
         return button
     }()
 
-    lazy var chooseSingleButton: UIButton = {
+    private lazy var chooseSingleButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Choose single date", for: .normal)
         button.addTarget(self, action: #selector(self.chooseSingleDate), for: .touchUpInside)
@@ -42,7 +42,7 @@ class ViewController: UIViewController {
 
     // MARK: - Variables
 
-    var currentValue: FastisValue? {
+    private var currentValue: FastisValue? {
         didSet {
             let formatter = DateFormatter()
             formatter.dateFormat = "dd/MM/yyyy"
