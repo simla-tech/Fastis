@@ -197,6 +197,9 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
      */
     public var shortcuts: [FastisShortcut<Value>] = []
 
+    public var minimumMonthDate: Int?
+    public var maximumMonthDate: Int?
+
     /**
      Allow to choose `nil` date
 
@@ -553,14 +556,14 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         var endDate = dateFormatter.date(from: "2030 12 01")!
 
         if let maximumDate = self.privateMaximumDate,
-           let endOfNextMonth = self.config.calendar.date(byAdding: .month, value: 2, to: maximumDate)?
+           let endOfNextMonth = self.config.calendar.date(byAdding: .month, value: minimumMonthDate!, to: maximumDate)?
            .endOfMonth(in: self.config.calendar)
         {
             endDate = endOfNextMonth
         }
 
         if let minimumDate = self.privateMinimumDate,
-           let startOfPreviousMonth = self.config.calendar.date(byAdding: .month, value: -2, to: minimumDate)?
+           let startOfPreviousMonth = self.config.calendar.date(byAdding: .month, value: -maximumMonthDate!, to: minimumDate)?
            .startOfMonth(in: self.config.calendar)
         {
             startDate = startOfPreviousMonth
