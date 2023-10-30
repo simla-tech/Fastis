@@ -9,6 +9,8 @@
 import JTAppleCalendar
 import UIKit
 
+
+
 final class MonthHeader: JTACMonthReusableView {
 
     // MARK: - Outlets
@@ -64,6 +66,23 @@ final class MonthHeader: JTACMonthReusableView {
     }
 
     internal func configure(for date: Date) {
+
+        /*
+         Gregorian
+
+         self.monthLabel.text = self.monthFormatter.string(from: date).capitalizingFirstLetter()
+
+         */
+
+        /*
+         Hijri
+
+         let hijriDate = HijriDate.convertGregorianToHijri(date: date)
+         if let hijriMonth = HijriDate.getHijriMonth(from: date) {
+             self.monthLabel.text = "\(hijriDate.year) \(hijriMonth)"
+         }
+         */
+
         self.monthLabel.text = self.monthFormatter.string(from: date).capitalizingFirstLetter()
     }
 

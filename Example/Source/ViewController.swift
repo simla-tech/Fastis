@@ -25,7 +25,7 @@ class ViewController: UIViewController {
     }()
 
     private lazy var currentDateLabel = UILabel()
-    let calendar = Calendar(identifier: .gregorian)
+    let calendar = Calendar.current
 
     private lazy var chooseRangeButton: UIButton = {
         let button = UIButton(type: .system)
@@ -101,17 +101,14 @@ class ViewController: UIViewController {
     private func chooseRange() {
         let fastisController = FastisController(mode: .range)
         fastisController.title = "Choose range"
-        fastisController.minimumMonthDate = 0
-        fastisController.maximumMonthDate = 0
-//        fastisController.initialValue = self.currentValue as? FastisRange
-//        fastisController.minimumDate = Calendar.current.date(byAdding: .year, value: 0, to: Date())
-//        fastisController.maximumDate = Calendar.current.date(byAdding: .year, value: 0, to: Date())
-        let calendar = Calendar(identifier: .gregorian)
-  
-        fastisController.minimumDate = Calendar(identifier: .gregorian).date(from: DateComponents(year: 2024, month: 1, day: 1))
-        fastisController.maximumDate =  calendar.date(from: DateComponents(year: 2024, month: 12, day: 31))
+        
+   /*
+    fastisController.minimumMonthDate = 0
+    fastisController.maximumMonthDate = 0
+    fastisController.minimumDate = Calendar(identifier: .gregorian).date(from: DateComponents(year: 2024, month: 1, day: 1))
+    fastisController.maximumDate =  calendar.date(from: DateComponents(year: 2024, month: 12, day: 31))
+    */
         fastisController.allowToChooseNilDate = true
-//        fastisController.shortcuts = [.today, .lastWeek, .lastMonth]
         fastisController.dismissHandler = { [weak self] action in
             switch action {
             case .done(let newValue):
@@ -142,3 +139,5 @@ class ViewController: UIViewController {
     }
 
 }
+
+

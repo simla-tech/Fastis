@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 extension Date {
 
     func startOfMonth(in calendar: Calendar = .current) -> Date {
@@ -35,3 +36,4 @@ extension Date {
     }
 
 }
+
