@@ -128,6 +128,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
     private lazy var currentValueView: CurrentValueView<Value> = {
         let view = CurrentValueView<Value>(config: self.config.currentValueView)
         view.currentValue = self.value
+        view.typeCalendar = self.typeCalendar
         view.translatesAutoresizingMaskIntoConstraints = false
         view.onClear = { [weak self] in
             self?.clear()
@@ -171,6 +172,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         didSet {
             self.updateSelectedShortcut()
             self.currentValueView.currentValue = self.value
+            self.currentValueView.typeCalendar = self.typeCalendar
             self.doneBarButtonItem.isEnabled = self.allowToChooseNilDate || self.value != nil
         }
     }
@@ -198,6 +200,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
      public var shortcuts: [FastisShortcut<Value>] = []
      public var minimumMonthDate: Int?
      public var maximumMonthDate: Int?
+    public var typeCalendar: Calendar? = Calendar(identifier: .gregorian)
 
     /**
      Allow to choose `nil` date
@@ -267,6 +270,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
     public init(config: FastisConfig = .default) {
         self.config = config
         self.appearance = config.controller
+        self.dayFormatter.calendar = typeCalendar
         self.dayFormatter.locale = config.calendar.locale
         self.dayFormatter.dateFormat = "d"
         super.init(nibName: nil, bundle: nil)
@@ -417,6 +421,13 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
             )
 
             if newConfig.dateLabelText != nil {
+                if (typeCalendar == Calendar(identifier: .gregorian)) {
+                    newConfig.dateLabelText = self.dayFormatter.string(from: date)
+                } else {
+                    let islamicCalendar = Calendar(identifier: .islamicUmmAlQura)
+                    let dayDate = islamicCalendar.component(.day, from: date)
+                     newConfig.dateLabelText =  "\(dayDate)"
+                }
                 /*
                  islamicUmmAlQura
                  let islamicCalendar = Calendar(identifier: .islamicUmmAlQura)
@@ -427,10 +438,9 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
                  gregorian
                  self.dayFormatter.string(from: date)
                  */
-                self.dayFormatter.string(from: date)
             }
 
-            if Calendar.current.isDateInToday(date) {
+            if typeCalendar?.isDateInToday(date) ?? false {
                 newConfig.isToday = true
             }
 
@@ -558,6 +568,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
 
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy MM dd"
+        dateFormatter.calendar = typeCalendar
         dateFormatter.timeZone = self.config.calendar.timeZone
         dateFormatter.locale = self.config.calendar.locale
         var startDate = dateFormatter.date(from: "2000 01 01")!
@@ -601,6 +612,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
             withReuseIdentifier: self.monthHeaderReuseIdentifier,
             for: indexPath
         ) as! MonthHeader
+        header.typeCalender = self.typeCalendar
         header.applyConfig(self.config.monthHeader)
         header.configure(for: range.start)
         if self.privateSelectMonthOnHeaderTap, Value.mode == .range {

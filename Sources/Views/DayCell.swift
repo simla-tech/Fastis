@@ -166,7 +166,6 @@ final class DayCell: JTACDayCell {
 
             if let value = rangeValue {
 
-                let calendar = Calendar(identifier: .islamicUmmAlQura)
                 var showRangeView = false
 
                 if state.dateBelongsTo == .followingMonthWithinBoundary {
@@ -202,20 +201,7 @@ final class DayCell: JTACDayCell {
             return config
         }
 
-
-        let islamicCalendar = Calendar(identifier: .islamicUmmAlQura)
-//        if let da = minimumDate {
-//            let dayFromDate = islamicCalendar.component(.day, from: da)
-//            print("htohjthptrjhoprtjhoptrh\(dayFromDate)")
-            let stateDate = islamicCalendar.component(.day, from: state.date)
-            print("stateDatestateDate\(stateDate)")
-
-//        }
-
-        config.dateLabelText =   "\(stateDate)"
-//        state.text
-//        "\(stateDate)"
-//        state.text
+        config.dateLabelText =   state.text
 
         if let minimumDate, state.date < minimumDate.startOfDay() {
             config.isDateEnabled = false
@@ -305,12 +291,8 @@ final class DayCell: JTACDayCell {
         self.clipsToBounds = config.dateLabelText == nil
 
         if let dateLabelText = config.dateLabelText {
-            
-            
-            print("htophjthpjhtopjhptjhtorh\(dateLabelText)")
             self.dateLabel.isHidden = false
             self.dateLabel.text = dateLabelText
-//            dateLabelText
 
             if config.isToday, let todayConfig {
                 self.configureTodayCell(viewConfig: config, todayConfig: todayConfig)

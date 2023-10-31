@@ -12,7 +12,6 @@ import UIKit
 class ViewController: UIViewController {
 
     // MARK: - Outlets
-
     private lazy var containerView: UIStackView = {
         let view = UIStackView()
         view.backgroundColor = .clear
@@ -23,6 +22,8 @@ class ViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+
+    var fastisController = FastisController(mode: .range)
 
     private lazy var currentDateLabel = UILabel()
     let calendar = Calendar(identifier: .islamicUmmAlQura)
@@ -48,6 +49,7 @@ class ViewController: UIViewController {
             
             let formatter = DateFormatter()
             formatter.dateFormat = "dd/MM/yyyy"
+
             if let rangeValue = self.currentValue as? FastisRange {
                 /*
                  islamicUmmAlQura
@@ -63,7 +65,15 @@ class ViewController: UIViewController {
                  self.currentDateLabel.text = formatter.string(from: rangeValue.fromDate) + " - " + formatter.string(from: rangeValue.toDate)
                  */
 
-               self.currentDateLabel.text = formatter.string(from: rangeValue.fromDate) + " - " + formatter.string(from: rangeValue.toDate)
+                if (fastisController.typeCalendar == Calendar(identifier: .islamicUmmAlQura)) {
+                    let hijriFromDate = HijriDate.convertGregorianToHijri(date: rangeValue.fromDate)
+                    let hijriToDate = HijriDate.convertGregorianToHijri(date: rangeValue.toDate)
+                    self.currentDateLabel.text = "\(hijriFromDate.day)/\(hijriFromDate.month)/\(hijriFromDate.year)"
+                    + " - " +
+                    "\(hijriToDate.day)/\(hijriToDate.month)/\(hijriToDate.year)"
+                } else {
+                    self.currentDateLabel.text = formatter.string(from: rangeValue.fromDate) + " - " + formatter.string(from: rangeValue.toDate)
+                }
             } else if let date = self.currentValue as? Date {
                 /*
                  islamicUmmAlQura
@@ -74,7 +84,12 @@ class ViewController: UIViewController {
                  gregorian
                  self.currentDateLabel.text = formatter.string(from: date)
                  */
-                self.currentDateLabel.text = formatter.string(from: date)
+                if (fastisController.typeCalendar == Calendar(identifier: .islamicUmmAlQura)) {
+                    let hijriFromDate = HijriDate.convertGregorianToHijri(date: date)
+                    self.currentDateLabel.text = "\(hijriFromDate.day)/\(hijriFromDate.month)/\(hijriFromDate.year)"
+                } else {
+                    self.currentDateLabel.text = formatter.string(from: date)
+                }
             } else {
                 self.currentDateLabel.text = "Choose a date"
             }
@@ -122,7 +137,9 @@ class ViewController: UIViewController {
 
     @objc
     private func chooseRange() {
-        let fastisController = FastisController(mode: .range)
+        var config = FastisConfig.default
+        config.calendar = Calendar(identifier: fastisController.typeCalendar?.identifier == .islamicUmmAlQura ? .islamicUmmAlQura : .gregorian)
+        fastisController = FastisController(mode: .range, config: config)
         fastisController.title = "Choose range"
         
    /*

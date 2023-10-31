@@ -14,7 +14,6 @@ import UIKit
 final class MonthHeader: JTACMonthReusableView {
 
     // MARK: - Outlets
-
     private lazy var monthLabel: UILabel = {
         let label = UILabel()
         label.text = "Month name"
@@ -32,6 +31,8 @@ final class MonthHeader: JTACMonthReusableView {
     internal var calculatedHeight: CGFloat = 0
     internal var tapHandler: (() -> Void)?
     private lazy var monthFormatter = DateFormatter()
+
+    public var typeCalender: Calendar?
 
     // MARK: - Lifecycle
 
@@ -83,11 +84,14 @@ final class MonthHeader: JTACMonthReusableView {
          }
          */
 
-        let hijriDate = HijriDate.convertGregorianToHijri(date: date)
-        if let hijriMonth = HijriDate.getHijriMonth(from: date) {
-            self.monthLabel.text = "\(hijriDate.year) \(hijriMonth)"
+        if (typeCalender?.identifier == .islamicUmmAlQura) {
+            let hijriDate = HijriDate.convertGregorianToHijri(date: date)
+            if let hijriMonth = HijriDate.getHijriMonth(from: date) {
+                self.monthLabel.text = "\(hijriDate.year) \(hijriMonth)"
+            }
+        } else {
+            self.monthLabel.text = self.monthFormatter.string(from: date).capitalizingFirstLetter()
         }
-
     }
 
     // MARK: - Actions
