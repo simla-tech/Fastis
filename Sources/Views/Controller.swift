@@ -129,6 +129,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         let view = CurrentValueView<Value>(config: self.config.currentValueView)
         view.currentValue = self.value
         view.typeCalendar = self.typeCalendar
+        view.localIdentifier = self.localIdentifier
         view.translatesAutoresizingMaskIntoConstraints = false
         view.onClear = { [weak self] in
             self?.clear()

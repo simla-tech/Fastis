@@ -11,6 +11,7 @@ import UIKit
 final class CurrentValueView<Value: FastisValue>: UIView {
 
     public var typeCalendar: Calendar?
+    public var localIdentifier: Locale?
 
     // MARK: - Outlets
     private lazy var label: UILabel = {
@@ -138,7 +139,7 @@ final class CurrentValueView<Value: FastisValue>: UIView {
                 if (typeCalendar?.identifier == .islamicUmmAlQura) {
                     let islamicCalendar = Calendar(identifier: .islamicUmmAlQura)
                     let day = islamicCalendar.component(.day, from: value.fromDate)
-                    self.label.text = "\(day) \(HijriDate.getHijriMonth(from: value.fromDate, localIdentifier: self.config.locale.identifier) ?? "")"
+                    self.label.text = "\(day) \(HijriDate.getHijriMonth(from: value.fromDate, localIdentifier: self.localIdentifier?.identifier ?? "EN") ?? "")"
                 } else {
                     self.label.text = self.dateFormatter.string(from: value.fromDate)
                 }
@@ -147,7 +148,7 @@ final class CurrentValueView<Value: FastisValue>: UIView {
                     let islamicCalendar = Calendar(identifier: .islamicUmmAlQura)
                     let dayFromDate = islamicCalendar.component(.day, from: value.fromDate)
                     let dayToDate = islamicCalendar.component(.day, from: value.toDate)
-                    self.label.text = "\(dayFromDate) \(HijriDate.getHijriMonth(from: value.fromDate, localIdentifier: self.config.locale.identifier) ?? "")" + " – " +  "\(dayToDate) \( HijriDate.getHijriMonth(from: value.toDate, localIdentifier: self.config.locale.identifier) ?? "")"
+                    self.label.text = "\(dayFromDate) \(HijriDate.getHijriMonth(from: value.fromDate, localIdentifier: self.localIdentifier?.identifier ?? "EN") ?? "")" + " – " +  "\(dayToDate) \( HijriDate.getHijriMonth(from: value.toDate, localIdentifier: self.localIdentifier?.identifier ?? "EN") ?? "")"
                 } else {
                     self.dateFormatter.locale = Locale(identifier: "ar_EG")
                     self.label.text =  self.dateFormatter.string(from: value.fromDate) + " – " + self.dateFormatter.string(from: value.toDate)
