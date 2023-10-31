@@ -49,8 +49,31 @@ class ViewController: UIViewController {
             let formatter = DateFormatter()
             formatter.dateFormat = "dd/MM/yyyy"
             if let rangeValue = self.currentValue as? FastisRange {
-                self.currentDateLabel.text = formatter.string(from: rangeValue.fromDate) + " - " + formatter.string(from: rangeValue.toDate)
+                /*
+                 islamicUmmAlQura
+                 let hijriFromDate = HijriDate.convertGregorianToHijri(date: rangeValue.fromDate)
+                 let hijriToDate = HijriDate.convertGregorianToHijri(date: rangeValue.toDate)
+                 self.currentDateLabel.text = "\(hijriFromDate.day)/\(hijriFromDate.month)/\(hijriFromDate.year)"
+                 + " - " +
+                 "\(hijriToDate.day)/\(hijriToDate.month)/\(hijriToDate.year)"
+                 */
+
+                /*
+                 gregorian
+                 self.currentDateLabel.text = formatter.string(from: rangeValue.fromDate) + " - " + formatter.string(from: rangeValue.toDate)
+                 */
+
+               self.currentDateLabel.text = formatter.string(from: rangeValue.fromDate) + " - " + formatter.string(from: rangeValue.toDate)
             } else if let date = self.currentValue as? Date {
+                /*
+                 islamicUmmAlQura
+                 let hijriFromDate = HijriDate.convertGregorianToHijri(date: date)
+                 self.currentDateLabel.text = "\(hijriFromDate.day)/\(hijriFromDate.month)/\(hijriFromDate.year)"
+                 */
+                /*
+                 gregorian
+                 self.currentDateLabel.text = formatter.string(from: date)
+                 */
                 self.currentDateLabel.text = formatter.string(from: date)
             } else {
                 self.currentDateLabel.text = "Choose a date"

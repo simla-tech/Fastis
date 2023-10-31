@@ -14,9 +14,9 @@ public let hijriMonths = [
 ]
 
 public class HijriDate {
-    var day: Int
-    var month: Int
-    var year: Int
+    public var day: Int
+    public var month: Int
+    public  var year: Int
 
     init(day: Int, month: Int, year: Int) {
         self.day = day
@@ -25,7 +25,7 @@ public class HijriDate {
     }
 //islamicUmmAlQura
     //gregorian
-    static func getHijriMonth(from date: Date) -> String? {
+    static public func getHijriMonth(from date: Date) -> String? {
         let calendar = Calendar(identifier: .islamicUmmAlQura)
         let components = calendar.dateComponents([.month], from: date)
         guard let monthNumber = components.month else { return nil }
@@ -34,7 +34,7 @@ public class HijriDate {
 
 
     // Function to convert Gregorian date to Hijri date
-    static  func convertGregorianToHijri(date: Date) -> HijriDate {
+    static public func convertGregorianToHijri(date: Date) -> HijriDate {
         let islamicCalendar = Calendar(identifier: .islamicUmmAlQura)
         let day = islamicCalendar.component(.day, from: date)
         let month = islamicCalendar.component(.month, from: date)
