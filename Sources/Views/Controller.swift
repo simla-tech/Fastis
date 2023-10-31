@@ -568,7 +568,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
 
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy MM dd"
-        dateFormatter.calendar = typeCalendar
+//        dateFormatter.calendar = typeCalendar
         dateFormatter.timeZone = self.config.calendar.timeZone
         dateFormatter.locale = self.config.calendar.locale
         var startDate = dateFormatter.date(from: "2000 01 01")!
