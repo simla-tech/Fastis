@@ -34,7 +34,6 @@ public class HijriDate {
         let calendar = Calendar(identifier: .islamicUmmAlQura)
         let components = calendar.dateComponents([.month], from: date)
         guard let monthNumber = components.month else { return nil }
-        print("Hrtihrtjhjtrhjtiohjtroihjtr\(calendar.locale?.identifier)")
         return localIdentifier == "ar_EG"  ? hijriARMonths[monthNumber] : hijriENMonths[monthNumber]
     }
 

@@ -200,7 +200,8 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
      public var shortcuts: [FastisShortcut<Value>] = []
      public var minimumMonthDate: Int?
      public var maximumMonthDate: Int?
-    public var typeCalendar: Calendar? = Calendar(identifier: .islamicUmmAlQura)
+     public var typeCalendar: Calendar?
+     public var localIdentifier: Locale?
 
     /**
      Allow to choose `nil` date
@@ -271,7 +272,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         self.config = config
         self.appearance = config.controller
         self.dayFormatter.calendar = typeCalendar
-        self.dayFormatter.locale = config.calendar.locale
+        self.dayFormatter.locale = localIdentifier?.identifier == "ar_EG" ? Locale(identifier: "ar_EG") : config.calendar.locale
         self.dayFormatter.dateFormat = "d"
         super.init(nibName: nil, bundle: nil)
     }
@@ -570,7 +571,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         dateFormatter.dateFormat = "yyyy MM dd"
 //        dateFormatter.calendar = typeCalendar
         dateFormatter.timeZone = self.config.calendar.timeZone
-        dateFormatter.locale = self.config.calendar.locale
+        dateFormatter.locale = localIdentifier?.identifier == "ar_EG" ? Locale(identifier: "ar_EG") : self.config.calendar.locale
         var startDate = dateFormatter.date(from: "2000 01 01")!
         var endDate = dateFormatter.date(from: "2030 12 01")!
 
@@ -612,6 +613,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
             withReuseIdentifier: self.monthHeaderReuseIdentifier,
             for: indexPath
         ) as! MonthHeader
+        header.localIdentifier = self.localIdentifier
         header.typeCalender = self.typeCalendar
         header.applyConfig(self.config.monthHeader)
         header.configure(for: range.start)

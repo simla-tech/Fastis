@@ -33,6 +33,7 @@ final class MonthHeader: JTACMonthReusableView {
     private lazy var monthFormatter = DateFormatter()
 
     public var typeCalender: Calendar?
+    public var localIdentifier: Locale?
 
     // MARK: - Lifecycle
 
@@ -82,10 +83,10 @@ final class MonthHeader: JTACMonthReusableView {
              self.monthLabel.text = "\(hijriDate.year) \(hijriMonth)"
          }
          */
-        self.monthLabel.textAlignment = self.monthFormatter.locale.identifier == "ar_EG" ? .right : .left
+        self.monthLabel.textAlignment = self.localIdentifier?.identifier == "ar_EG" ? .right : .left
         if (typeCalender?.identifier == .islamicUmmAlQura) {
             let hijriDate = HijriDate.convertGregorianToHijri(date: date)
-            if let hijriMonth = HijriDate.getHijriMonth(from: date, localIdentifier: self.monthFormatter.locale.identifier) {
+            if let hijriMonth = HijriDate.getHijriMonth(from: date, localIdentifier: self.localIdentifier?.identifier ?? "EN") {
                 self.monthLabel.text = "\(hijriDate.year) \(hijriMonth)"
             }
         } else {
