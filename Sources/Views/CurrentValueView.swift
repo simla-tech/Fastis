@@ -112,8 +112,13 @@ final class CurrentValueView<Value: FastisValue>: UIView {
     private func updateStateForCurrentValue() {
 
         if let value = self.currentValue as? Date {
-
-            self.label.text = self.dateFormatter.string(from: value)
+            let islamicCalendar = Calendar(identifier: .islamicUmmAlQura)
+            let day = islamicCalendar.component(.day, from: value)
+            let month = islamicCalendar.component(.month, from: value)
+            let year = islamicCalendar.component(.year, from: value)
+            
+            self.label.text = "\(day) \(month) \(year)"
+//            self.dateFormatter.string(from: value)
             self.label.textColor = self.config.textColor
             self.clearButton.alpha = 1
             self.clearButton.isUserInteractionEnabled = true
@@ -125,9 +130,18 @@ final class CurrentValueView<Value: FastisValue>: UIView {
             self.clearButton.isUserInteractionEnabled = true
 
             if value.onSameDay {
-                self.label.text = self.dateFormatter.string(from: value.fromDate)
+                let islamicCalendar = Calendar(identifier: .islamicUmmAlQura)
+                let day = islamicCalendar.component(.day, from: value.fromDate)
+
+                self.label.text = "\(day) \(HijriDate.getHijriMonth(from: value.fromDate) ?? "")"
+//                self.dateFormatter.string(from: value.fromDate)
             } else {
-                self.label.text = self.dateFormatter.string(from: value.fromDate) + " – " + self.dateFormatter.string(from: value.toDate)
+                let islamicCalendar = Calendar(identifier: .islamicUmmAlQura)
+                let dayFromDate = islamicCalendar.component(.day, from: value.fromDate)
+                let dayToDate = islamicCalendar.component(.day, from: value.toDate)
+
+                self.label.text = "\(dayFromDate) \(HijriDate.getHijriMonth(from: value.fromDate) ?? "")" + " – " +  "\(dayToDate) \( HijriDate.getHijriMonth(from: value.toDate) ?? "")"
+//                self.dateFormatter.string(from: value.fromDate) + " – " + self.dateFormatter.string(from: value.toDate)
             }
 
         } else {

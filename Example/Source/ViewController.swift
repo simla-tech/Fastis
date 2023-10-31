@@ -25,7 +25,7 @@ class ViewController: UIViewController {
     }()
 
     private lazy var currentDateLabel = UILabel()
-    let calendar = Calendar.current
+    let calendar = Calendar(identifier: .islamicUmmAlQura)
 
     private lazy var chooseRangeButton: UIButton = {
         let button = UIButton(type: .system)

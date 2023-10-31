@@ -83,7 +83,11 @@ final class MonthHeader: JTACMonthReusableView {
          }
          */
 
-        self.monthLabel.text = self.monthFormatter.string(from: date).capitalizingFirstLetter()
+        let hijriDate = HijriDate.convertGregorianToHijri(date: date)
+        if let hijriMonth = HijriDate.getHijriMonth(from: date) {
+            self.monthLabel.text = "\(hijriDate.year) \(hijriMonth)"
+        }
+
     }
 
     // MARK: - Actions

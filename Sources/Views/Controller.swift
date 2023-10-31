@@ -417,7 +417,17 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
             )
 
             if newConfig.dateLabelText != nil {
-                newConfig.dateLabelText = self.dayFormatter.string(from: date)
+                /*
+                 islamicUmmAlQura
+                 let islamicCalendar = Calendar(identifier: .islamicUmmAlQura)
+                 let dayDate = islamicCalendar.component(.day, from: date)
+                  newConfig.dateLabelText =  "\(dayDate)"
+                 */
+                /*
+                 gregorian
+                 self.dayFormatter.string(from: date)
+                 */
+                self.dayFormatter.string(from: date)
             }
 
             if Calendar.current.isDateInToday(date) {
@@ -431,7 +441,6 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
     }
 
     // MARK: - Actions
-
     private func updateSelectedShortcut() {
         guard !self.shortcuts.isEmpty else { return }
         if let value = self.value {

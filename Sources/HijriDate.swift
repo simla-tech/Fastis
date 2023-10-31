@@ -23,13 +23,15 @@ public class HijriDate {
         self.month = month
         self.year = year
     }
-
+//islamicUmmAlQura
+    //gregorian
     static func getHijriMonth(from date: Date) -> String? {
         let calendar = Calendar(identifier: .islamicUmmAlQura)
         let components = calendar.dateComponents([.month], from: date)
         guard let monthNumber = components.month else { return nil }
         return hijriMonths[monthNumber]
     }
+
 
     // Function to convert Gregorian date to Hijri date
     static  func convertGregorianToHijri(date: Date) -> HijriDate {
