@@ -90,6 +90,7 @@ final class MonthHeader: JTACMonthReusableView {
                 self.monthLabel.text = "\(hijriDate.year) \(hijriMonth)"
             }
         } else {
+            self.monthLabel.textAlignment = self.monthFormatter.locale.identifier == "ar_EG" ? .right : .left
             self.monthLabel.text = self.monthFormatter.string(from: date).capitalizingFirstLetter()
         }
     }
