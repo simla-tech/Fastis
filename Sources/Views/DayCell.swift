@@ -57,6 +57,8 @@ final class DayCell: JTACDayCell {
     private var rangeViewTopAnchorConstraints: [NSLayoutConstraint] = []
     private var rangeViewBottomAnchorConstraints: [NSLayoutConstraint] = []
 
+    public var localIdentifier: Locale?
+
     // MARK: - Lifecycle
 
     override init(frame: CGRect) {
@@ -293,9 +295,7 @@ final class DayCell: JTACDayCell {
         if let dateLabelText = config.dateLabelText {
             self.dateLabel.isHidden = false
 
-
-
-            self.dateLabel.text = dateLabelText.convertedDigitsToLocale()
+            self.dateLabel.text = dateLabelText.convertedDigitsToLocale(locale: localIdentifier ?? Locale(identifier: "EN"))
 
             if config.isToday, let todayConfig {
                 self.configureTodayCell(viewConfig: config, todayConfig: todayConfig)

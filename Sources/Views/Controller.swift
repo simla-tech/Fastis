@@ -413,6 +413,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         if let cachedConfig = self.viewConfigs[indexPath] {
             cell.configure(for: cachedConfig)
         } else {
+            cell.localIdentifier = localIdentifier
             var newConfig = DayCell.makeViewConfig(
                 for: cellState,
                 minimumDate: self.privateMinimumDate,

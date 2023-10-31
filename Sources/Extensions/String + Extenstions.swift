@@ -13,7 +13,7 @@ extension String {
         components(separatedBy: characterSet).joined()
     }
 
-    func convertedDigitsToLocale(_ locale: Locale = .current) -> String {
+    func convertedDigitsToLocale(locale: Locale) -> String {
         let digits = Set(clippingCharacters(in: CharacterSet.decimalDigits.inverted))
         guard !digits.isEmpty else { return self }
 

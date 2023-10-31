@@ -98,7 +98,8 @@ final class MonthHeader: JTACMonthReusableView {
 
     internal func applyConfig(_ config: FastisConfig.MonthHeader) {
         self.monthFormatter.dateFormat = config.monthFormat
-        self.monthFormatter.locale = config.monthLocale
+        self.monthFormatter.locale = localIdentifier
+//        config.monthLocale
         self.monthLabel.font = config.labelFont
         self.monthLabel.textColor = config.labelColor
         self.monthLabel.textAlignment = config.labelAlignment

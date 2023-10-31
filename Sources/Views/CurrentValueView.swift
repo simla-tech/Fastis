@@ -149,6 +149,7 @@ final class CurrentValueView<Value: FastisValue>: UIView {
                     let dayToDate = islamicCalendar.component(.day, from: value.toDate)
                     self.label.text = "\(dayFromDate) \(HijriDate.getHijriMonth(from: value.fromDate, localIdentifier: self.config.locale.identifier) ?? "")" + " – " +  "\(dayToDate) \( HijriDate.getHijriMonth(from: value.toDate, localIdentifier: self.config.locale.identifier) ?? "")"
                 } else {
+                    self.dateFormatter.locale = Locale(identifier: "ar_EG")
                     self.label.text =  self.dateFormatter.string(from: value.fromDate) + " – " + self.dateFormatter.string(from: value.toDate)
                 }
             }
