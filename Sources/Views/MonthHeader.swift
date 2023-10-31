@@ -67,7 +67,6 @@ final class MonthHeader: JTACMonthReusableView {
     }
 
     internal func configure(for date: Date) {
-
         /*
          Gregorian
 
@@ -83,14 +82,13 @@ final class MonthHeader: JTACMonthReusableView {
              self.monthLabel.text = "\(hijriDate.year) \(hijriMonth)"
          }
          */
-
+        self.monthLabel.textAlignment = self.monthFormatter.locale.identifier == "ar_EG" ? .right : .left
         if (typeCalender?.identifier == .islamicUmmAlQura) {
             let hijriDate = HijriDate.convertGregorianToHijri(date: date)
-            if let hijriMonth = HijriDate.getHijriMonth(from: date) {
+            if let hijriMonth = HijriDate.getHijriMonth(from: date, localIdentifier: self.monthFormatter.locale.identifier) {
                 self.monthLabel.text = "\(hijriDate.year) \(hijriMonth)"
             }
         } else {
-            self.monthLabel.textAlignment = self.monthFormatter.locale.identifier == "ar_EG" ? .right : .left
             self.monthLabel.text = self.monthFormatter.string(from: date).capitalizingFirstLetter()
         }
     }

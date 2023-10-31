@@ -138,7 +138,7 @@ final class CurrentValueView<Value: FastisValue>: UIView {
                 if (typeCalendar?.identifier == .islamicUmmAlQura) {
                     let islamicCalendar = Calendar(identifier: .islamicUmmAlQura)
                     let day = islamicCalendar.component(.day, from: value.fromDate)
-                    self.label.text = "\(day) \(HijriDate.getHijriMonth(from: value.fromDate) ?? "")"
+                    self.label.text = "\(day) \(HijriDate.getHijriMonth(from: value.fromDate, localIdentifier: self.config.locale.identifier) ?? "")"
                 } else {
                     self.label.text = self.dateFormatter.string(from: value.fromDate)
                 }
@@ -147,7 +147,7 @@ final class CurrentValueView<Value: FastisValue>: UIView {
                     let islamicCalendar = Calendar(identifier: .islamicUmmAlQura)
                     let dayFromDate = islamicCalendar.component(.day, from: value.fromDate)
                     let dayToDate = islamicCalendar.component(.day, from: value.toDate)
-                    self.label.text = "\(dayFromDate) \(HijriDate.getHijriMonth(from: value.fromDate) ?? "")" + " – " +  "\(dayToDate) \( HijriDate.getHijriMonth(from: value.toDate) ?? "")"
+                    self.label.text = "\(dayFromDate) \(HijriDate.getHijriMonth(from: value.fromDate, localIdentifier: self.config.locale.identifier) ?? "")" + " – " +  "\(dayToDate) \( HijriDate.getHijriMonth(from: value.toDate, localIdentifier: self.config.locale.identifier) ?? "")"
                 } else {
                     self.label.text =  self.dateFormatter.string(from: value.fromDate) + " – " + self.dateFormatter.string(from: value.toDate)
                 }
