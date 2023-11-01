@@ -84,6 +84,7 @@ final class MonthHeader: JTACMonthReusableView {
              self.monthLabel.text = "\(hijriDate.year) \(hijriMonth)"
          }
          */
+        
         self.monthLabel.textAlignment = self.localIdentifier?.identifier == "ar_EG" ? .right : .left
         if (typeCalender?.identifier == .islamicUmmAlQura) {
             let hijriDate = HijriDate.convertGregorianToHijri(date: date)
@@ -132,7 +133,7 @@ public extension FastisConfig {
 
          Default value — `.left`
          */
-        public var labelAlignment: NSTextAlignment = .right
+        public var labelAlignment: NSTextAlignment = .left
 
         /**
          Text color for month title label
@@ -167,7 +168,7 @@ public extension FastisConfig {
 
          Default value — `.current`
          */
-        public var monthLocale: Locale = .current
+        public var monthLocale: Locale = .autoupdatingCurrent
 
         /**
          Height of month view
