@@ -18,6 +18,7 @@ final class MonthHeader: JTACMonthReusableView {
         let label = UILabel()
         label.text = "Month name"
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = self.localIdentifier?.identifier == "ar_EG" ? .right : .left
         return label
     }()
 
@@ -131,7 +132,7 @@ public extension FastisConfig {
 
          Default value — `.left`
          */
-        public var labelAlignment: NSTextAlignment = .left
+        public var labelAlignment: NSTextAlignment = .right
 
         /**
          Text color for month title label

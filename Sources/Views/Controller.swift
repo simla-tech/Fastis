@@ -615,6 +615,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
             withReuseIdentifier: self.monthHeaderReuseIdentifier,
             for: indexPath
         ) as! MonthHeader
+
         header.localIdentifier = self.localIdentifier
         header.typeCalender = self.typeCalendar
         header.applyConfig(self.config.monthHeader)
