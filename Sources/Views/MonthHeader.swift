@@ -90,6 +90,7 @@ final class MonthHeader: JTACMonthReusableView {
                 self.monthLabel.text = "\(hijriDate.year) \(hijriMonth)"
             }
         } else {
+            self.monthFormatter.locale =  Locale(identifier: self.localIdentifier?.identifier ?? "EN")
             self.monthLabel.text = self.monthFormatter.string(from: date).capitalizingFirstLetter()
         }
     }
