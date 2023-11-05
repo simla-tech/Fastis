@@ -143,6 +143,7 @@ class ViewController: UIViewController {
         fastisController = FastisController(mode: .range, config: config)
         fastisController.title = "Choose range"
         
+
    /*
     fastisController.minimumMonthDate = 0
     fastisController.maximumMonthDate = 0
@@ -167,6 +168,7 @@ class ViewController: UIViewController {
         fastisController.title = "Choose date"
         fastisController.initialValue = self.currentValue as? Date
         fastisController.maximumDate = Date()
+
         fastisController.shortcuts = [.today, .yesterday, .tomorrow]
         fastisController.dismissHandler = { [weak self] action in
             switch action {
