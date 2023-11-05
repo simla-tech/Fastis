@@ -26,13 +26,15 @@ final class WeekView: UIView {
     // MARK: - Variables
 
     private let config: FastisConfig.WeekView
-    private let calendar: Calendar
+    private var calendar: Calendar
+    public  var localIdentifier: Locale?
 
     // MARK: - Lifecycle
 
     init(calendar: Calendar, config: FastisConfig.WeekView) {
         self.config = config
         self.calendar = calendar
+        self.calendar.locale = self.localIdentifier
         super.init(frame: .zero)
         self.configureUI()
         self.configureSubviews()
@@ -136,6 +138,10 @@ public extension FastisConfig {
          Default value — `true`
          */
         public var uppercaseWeekName = true
+
+
+        public var locale: Locale = .autoupdatingCurrent
+
 
     }
 }

@@ -121,6 +121,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
 
     private lazy var weekView: WeekView = {
         let view = WeekView(calendar: self.config.calendar, config: self.config.weekView)
+        view.localIdentifier = self.localIdentifier
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
