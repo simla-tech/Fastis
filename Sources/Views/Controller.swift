@@ -120,8 +120,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
     }()
 
     private lazy var weekView: WeekView = {
-        let view = WeekView(calendar: self.config.calendar, config: self.config.weekView)
-        view.localIdentifier = self.localIdentifier
+        let view = WeekView(calendar: self.config.calendar, config: self.config.weekView, localIdentifier: self.localIdentifier?.identifier)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -342,6 +341,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         if !self.privateCloseOnSelectionImmediately {
             self.view.addSubview(self.currentValueView)
         }
+        self.weekView.localIdentifier = localIdentifier
         self.view.addSubview(self.weekView)
         self.view.addSubview(self.calendarView)
         if !self.shortcuts.isEmpty {

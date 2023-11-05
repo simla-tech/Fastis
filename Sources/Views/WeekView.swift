@@ -28,13 +28,14 @@ final class WeekView: UIView {
     private let config: FastisConfig.WeekView
     private var calendar: Calendar
     public  var localIdentifier: Locale?
+    public var msg = ""
 
     // MARK: - Lifecycle
 
-    init(calendar: Calendar, config: FastisConfig.WeekView) {
+    init(calendar: Calendar, config: FastisConfig.WeekView,localIdentifier: String? = nil) {
         self.config = config
         self.calendar = calendar
-        self.calendar.locale = self.localIdentifier?.identifier == "EN" ? Locale(identifier: "EN") : Locale(identifier: "ar_EG")
+        self.calendar.locale = localIdentifier == "en" ? Locale(identifier: "EN") : Locale(identifier: "ar_EG")
         super.init(frame: .zero)
         self.configureUI()
         self.configureSubviews()
@@ -67,9 +68,10 @@ final class WeekView: UIView {
 
     func makeWeekLabel(for symbol: String) -> UILabel {
         let label = UILabel()
+        print("htrohtrjhhojprtjprth\(msg)")
         label.text = self.config.uppercaseWeekName ? symbol.uppercased() : symbol
         label.font = self.config.textFont
-        label.textColor = self.config.textColor
+        label.textColor = self.localIdentifier?.identifier == "EN" ? .red : self.config.textColor
         label.textAlignment = .center
         return label
     }
@@ -138,10 +140,6 @@ public extension FastisConfig {
          Default value — `true`
          */
         public var uppercaseWeekName = true
-
-
-        public var locale: Locale = .autoupdatingCurrent
-
 
     }
 }
