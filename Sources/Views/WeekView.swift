@@ -34,7 +34,7 @@ final class WeekView: UIView {
     init(calendar: Calendar, config: FastisConfig.WeekView) {
         self.config = config
         self.calendar = calendar
-        self.calendar.locale = self.localIdentifier
+        self.calendar.locale = calendar.locale?.identifier == "EN" ? Locale(identifier: "EN") : Locale(identifier: "ar_EG")
         super.init(frame: .zero)
         self.configureUI()
         self.configureSubviews()
