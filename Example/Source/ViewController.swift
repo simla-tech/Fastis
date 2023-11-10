@@ -40,16 +40,27 @@ class ViewController: UIViewController {
         return button
     }()
 
+    private lazy var chooseSingleButtonWithCustomCalendar: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Choose single date with custom calendar", for: .normal)
+        button.addTarget(self, action: #selector(self.chooseSingleDateWithCustomCalendar), for: .touchUpInside)
+        return button
+    }()
+
     // MARK: - Variables
+
+    private lazy var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        return formatter
+    }()
 
     private var currentValue: FastisValue? {
         didSet {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "dd/MM/yyyy"
             if let rangeValue = self.currentValue as? FastisRange {
-                self.currentDateLabel.text = formatter.string(from: rangeValue.fromDate) + " - " + formatter.string(from: rangeValue.toDate)
+                self.currentDateLabel.text = self.dateFormatter.string(from: rangeValue.fromDate) + " - " + self.dateFormatter.string(from: rangeValue.toDate)
             } else if let date = self.currentValue as? Date {
-                self.currentDateLabel.text = formatter.string(from: date)
+                self.currentDateLabel.text = self.dateFormatter.string(from: date)
             } else {
                 self.currentDateLabel.text = "Choose a date"
             }
@@ -79,6 +90,7 @@ class ViewController: UIViewController {
         self.containerView.setCustomSpacing(32, after: self.currentDateLabel)
         self.containerView.addArrangedSubview(self.chooseRangeButton)
         self.containerView.addArrangedSubview(self.chooseSingleButton)
+        self.containerView.addArrangedSubview(self.chooseSingleButtonWithCustomCalendar)
         self.view.addSubview(self.containerView)
     }
 
@@ -97,6 +109,7 @@ class ViewController: UIViewController {
 
     @objc
     private func chooseRange() {
+        self.dateFormatter.calendar = .current
         let fastisController = FastisController(mode: .range)
         fastisController.title = "Choose range"
         fastisController.initialValue = self.currentValue as? FastisRange
@@ -117,11 +130,39 @@ class ViewController: UIViewController {
 
     @objc
     private func chooseSingleDate() {
+        self.dateFormatter.calendar = .current
         let fastisController = FastisController(mode: .single)
         fastisController.title = "Choose date"
         fastisController.initialValue = self.currentValue as? Date
         fastisController.maximumDate = Date()
         fastisController.shortcuts = [.today, .yesterday, .tomorrow]
+        fastisController.dismissHandler = { [weak self] action in
+            switch action {
+            case .done(let newValue):
+                self?.currentValue = newValue
+            case .cancel:
+                print("any actions")
+            }
+        }
+        fastisController.present(above: self)
+    }
+
+    @objc
+    private func chooseSingleDateWithCustomCalendar() {
+        var customConfig: FastisConfig = .default
+        var calendar: Calendar = .init(identifier: .islamicUmmAlQura)
+        calendar.locale = .autoupdatingCurrent
+        customConfig.calendar = calendar
+
+        self.dateFormatter.calendar = calendar
+
+        let fastisController = FastisController(mode: .range, config: customConfig)
+        fastisController.title = "Choose range"
+        fastisController.initialValue = self.currentValue as? FastisRange
+        fastisController.minimumDate = calendar.date(byAdding: .month, value: -2, to: Date())
+        fastisController.maximumDate = calendar.date(byAdding: .month, value: 3, to: Date())
+        fastisController.allowToChooseNilDate = true
+        fastisController.shortcuts = [.today, .lastWeek, .lastMonth]
         fastisController.dismissHandler = { [weak self] action in
             switch action {
             case .done(let newValue):

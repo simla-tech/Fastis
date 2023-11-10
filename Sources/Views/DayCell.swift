@@ -166,7 +166,6 @@ final class DayCell: JTACDayCell {
 
             if let value = rangeValue {
 
-                let calendar = Calendar.current
                 var showRangeView = false
 
                 if state.dateBelongsTo == .followingMonthWithinBoundary {
