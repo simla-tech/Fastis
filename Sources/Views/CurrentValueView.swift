@@ -42,14 +42,16 @@ final class CurrentValueView<Value: FastisValue>: UIView {
     // MARK: - Variables
 
     private let config: FastisConfig.CurrentValueView
+    private let calendar: Calendar
 
     /// Clear button tap handler
     internal var onClear: (() -> Void)?
 
     private lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.locale = self.config.locale
+        formatter.locale = self.calendar.locale
         formatter.dateFormat = self.config.format
+        formatter.calendar = self.calendar
         return formatter
     }()
 
@@ -61,8 +63,9 @@ final class CurrentValueView<Value: FastisValue>: UIView {
 
     // MARK: - Lifecycle
 
-    internal init(config: FastisConfig.CurrentValueView) {
+    internal init(config: FastisConfig.CurrentValueView, calendar: Calendar) {
         self.config = config
+        self.calendar = calendar
         super.init(frame: .zero)
         self.configureUI()
         self.configureSubviews()
@@ -235,6 +238,9 @@ public extension FastisConfig {
 
          Default value — `Locale.autoupdatingCurrent`
          */
-        public var locale: Locale = .autoupdatingCurrent
+        @available(*, unavailable, message: "Use locale in FastisConfig.calendar.locale")
+        public var locale: Locale {
+            .autoupdatingCurrent
+        }
     }
 }

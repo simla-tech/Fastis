@@ -37,7 +37,7 @@ final class MonthHeader: JTACMonthReusableView {
         super.init(frame: frame)
         self.configureSubviews()
         self.configureConstraints()
-        self.applyConfig(FastisConfig.default.monthHeader)
+        self.applyConfig(FastisConfig.default.monthHeader, calendar: .current)
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.viewTapped))
         self.addGestureRecognizer(tapRecognizer)
     }
@@ -69,9 +69,10 @@ final class MonthHeader: JTACMonthReusableView {
 
     // MARK: - Actions
 
-    internal func applyConfig(_ config: FastisConfig.MonthHeader) {
+    internal func applyConfig(_ config: FastisConfig.MonthHeader, calendar: Calendar) {
+        self.monthFormatter.calendar = calendar
         self.monthFormatter.dateFormat = config.monthFormat
-        self.monthFormatter.locale = config.monthLocale
+        self.monthFormatter.locale = calendar.locale
         self.monthLabel.font = config.labelFont
         self.monthLabel.textColor = config.labelColor
         self.monthLabel.textAlignment = config.labelAlignment
@@ -128,16 +129,19 @@ public extension FastisConfig {
         /**
          Format of displayed month value
 
-         Default value — `"LLLL yyyy"`
+         Default value — `"MMMM yyyy"`
          */
-        public var monthFormat = "LLLL yyyy"
+        public var monthFormat = "MMMM yyyy"
 
         /**
          Locale of displayed month value
 
          Default value — `.current`
          */
-        public var monthLocale: Locale = .current
+        @available(*, unavailable, message: "Use locale FastisConfig.calendar.locale")
+        public var monthLocale: Locale {
+            .autoupdatingCurrent
+        }
 
         /**
          Height of month view

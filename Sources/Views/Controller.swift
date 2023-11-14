@@ -126,7 +126,10 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
     }()
 
     private lazy var currentValueView: CurrentValueView<Value> = {
-        let view = CurrentValueView<Value>(config: self.config.currentValueView)
+        let view = CurrentValueView<Value>(
+            config: self.config.currentValueView,
+            calendar: self.config.calendar
+        )
         view.currentValue = self.value
         view.translatesAutoresizingMaskIntoConstraints = false
         view.onClear = { [weak self] in
@@ -143,11 +146,13 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         )
         view.translatesAutoresizingMaskIntoConstraints = false
         if let value = self.value {
-            view.selectedShortcut = self.shortcuts.first(where: { $0.isEqual(to: value) })
+            view.selectedShortcut = self.shortcuts.first(where: {
+                $0.isEqual(to: value, calendar: self.config.calendar)
+            })
         }
         view.onSelect = { [weak self] selectedShortcut in
             guard let self else { return }
-            let newValue = selectedShortcut.action()
+            let newValue = selectedShortcut.action(self.config.calendar)
             if !newValue.outOfRange(minDate: self.privateMinimumDate, maxDate: self.privateMaximumDate) {
                 self.value = newValue
                 self.selectValue(newValue, in: self.calendarView)
@@ -266,6 +271,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         self.config = config
         self.appearance = config.controller
         self.dayFormatter.locale = config.calendar.locale
+        self.dayFormatter.calendar = config.calendar
         self.dayFormatter.dateFormat = "d"
         super.init(nibName: nil, bundle: nil)
     }
@@ -418,7 +424,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
                 newConfig.dateLabelText = self.dayFormatter.string(from: date)
             }
 
-            if Calendar.current.isDateInToday(date) {
+            if self.config.calendar.isDateInToday(date) {
                 newConfig.isToday = true
             }
 
@@ -433,7 +439,9 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
     private func updateSelectedShortcut() {
         guard !self.shortcuts.isEmpty else { return }
         if let value = self.value {
-            self.shortcutContainerView.selectedShortcut = self.shortcuts.first(where: { $0.isEqual(to: value) })
+            self.shortcutContainerView.selectedShortcut = self.shortcuts.first(where: {
+                $0.isEqual(to: value, calendar: self.config.calendar)
+            })
         } else {
             self.shortcutContainerView.selectedShortcut = nil
         }
@@ -545,12 +553,8 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
 
     public func configureCalendar(_ calendar: JTACMonthView) -> ConfigurationParameters {
 
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy MM dd"
-        dateFormatter.timeZone = self.config.calendar.timeZone
-        dateFormatter.locale = self.config.calendar.locale
-        var startDate = dateFormatter.date(from: "2000 01 01")!
-        var endDate = dateFormatter.date(from: "2030 12 01")!
+        var startDate = self.config.calendar.date(byAdding: .year, value: -99, to: Date())!
+        var endDate = self.config.calendar.date(byAdding: .year, value: 99, to: Date())!
 
         if let maximumDate = self.privateMaximumDate,
            let endOfNextMonth = self.config.calendar.date(byAdding: .month, value: 2, to: maximumDate)?
@@ -588,7 +592,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
             withReuseIdentifier: self.monthHeaderReuseIdentifier,
             for: indexPath
         ) as! MonthHeader
-        header.applyConfig(self.config.monthHeader)
+        header.applyConfig(self.config.monthHeader, calendar: self.config.calendar)
         header.configure(for: range.start)
         if self.privateSelectMonthOnHeaderTap, Value.mode == .range {
             header.tapHandler = { [weak self, weak calendar] in

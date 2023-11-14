@@ -221,6 +221,19 @@ var customConfig = FastisConfig.default
 customConfig.controller.dayCell.dateLabelColor = .blue
 let fastisController = FastisController(mode: .range, config: customConfig)
 ```
+
+To customise a special FastisController instance with custom calendar:
+
+```swift
+var customConfig: FastisConfig = .default
+var calendar: Calendar = .init(identifier: .islamicUmmAlQura)
+calendar.locale = .autoupdatingCurrent
+customConfig.calendar = calendar
+let fastisController = FastisController(mode: .range, config: customConfig)
+fastisController.minimumDate = calendar.date(byAdding: .month, value: -2, to: Date())
+fastisController.maximumDate = calendar.date(byAdding: .month, value: 3, to: Date())
+```
+
 To customise a today cell:
 
 ```swift

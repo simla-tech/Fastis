@@ -66,11 +66,11 @@ final class ShortcutContainerView<Value: FastisValue>: UIView {
 
     // MARK: - Configuration
 
-    func configureUI() {
+    private func configureUI() {
         self.backgroundColor = self.config.backgroundColor
     }
 
-    func configureSubviews() {
+    private func configureSubviews() {
         self.scrollView.addSubview(self.stackView)
         self.addSubview(self.scrollView)
         for (i, item) in self.shortcuts.enumerated() {
@@ -85,7 +85,7 @@ final class ShortcutContainerView<Value: FastisValue>: UIView {
         }
     }
 
-    func configureConstraints() {
+    private func configureConstraints() {
         NSLayoutConstraint.activate([
             self.stackView.leftAnchor.constraint(equalTo: self.scrollView.contentLayoutGuide.leftAnchor, constant: self.config.insets.left),
             self.stackView.rightAnchor.constraint(
