@@ -58,7 +58,8 @@ class ViewController: UIViewController {
     private var currentValue: FastisValue? {
         didSet {
             if let rangeValue = self.currentValue as? FastisRange {
-                self.currentDateLabel.text = self.dateFormatter.string(from: rangeValue.fromDate) + " - " + self.dateFormatter.string(from: rangeValue.toDate)
+                self.currentDateLabel.text = self.dateFormatter.string(from: rangeValue.fromDate) + " - " + self.dateFormatter
+                    .string(from: rangeValue.toDate)
             } else if let date = self.currentValue as? Date {
                 self.currentDateLabel.text = self.dateFormatter.string(from: date)
             } else {
