@@ -570,7 +570,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
             startDate = startOfPreviousMonth
         }
 
-        let parameters = ConfigurationParameters(
+        return ConfigurationParameters(
             startDate: startDate,
             endDate: endDate,
             numberOfRows: 6,
@@ -580,7 +580,6 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
             firstDayOfWeek: nil,
             hasStrictBoundaries: true
         )
-        return parameters
     }
 
     public func calendar(
