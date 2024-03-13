@@ -73,6 +73,7 @@ final class MonthHeader: JTACMonthReusableView {
         self.monthFormatter.calendar = calendar
         self.monthFormatter.dateFormat = config.monthFormat
         self.monthFormatter.locale = calendar.locale
+        self.monthFormatter.timeZone = calendar.timeZone
         self.monthLabel.font = config.labelFont
         self.monthLabel.textColor = config.labelColor
         self.monthLabel.textAlignment = config.labelAlignment

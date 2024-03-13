@@ -52,6 +52,7 @@ final class CurrentValueView<Value: FastisValue>: UIView {
         formatter.locale = self.calendar.locale
         formatter.dateFormat = self.config.format
         formatter.calendar = self.calendar
+        formatter.timeZone = self.calendar.timeZone
         return formatter
     }()
 
@@ -127,7 +128,7 @@ final class CurrentValueView<Value: FastisValue>: UIView {
             self.clearButton.alpha = 1
             self.clearButton.isUserInteractionEnabled = true
 
-            if value.onSameDay {
+            if value.fromDate.isInSameDay(in: self.calendar, date: value.toDate) {
                 self.label.text = self.dateFormatter.string(from: value.fromDate)
             } else {
                 self.label.text = self.dateFormatter.string(from: value.fromDate) + " – " + self.dateFormatter.string(from: value.toDate)

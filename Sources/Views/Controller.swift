@@ -239,7 +239,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
             self.privateMinimumDate
         }
         set {
-            self.privateMinimumDate = newValue?.startOfDay()
+            self.privateMinimumDate = newValue?.startOfDay(in: self.config.calendar)
         }
     }
 
@@ -259,7 +259,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
             self.privateMaximumDate
         }
         set {
-            self.privateMaximumDate = newValue?.endOfDay()
+            self.privateMaximumDate = newValue?.endOfDay(in: self.config.calendar)
         }
     }
 
@@ -272,6 +272,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         self.appearance = config.controller
         self.dayFormatter.locale = config.calendar.locale
         self.dayFormatter.calendar = config.calendar
+        self.dayFormatter.timeZone = config.calendar.timeZone
         self.dayFormatter.dateFormat = "d"
         super.init(nibName: nil, bundle: nil)
     }
@@ -499,7 +500,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
                     }
 
                     let dateRangeChangesDisabled = !self.allowDateRangeChanges
-                    let rangeSelected = !oldValue.fromDate.isInSameDay(date: oldValue.toDate)
+                    let rangeSelected = !oldValue.fromDate.isInSameDay(in: self.config.calendar, date: oldValue.toDate)
                     if dateRangeChangesDisabled, rangeSelected {
                         return .from(date.startOfDay(in: self.config.calendar), to: date.endOfDay(in: self.config.calendar))
                     } else if date.isInSameDay(in: self.config.calendar, date: oldValue.fromDate) {

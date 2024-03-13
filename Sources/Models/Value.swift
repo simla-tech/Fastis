@@ -49,10 +49,6 @@ public struct FastisRange: FastisValue, Hashable {
         FastisRange(from: fromDate, to: toDate)
     }
 
-    public var onSameDay: Bool {
-        self.fromDate.isInSameDay(date: self.toDate)
-    }
-
     public func outOfRange(minDate: Date?, maxDate: Date?) -> Bool {
         self.fromDate < minDate ?? self.fromDate || self.toDate > maxDate ?? self.toDate
     }
