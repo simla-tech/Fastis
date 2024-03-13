@@ -79,7 +79,7 @@ public extension FastisShortcut where Value == FastisRange {
     static var lastWeek: FastisShortcut {
         FastisShortcut(name: "Last week") { calendar in
             let now = Date()
-            let weekAgo = calendar.date(byAdding: .day, value: -7, to: now)!
+            let weekAgo = calendar.date(byAdding: .day, value: -6, to: now)!
             return FastisRange(from: weekAgo.startOfDay(in: calendar), to: now.endOfDay(in: calendar))
         }
     }
