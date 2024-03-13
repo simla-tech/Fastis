@@ -56,7 +56,7 @@ public struct FastisShortcut<Value: FastisValue>: Hashable {
 
     internal func isEqual(to value: Value, calendar: Calendar) -> Bool {
         if let date1 = self.action(calendar) as? Date, let date2 = value as? Date {
-            return date1.isInSameDay(date: date2)
+            return date1.isInSameDay(in: calendar, date: date2)
         } else if let value1 = self.action(calendar) as? FastisRange, let value2 = value as? FastisRange {
             return value1 == value2
         }
@@ -69,9 +69,9 @@ public extension FastisShortcut where Value == FastisRange {
 
     /// Range: from **`now.startOfDay`** to **`now.endOfDay`**
     static var today: FastisShortcut {
-        FastisShortcut(name: "Today") { _ in
+        FastisShortcut(name: "Today") { calendar in
             let now = Date()
-            return FastisRange(from: now.startOfDay(), to: now.endOfDay())
+            return FastisRange(from: now.startOfDay(in: calendar), to: now.endOfDay(in: calendar))
         }
     }
 
@@ -80,7 +80,7 @@ public extension FastisShortcut where Value == FastisRange {
         FastisShortcut(name: "Last week") { calendar in
             let now = Date()
             let weekAgo = calendar.date(byAdding: .day, value: -7, to: now)!
-            return FastisRange(from: weekAgo.startOfDay(), to: now.endOfDay())
+            return FastisRange(from: weekAgo.startOfDay(in: calendar), to: now.endOfDay(in: calendar))
         }
     }
 
@@ -89,7 +89,7 @@ public extension FastisShortcut where Value == FastisRange {
         FastisShortcut(name: "Last month") { calendar in
             let now = Date()
             let monthAgo = calendar.date(byAdding: .month, value: -1, to: now)!
-            return FastisRange(from: monthAgo.startOfDay(), to: now.endOfDay())
+            return FastisRange(from: monthAgo.startOfDay(in: calendar), to: now.endOfDay(in: calendar))
         }
     }
 

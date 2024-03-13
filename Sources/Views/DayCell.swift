@@ -202,10 +202,10 @@ final class DayCell: JTACDayCell {
 
         config.dateLabelText = state.text
 
-        if let minimumDate, state.date < minimumDate.startOfDay() {
+        if let minimumDate, state.date < minimumDate.startOfDay(in: calendar) {
             config.isDateEnabled = false
             return config
-        } else if let maximumDate, state.date > maximumDate.endOfDay() {
+        } else if let maximumDate, state.date > maximumDate.endOfDay(in: calendar) {
             config.isDateEnabled = false
             return config
         }
