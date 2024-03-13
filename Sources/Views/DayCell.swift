@@ -113,13 +113,17 @@ final class DayCell: JTACDayCell {
         self.rangeViewLeftAnchorToCenterConstraint = self.backgroundRangeView.leftAnchor.constraint(equalTo: self.contentView.centerXAnchor)
 
         // Add small offset to prevent spacing between cells
-        self.rangeViewRightAnchorToSuperviewConstraint = self.backgroundRangeView.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: 1)
-        self.rangeViewRightAnchorToCenterConstraint = self.backgroundRangeView.rightAnchor.constraint(equalTo: self.contentView.centerXAnchor)
+        self.rangeViewRightAnchorToSuperviewConstraint = self.backgroundRangeView.rightAnchor.constraint(
+            equalTo: self.contentView.rightAnchor,
+            constant: 1
+        )
+        self.rangeViewRightAnchorToCenterConstraint = self.backgroundRangeView.rightAnchor
+            .constraint(equalTo: self.contentView.centerXAnchor)
 
         NSLayoutConstraint.activate([
             self.rangeViewLeftAnchorToSuperviewConstraint,
             self.rangeViewRightAnchorToSuperviewConstraint
-        ].compactMap{ $0 })
+        ].compactMap { $0 })
 
         NSLayoutConstraint.activate([
             {
@@ -136,7 +140,7 @@ final class DayCell: JTACDayCell {
             self.selectionBackgroundView.widthAnchor.constraint(equalTo: self.selectionBackgroundView.heightAnchor)
         ])
         self.rangeViewTopAnchorConstraints = [
-            self.backgroundRangeView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: inset),
+            self.backgroundRangeView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: inset)
         ]
         self.rangeViewBottomAnchorConstraints = [
             self.backgroundRangeView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -inset)
@@ -298,7 +302,7 @@ final class DayCell: JTACDayCell {
         } else {
             self.dateLabel.isHidden = true
         }
-        
+
         self.backgroundRangeView.isHidden = false
         self.backgroundRangeView.layer.maskedCorners = []
 
