@@ -55,58 +55,42 @@ struct MainView: View {
         .navigationTitle("SwiftUI presentation")
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .sheet(isPresented: $showRangeCalendar) {
-            self.rangeCalendarView()
+            FastisView(mode: .range) { action in
+                switch action {
+                case .done(let newValue):
+                    self.currentValue = newValue
+                case .cancel:
+                    print("any actions")
+                }
+            }
+            .title("Choose range")
+            .initialValue(self.currentValue as? FastisRange)
+            .minimumDate(Calendar.current.date(byAdding: .month, value: -2, to: Date()))
+            .maximumDate(Calendar.current.date(byAdding: .month, value: 3, to: Date()))
+            .allowToChooseNilDate(true)
+            .allowDateRangeChanges(false)
+            .shortcuts([.lastWeek, .lastMonth])
+            .selectMonthOnHeaderTap(true)
+            .ignoresSafeArea()
         }
         .sheet(isPresented: $showSingleCalendar) {
-            self.singleCalendarView()
-        }
-    }
-
-    private func rangeCalendarView() -> some View {
-        let config: FastisConfig = .default
-        var fastisView = FastisView(mode: .range, config: config)
-        fastisView.title = "Choose range"
-        fastisView.initialValue = self.currentValue as? FastisRange
-        fastisView.minimumDate = Calendar.current.date(byAdding: .month, value: -2, to: Date())
-        fastisView.maximumDate = Calendar.current.date(byAdding: .month, value: 3, to: Date())
-        fastisView.allowToChooseNilDate = true
-        fastisView.allowDateRangeChanges = false
-        fastisView.shortcuts = [.lastWeek, .lastMonth]
-        fastisView.selectMonthOnHeaderTap = true
-
-        fastisView.dismissHandler = { action in
-            switch action {
-            case .done(let newValue):
-                self.currentValue = newValue
-            case .cancel:
-                print("any actions")
+            FastisView(mode: .single) { action in
+                switch action {
+                case .done(let newValue):
+                    self.currentValue = newValue
+                case .cancel:
+                    print("any actions")
+                }
             }
+            .title("Choose date")
+            .initialValue(self.currentValue as? Date)
+            .minimumDate(Calendar.current.date(byAdding: .month, value: -2, to: Date()))
+            .maximumDate(Date())
+            .allowToChooseNilDate(true)
+            .allowDateRangeChanges(false)
+            .shortcuts([.yesterday, .today, .tomorrow])
+            .closeOnSelectionImmediately(true)
+            .ignoresSafeArea()
         }
-        return fastisView.ignoresSafeArea()
     }
-
-    private func singleCalendarView() -> some View {
-        let config: FastisConfig = .default
-        var fastisView = FastisView(mode: .single, config: config)
-        fastisView.title = "Choose date"
-        fastisView.initialValue = self.currentValue as? Date
-        fastisView.minimumDate = Calendar.current.date(byAdding: .month, value: -2, to: Date())
-        fastisView.maximumDate = Date()
-        fastisView.allowToChooseNilDate = true
-        fastisView.allowDateRangeChanges = false
-        fastisView.shortcuts = [.yesterday, .today, .tomorrow]
-        fastisView.closeOnSelectionImmediately = true
-
-        fastisView.dismissHandler = { action in
-            switch action {
-            case .done(let newValue):
-                self.currentValue = newValue
-            case .cancel:
-                print("any actions")
-            }
-        }
-        return fastisView.ignoresSafeArea()
-    }
-
 }
-
