@@ -40,17 +40,10 @@ class ViewController: UIViewController {
         return button
     }()
 
-    private lazy var chooseRangeButtonWithCustomCalendar: UIButton = {
+    private lazy var chooseSingleButtonWithCustomCalendar: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Choose range of dates with custom calendar", for: .normal)
-        button.addTarget(self, action: #selector(self.chooseRangeWithCustomCalendar), for: .touchUpInside)
-        return button
-    }()
-
-    private lazy var chooseWithSwiftUI: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Choose with SwiftUI", for: .normal)
-        button.addTarget(self, action: #selector(self.swiftUIPresentation), for: .touchUpInside)
+        button.setTitle("Choose single date with custom calendar", for: .normal)
+        button.addTarget(self, action: #selector(self.chooseSingleDateWithCustomCalendar), for: .touchUpInside)
         return button
     }()
 
@@ -98,8 +91,7 @@ class ViewController: UIViewController {
         self.containerView.setCustomSpacing(32, after: self.currentDateLabel)
         self.containerView.addArrangedSubview(self.chooseRangeButton)
         self.containerView.addArrangedSubview(self.chooseSingleButton)
-        self.containerView.addArrangedSubview(self.chooseRangeButtonWithCustomCalendar)
-        self.containerView.addArrangedSubview(self.chooseWithSwiftUI)
+        self.containerView.addArrangedSubview(self.chooseSingleButtonWithCustomCalendar)
         self.view.addSubview(self.containerView)
     }
 
@@ -157,7 +149,7 @@ class ViewController: UIViewController {
     }
 
     @objc
-    private func chooseRangeWithCustomCalendar() {
+    private func chooseSingleDateWithCustomCalendar() {
         var customConfig: FastisConfig = .default
         var calendar: Calendar = .init(identifier: .islamicUmmAlQura)
         calendar.locale = .autoupdatingCurrent
@@ -181,14 +173,6 @@ class ViewController: UIViewController {
             }
         }
         fastisController.present(above: self)
-    }
-
-    @objc
-    private func swiftUIPresentation() {
-        let hostingController = HostingController()
-        hostingController.modalPresentationStyle = .custom
-        let navVC = self.parent as? UINavigationController
-        navVC?.pushViewController(hostingController, animated: true)
     }
 
 }

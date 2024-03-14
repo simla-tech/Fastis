@@ -3,13 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		1A3E7A5E2A40901600434229 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1A3E7A602A40901600434229 /* Localizable.strings */; };
-		1AC064EF2BA2E6DB003AFCCE /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC064EE2BA2E6DB003AFCCE /* MainView.swift */; };
-		1AC064F32BA2E708003AFCCE /* HostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC064F22BA2E708003AFCCE /* HostingController.swift */; };
 		F381AF9628B8C7190046383A /* Fastis in Frameworks */ = {isa = PBXBuildFile; productRef = F381AF9528B8C7190046383A /* Fastis */; };
 		F3FCEE47244780FE000F966E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FCEE46244780FE000F966E /* AppDelegate.swift */; };
 		F3FCEE4B244780FE000F966E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FCEE4A244780FE000F966E /* ViewController.swift */; };
@@ -21,8 +19,6 @@
 		1A3E7A5F2A40901600434229 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1A3E7A612A40902000434229 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1A3E7A622A409B3A00434229 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
-		1AC064EE2BA2E6DB003AFCCE /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		1AC064F22BA2E708003AFCCE /* HostingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostingController.swift; sourceTree = "<group>"; };
 		CB137E4877EBDC6E87A77A4B /* Pods_FastisExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FastisExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F31CFB6B28B8C32D00364F6A /* Fastis */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Fastis; path = ..; sourceTree = "<group>"; };
 		F3FCEE43244780FE000F966E /* FastisExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FastisExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,8 +79,6 @@
 			isa = PBXGroup;
 			children = (
 				F3FCEE46244780FE000F966E /* AppDelegate.swift */,
-				1AC064EE2BA2E6DB003AFCCE /* MainView.swift */,
-				1AC064F22BA2E708003AFCCE /* HostingController.swift */,
 				F3FCEE4A244780FE000F966E /* ViewController.swift */,
 				F3FCEE4F24478100000F966E /* Assets.xcassets */,
 				F3FCEE5124478100000F966E /* LaunchScreen.storyboard */,
@@ -170,10 +164,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1AC064F32BA2E708003AFCCE /* HostingController.swift in Sources */,
 				F3FCEE4B244780FE000F966E /* ViewController.swift in Sources */,
 				F3FCEE47244780FE000F966E /* AppDelegate.swift in Sources */,
-				1AC064EF2BA2E6DB003AFCCE /* MainView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
