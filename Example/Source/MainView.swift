@@ -6,26 +6,27 @@
 //  Copyright © 2024 RetailDriver LLC. All rights reserved.
 //
 
-
+import Fastis
 import Foundation
 import SwiftUI
 import UIKit
-import Fastis
 
 /**
  View is used as a possible example of a SwiftUI project.
  */
-
 struct MainView: View {
+
+    private let calendar: Calendar = .current
 
     @State private var showSingleCalendar = false
     @State private var showRangeCalendar = false
-    @State private var currentValueText: String = "Choose a date"
+    @State private var currentValueText = "Choose a date"
 
     @State var currentValue: FastisValue? {
         didSet {
             if let rangeValue = self.currentValue as? FastisRange {
-                self.currentValueText = self.dateFormatter.string(from: rangeValue.fromDate) + " - " + self.dateFormatter.string(from: rangeValue.toDate)
+                self.currentValueText = self.dateFormatter.string(from: rangeValue.fromDate) + " - " + self.dateFormatter
+                    .string(from: rangeValue.toDate)
             } else if let date = self.currentValue as? Date {
                 self.currentValueText = self.dateFormatter.string(from: date)
             } else {
@@ -34,11 +35,12 @@ struct MainView: View {
         }
     }
 
-    @State private var dateFormatter: DateFormatter = {
+    private var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy"
+        formatter.calendar = self.calendar
         return formatter
-    }()
+    }
 
     var body: some View {
         VStack(spacing: 32, content: {
@@ -54,40 +56,33 @@ struct MainView: View {
         })
         .navigationTitle("SwiftUI presentation")
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .sheet(isPresented: $showRangeCalendar) {
+        .sheet(isPresented: self.$showRangeCalendar) {
             FastisView(mode: .range) { action in
-                switch action {
-                case .done(let newValue):
+                if case .done(let newValue) = action {
                     self.currentValue = newValue
-                case .cancel:
-                    print("any actions")
                 }
             }
             .title("Choose range")
             .initialValue(self.currentValue as? FastisRange)
-            .minimumDate(Calendar.current.date(byAdding: .month, value: -2, to: Date()))
-            .maximumDate(Calendar.current.date(byAdding: .month, value: 3, to: Date()))
+            .minimumDate(self.calendar.date(byAdding: .month, value: -2, to: Date()))
+            .maximumDate(self.calendar.date(byAdding: .month, value: 3, to: Date()))
             .allowToChooseNilDate(true)
             .allowDateRangeChanges(false)
             .shortcuts([.lastWeek, .lastMonth])
             .selectMonthOnHeaderTap(true)
             .ignoresSafeArea()
         }
-        .sheet(isPresented: $showSingleCalendar) {
+        .sheet(isPresented: self.$showSingleCalendar) {
             FastisView(mode: .single) { action in
-                switch action {
-                case .done(let newValue):
+                if case .done(let newValue) = action {
                     self.currentValue = newValue
-                case .cancel:
-                    print("any actions")
                 }
             }
             .title("Choose date")
             .initialValue(self.currentValue as? Date)
-            .minimumDate(Calendar.current.date(byAdding: .month, value: -2, to: Date()))
+            .minimumDate(self.calendar.date(byAdding: .month, value: -2, to: Date()))
             .maximumDate(Date())
             .allowToChooseNilDate(true)
-            .allowDateRangeChanges(false)
             .shortcuts([.yesterday, .today, .tomorrow])
             .closeOnSelectionImmediately(true)
             .ignoresSafeArea()

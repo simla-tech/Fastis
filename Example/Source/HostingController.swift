@@ -18,7 +18,9 @@ class HostingController: UIHostingController<MainView> {
         super.init(rootView: MainView())
     }
 
-    @MainActor required dynamic init?(coder aDecoder: NSCoder) {
+    @available(*, unavailable)
+    dynamic required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
 }
