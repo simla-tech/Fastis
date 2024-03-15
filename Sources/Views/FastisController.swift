@@ -170,8 +170,12 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
     private var viewConfigs: [IndexPath: DayCell.ViewConfig] = [:]
     private var privateMinimumDate: Date?
     private var privateMaximumDate: Date?
+    private var privateAllowDateRangeChanges = true
     private var privateSelectMonthOnHeaderTap = false
     private var dayFormatter = DateFormatter()
+    private var isDone = false
+    private var privateCloseOnSelectionImmediately = false
+
     private var value: Value? {
         didSet {
             self.updateSelectedShortcut()
@@ -180,11 +184,10 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         }
     }
 
-    private var isDone = false
-    private var privateCloseOnSelectionImmediately = false
-
     /**
      Shortcuts array
+
+     Default value — `"[]"`
 
      You can use prepared shortcuts depending on the current mode.
 
@@ -208,11 +211,15 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
      When `allowToChooseNilDate` is `true`:
      * "Done" button will be always enabled
      * You will be able to reset selection by you tapping on selected date again
+
+     Default value — `"false"`
      */
     public var allowToChooseNilDate = false
 
     /**
-     The block to execute after the dismissal finishes, return two variable .done(FastisValue?) and .cancel
+     The block to execute after the dismissal finishes, return two variable `.done(FastisValue?)` and `.cancel`
+
+     Default value — `"nil"`
      */
     public var dismissHandler: ((DismissAction) -> Void)?
 
@@ -228,11 +235,15 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
 
     /**
      And initial value which will be selected by default
+
+     Default value — `"nil"`
      */
     public var initialValue: Value?
 
     /**
      Minimal selection date. Dates less then current will be marked as unavailable
+
+     Default value — `"nil"`
      */
     public var minimumDate: Date? {
         get {
@@ -244,15 +255,9 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
     }
 
     /**
-     Allow date range changes
-
-     Set this variable to `false` if you want to disable date range changes.
-     Next tap after selecting range will start new range selection.
-     */
-    public var allowDateRangeChanges = true
-
-    /**
      Maximum selection date. Dates greater then current will be marked as unavailable
+
+     Default value — `"nil"`
      */
     public var maximumDate: Date? {
         get {
@@ -499,7 +504,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
                         return .from(date.startOfDay(in: self.config.calendar), to: date.endOfDay(in: self.config.calendar))
                     }
 
-                    let dateRangeChangesDisabled = !self.allowDateRangeChanges
+                    let dateRangeChangesDisabled = !self.privateAllowDateRangeChanges
                     let rangeSelected = !oldValue.fromDate.isInSameDay(in: self.config.calendar, date: oldValue.toDate)
                     if dateRangeChangesDisabled, rangeSelected {
                         return .from(date.startOfDay(in: self.config.calendar), to: date.endOfDay(in: self.config.calendar))
@@ -702,6 +707,8 @@ public extension FastisController where Value == FastisRange {
 
     /**
      Set this variable to `true` if you want to allow select date ranges by tapping on months
+
+     Default value — `"false"`
      */
     var selectMonthOnHeaderTap: Bool {
         get {
@@ -711,6 +718,24 @@ public extension FastisController where Value == FastisRange {
             self.privateSelectMonthOnHeaderTap = newValue
         }
     }
+
+    /**
+     Allow date range changes
+
+     Set this variable to `false` if you want to disable date range changes.
+     Next tap after selecting range will start new range selection.
+
+     Default value — `"true"`
+     */
+    var allowDateRangeChanges: Bool {
+        get {
+            self.privateAllowDateRangeChanges
+        }
+        set {
+            self.privateAllowDateRangeChanges = newValue
+        }
+    }
+
 }
 
 public extension FastisController where Value == Date {
@@ -726,7 +751,7 @@ public extension FastisController where Value == Date {
     /**
      Set this variable to `true` if you want to hide view of the selected date and close the controller right after the date is selected.
 
-     Default value — `"False"`
+     Default value — `"false"`
      */
     var closeOnSelectionImmediately: Bool {
         get {

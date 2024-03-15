@@ -18,6 +18,7 @@ Fastis is a fully customisable UI component for picking dates and ranges created
 	- [Configuration](#configuration)
 	- [Shortcuts](#shortcuts)
 	- [Customization](#customization)
+	- [SwiftUI](#swiftui)
 - [Credits](#credits)
 - [License](#license)
 
@@ -161,7 +162,6 @@ var maximumDate: Date? = nil
 var selectMonthOnHeaderTap: Bool = true
 var allowDateRangeChanges: Bool = true
 var closeOnSelectionImmediately: Bool = false
-    
 ```
 
 - `shortcuts`- Shortcuts array. The default value is `[]`. See [Shortcuts](#shortcuts) section
@@ -226,7 +226,7 @@ To customise a special FastisController instance with custom calendar:
 
 ```swift
 var customConfig: FastisConfig = .default
-var calendar: Calendar = .init(identifier: .islamicUmmAlQura)
+var calendar = Calendar(identifier: .islamicUmmAlQura)
 calendar.locale = .autoupdatingCurrent
 customConfig.calendar = calendar
 let fastisController = FastisController(mode: .range, config: customConfig)
@@ -246,9 +246,56 @@ config.todayCell.circleViewColor = .red
 
 If you don't want to customzie today date cell, just set `config.todayCell = nil` and today cell will use `dayCell` config.
 
+### SwiftUI
+
+The library also contains a SwiftUI wrapper
+
+If you want to get a date range:
+
+```swift
+FastisView(mode: .single, dismissHandler: { action in
+	switch action {
+	case .done(let resultDate):
+		print(resultDate) // resultDate is Date
+	case .cancel:
+		...
+    }
+})
+.title("Choose range")
+.initialValue(self.currentValue as? FastisRange)
+.minimumDate(Calendar.current.date(byAdding: .month, value: -2, to: Date()))
+.maximumDate(Calendar.current.date(byAdding: .month, value: 3, to: Date()))
+.allowToChooseNilDate(true)
+.allowDateRangeChanges(false)
+.shortcuts([.lastWeek, .lastMonth])
+.selectMonthOnHeaderTap(true)
+```
+
+If you want to get a single date:
+
+```swift
+FastisView(mode: .range, dismissHandler: { action in
+	switch action {
+	case .done(let resultRange):
+		print(resultRange) // resultRange is FastisRange
+	case .cancel:
+        ...
+	}
+})
+.title("Choose date")
+.initialValue(self.currentValue as? Date)
+.minimumDate(Calendar.current.date(byAdding: .month, value: -2, to: Date()))
+.maximumDate(Date())
+.allowToChooseNilDate(true)
+.allowDateRangeChanges(false)
+.shortcuts([.yesterday, .today, .tomorrow])
+.closeOnSelectionImmediately(true)
+```
+
 ## Credits
 
 - Ilya Kharlamov ([@ilia3546](https://github.com/ilia3546))
+- Uriy Devyataev ([@UriyDevyataev](https://github.com/UriyDevyataev))
 
 ## License
 
