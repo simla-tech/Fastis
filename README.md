@@ -254,11 +254,11 @@ If you want to get a date range:
 
 ```swift
 FastisView(mode: .single, dismissHandler: { action in
-	switch action {
-	case .done(let resultDate):
-		print(resultDate) // resultDate is Date
-	case .cancel:
-		...
+    switch action {
+    case .done(let resultDate):
+        print(resultDate) // resultDate is Date
+    case .cancel:
+        ...
     }
 })
 .title("Choose range")
@@ -275,12 +275,12 @@ If you want to get a single date:
 
 ```swift
 FastisView(mode: .range, dismissHandler: { action in
-	switch action {
-	case .done(let resultRange):
-		print(resultRange) // resultRange is FastisRange
-	case .cancel:
+    switch action {
+    case .done(let resultRange):
+        print(resultRange) // resultRange is FastisRange
+    case .cancel:
         ...
-	}
+    }
 })
 .title("Choose date")
 .initialValue(self.currentValue as? Date)
