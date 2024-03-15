@@ -246,6 +246,58 @@ config.todayCell.circleViewColor = .red
 
 If you don't want to customzie today date cell, just set `config.todayCell = nil` and today cell will use `dayCell` config.
 
+### SwiftUI
+
+The library also contains a SwiftUI wrapper
+
+If you want to get a date range:
+
+```swiftUI
+
+FastisView(mode: .range) { action in
+    switch action {
+    case .done(let newValue):
+        self.currentValue = newValue
+    case .cancel:
+        print("any actions")
+    }
+}
+.title("Choose range")
+.initialValue(self.currentValue as? FastisRange)
+.minimumDate(Calendar.current.date(byAdding: .month, value: -2, to: Date()))
+.maximumDate(Calendar.current.date(byAdding: .month, value: 3, to: Date()))
+.allowToChooseNilDate(true)
+.allowDateRangeChanges(false)
+.shortcuts([.lastWeek, .lastMonth])
+.selectMonthOnHeaderTap(true)
+.ignoresSafeArea()
+
+```
+
+If you want to get a single date:
+
+```swiftUI
+
+FastisView(mode: .single) { action in
+    switch action {
+    case .done(let newValue):
+        self.currentValue = newValue
+    case .cancel:
+        print("any actions")
+    }
+}
+.title("Choose date")
+.initialValue(self.currentValue as? Date)
+.minimumDate(Calendar.current.date(byAdding: .month, value: -2, to: Date()))
+.maximumDate(Date())
+.allowToChooseNilDate(true)
+.allowDateRangeChanges(false)
+.shortcuts([.yesterday, .today, .tomorrow])
+.closeOnSelectionImmediately(true)
+.ignoresSafeArea()
+
+```
+
 ## Credits
 
 - Ilya Kharlamov ([@ilia3546](https://github.com/ilia3546))
