@@ -12,24 +12,6 @@ import UIKit
 /**
  Main controller of Fastis framework. Use it to create and present dade picker
 
- Usage example:
- ```swift
- let fastisController = FastisController(mode: .range)
- fastisController.title = "Choose range"
- fastisController.maximumDate = Date()
- fastisController.allowToChooseNilDate = true
- fastisController.shortcuts = [.today, .lastWeek]
- fastisController.dismissHandler = { [weak self] action in
-     switch action {
-     case .done(let newValue):
-        ...
-     case .cancel:
-        ...
-     }
- }
- fastisController.present(above: self)
- ```
-
  **Single and range modes**
 
  If you want to get a single date you have to use `Date` type:

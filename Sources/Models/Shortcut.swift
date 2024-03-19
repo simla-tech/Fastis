@@ -33,8 +33,13 @@ public struct FastisShortcut<Value: FastisValue>: Hashable {
 
     /// Display name of shortcut
     public var name: String
-
-    /// Tap handler
+    
+    /**
+     Tap handler
+     - Parameters:
+        - calendar: using Calendar
+     - Return Value: ``FastisValue``
+    */
     public var action: (Calendar) -> Value
 
     /// Create a shortcut
