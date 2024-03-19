@@ -12,24 +12,6 @@ import UIKit
 /**
  Main controller of Fastis framework. Use it to create and present dade picker
 
- Usage example:
- ```swift
- let fastisController = FastisController(mode: .range)
- fastisController.title = "Choose range"
- fastisController.maximumDate = Date()
- fastisController.allowToChooseNilDate = true
- fastisController.shortcuts = [.today, .lastWeek]
- fastisController.dismissHandler = { [weak self] action in
-     switch action {
-     case .done(let newValue):
-        ...
-     case .cancel:
-        ...
-     }
- }
- fastisController.present(above: self)
- ```
-
  **Single and range modes**
 
  If you want to get a single date you have to use `Date` type:
@@ -287,6 +269,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         fatalError("init(coder:) has not been implemented")
     }
 
+    @_documentation(visibility: private)
     override public func viewDidLoad() {
         super.viewDidLoad()
         self.configureUI()
@@ -295,6 +278,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         self.configureInitialState()
     }
 
+    @_documentation(visibility: private)
     override open func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
@@ -557,6 +541,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
 
     // MARK: - JTACMonthViewDelegate
 
+    @_documentation(visibility: private)
     public func configureCalendar(_ calendar: JTACMonthView) -> ConfigurationParameters {
 
         var startDate = self.config.calendar.date(byAdding: .year, value: -99, to: Date())!
@@ -588,6 +573,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         )
     }
 
+    @_documentation(visibility: private)
     public func calendar(
         _ calendar: JTACMonthView,
         headerViewForDateRange range: (start: Date, end: Date),
@@ -622,12 +608,14 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         return header
     }
 
+    @_documentation(visibility: private)
     public func calendar(_ calendar: JTACMonthView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTACDayCell {
         let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: self.dayCellReuseIdentifier, for: indexPath)
         self.configureCell(cell, forItemAt: date, cellState: cellState, indexPath: indexPath)
         return cell
     }
 
+    @_documentation(visibility: private)
     public func calendar(
         _ calendar: JTACMonthView,
         willDisplay cell: JTACDayCell,
@@ -638,6 +626,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         self.configureCell(cell, forItemAt: date, cellState: cellState, indexPath: indexPath)
     }
 
+    @_documentation(visibility: private)
     public func calendar(
         _ calendar: JTACMonthView,
         didSelectDate date: Date,
@@ -652,6 +641,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         }
     }
 
+    @_documentation(visibility: private)
     public func calendar(
         _ calendar: JTACMonthView,
         didDeselectDate date: Date,
@@ -666,6 +656,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         }
     }
 
+    @_documentation(visibility: private)
     public func calendar(
         _ calendar: JTACMonthView,
         shouldSelectDate date: Date,
@@ -677,6 +668,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         return true
     }
 
+    @_documentation(visibility: private)
     public func calendar(
         _ calendar: JTACMonthView,
         shouldDeselectDate date: Date,
@@ -688,6 +680,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         return true
     }
 
+    @_documentation(visibility: private)
     public func calendarSizeForMonths(_ calendar: JTACMonthView?) -> MonthSize? {
         self.config.monthHeader.height
     }

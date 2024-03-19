@@ -11,21 +11,6 @@ import SwiftUI
 /**
   View  of Fastis framework. Use it to create and present dade picker
 
-  Usage example:
-  ```swift
-  FastisView(mode: .range, dismissHandler: { action in
-     switch action {
-     case .done(let newValue):
-        ...
-     case .cancel:
-        ...
-     }
-  })
-  .title("Choose range")
-  .allowToChooseNilDate(true)
-  .shortcuts([.lastWeek, .lastMonth])
-  ```
-
   **Single and range modes**
 
   If you want to get a single date you have to use `Date` type:
@@ -72,10 +57,12 @@ public struct FastisView<Value: FastisValue>: UIViewControllerRepresentable {
         self.controller.dismissHandler = dismissHandler
     }
 
+    @_documentation(visibility: private)
     public func makeUIViewController(context: Context) -> UINavigationController {
         UINavigationController(rootViewController: self.controller)
     }
-
+    
+    @_documentation(visibility: private)
     public func updateUIViewController(
         _ uiViewController: UINavigationController,
         context: UIViewControllerRepresentableContext<FastisView>

@@ -33,8 +33,13 @@ public struct FastisShortcut<Value: FastisValue>: Hashable {
 
     /// Display name of shortcut
     public var name: String
-
-    /// Tap handler
+    
+    /**
+     Tap handler
+     - Parameters:
+        - calendar: using Calendar
+     - Return Value: ``FastisValue``
+    */
     public var action: (Calendar) -> Value
 
     /// Create a shortcut
@@ -46,10 +51,12 @@ public struct FastisShortcut<Value: FastisValue>: Hashable {
         self.action = action
     }
 
+    @_documentation(visibility: private)
     public func hash(into hasher: inout Hasher) {
         hasher.combine(self.id)
     }
 
+    @_documentation(visibility: private)
     public static func == (lhs: FastisShortcut<Value>, rhs: FastisShortcut<Value>) -> Bool {
         lhs.id == rhs.id
     }
