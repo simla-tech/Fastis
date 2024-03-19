@@ -51,12 +51,12 @@ public struct FastisShortcut<Value: FastisValue>: Hashable {
         self.action = action
     }
 
-    @_documentation(visibility: private)
+    @_documentation(visibility: internal)
     public func hash(into hasher: inout Hasher) {
         hasher.combine(self.id)
     }
 
-    @_documentation(visibility: private)
+    @_documentation(visibility: internal)
     public static func == (lhs: FastisShortcut<Value>, rhs: FastisShortcut<Value>) -> Bool {
         lhs.id == rhs.id
     }
