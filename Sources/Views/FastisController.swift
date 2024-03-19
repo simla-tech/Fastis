@@ -539,7 +539,6 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
 
     // MARK: - JTACMonthViewDelegate
 
-    @_documentation(visibility: internal)
     public func configureCalendar(_ calendar: JTACMonthView) -> ConfigurationParameters {
 
         var startDate = self.config.calendar.date(byAdding: .year, value: -99, to: Date())!
@@ -571,7 +570,6 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         )
     }
 
-    @_documentation(visibility: private)
     public func calendar(
         _ calendar: JTACMonthView,
         headerViewForDateRange range: (start: Date, end: Date),
