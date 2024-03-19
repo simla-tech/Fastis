@@ -57,12 +57,10 @@ public struct FastisView<Value: FastisValue>: UIViewControllerRepresentable {
         self.controller.dismissHandler = dismissHandler
     }
 
-    @_documentation(visibility: internal)
     public func makeUIViewController(context: Context) -> UINavigationController {
         UINavigationController(rootViewController: self.controller)
     }
     
-    @_documentation(visibility: internal)
     public func updateUIViewController(
         _ uiViewController: UINavigationController,
         context: UIViewControllerRepresentableContext<FastisView>

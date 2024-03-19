@@ -269,7 +269,6 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         fatalError("init(coder:) has not been implemented")
     }
 
-    @_documentation(visibility: internal)
     override public func viewDidLoad() {
         super.viewDidLoad()
         self.configureUI()
@@ -278,7 +277,6 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         self.configureInitialState()
     }
 
-    @_documentation(visibility: internal)
     override open func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
@@ -541,7 +539,6 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
 
     // MARK: - JTACMonthViewDelegate
 
-    @_documentation(visibility: internal)
     public func configureCalendar(_ calendar: JTACMonthView) -> ConfigurationParameters {
 
         var startDate = self.config.calendar.date(byAdding: .year, value: -99, to: Date())!
@@ -573,7 +570,6 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         )
     }
 
-    @_documentation(visibility: internal)
     public func calendar(
         _ calendar: JTACMonthView,
         headerViewForDateRange range: (start: Date, end: Date),
@@ -608,14 +604,12 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         return header
     }
 
-    @_documentation(visibility: internal)
     public func calendar(_ calendar: JTACMonthView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTACDayCell {
         let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: self.dayCellReuseIdentifier, for: indexPath)
         self.configureCell(cell, forItemAt: date, cellState: cellState, indexPath: indexPath)
         return cell
     }
 
-    @_documentation(visibility: internal)
     public func calendar(
         _ calendar: JTACMonthView,
         willDisplay cell: JTACDayCell,
@@ -626,7 +620,6 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         self.configureCell(cell, forItemAt: date, cellState: cellState, indexPath: indexPath)
     }
 
-    @_documentation(visibility: internal)
     public func calendar(
         _ calendar: JTACMonthView,
         didSelectDate date: Date,
@@ -641,7 +634,6 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         }
     }
 
-    @_documentation(visibility: internal)
     public func calendar(
         _ calendar: JTACMonthView,
         didDeselectDate date: Date,
@@ -656,7 +648,6 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         }
     }
 
-    @_documentation(visibility: internal)
     public func calendar(
         _ calendar: JTACMonthView,
         shouldSelectDate date: Date,
@@ -668,7 +659,6 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         return true
     }
 
-    @_documentation(visibility: internal)
     public func calendar(
         _ calendar: JTACMonthView,
         shouldDeselectDate date: Date,
@@ -680,7 +670,6 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         return true
     }
 
-    @_documentation(visibility: internal)
     public func calendarSizeForMonths(_ calendar: JTACMonthView?) -> MonthSize? {
         self.config.monthHeader.height
     }
