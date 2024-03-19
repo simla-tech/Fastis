@@ -33,6 +33,7 @@ Fastis is a fully customisable UI component for picking dates and ranges created
 - [x] Flexible customization
 - [x] Shortcuts for dates and ranges
 - [x] Single date and date range modes
+- [x] Detailed [documentation](https://simla-tech.github.io/Fastis/documentation/fastis)
 
 ## Android implementation
 
