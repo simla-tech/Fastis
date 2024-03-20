@@ -31,7 +31,8 @@ jobs:
         swift-version: '5.7'
     - name: Generate Docs
       run: |
-        xcrun docc generate Fastis --output ./public
+        export SWIFTDOC_OUTPUT=./public
+        swift doc --module MyModule --output $SWIFTDOC_OUTPUT
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v1
       with:
