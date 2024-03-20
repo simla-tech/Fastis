@@ -29,10 +29,12 @@ jobs:
       uses: swift-actions/setup-swift@v1
       with:
         swift-version: '5.7'
+    - name: Install swift-docc
+      run: |
+        brew install swift-docc
     - name: Generate Docs
       run: |
-        export SWIFTDOC_OUTPUT=./public
-        swift doc --module MyModule --output $SWIFTDOC_OUTPUT
+        swift-docc generate Fastis --output ./public
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v1
       with:
