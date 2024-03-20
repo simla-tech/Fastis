@@ -31,7 +31,7 @@ jobs:
         swift-version: '5.7'
     - name: Generate Docs
       run: |
-        xcrun docc generate Fastis --destination ./public
+       xcodebuild docbuild -scheme Fastis \ -destination generic/platform=iOS \ OTHER_DOCC_FLAGS="--transform-for-static-hosting --hosting-base-path Fastis --output-path docs"
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v1
       with:
