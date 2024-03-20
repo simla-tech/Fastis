@@ -30,14 +30,8 @@ jobs:
       with:
         swift-version: '5.7'
     - name: Generate Docs
-      run: swift build -v -Xswiftc "-sdk" -Xswiftc "`xcrun --sdk iphonesimulator --show-sdk-path`" -Xswiftc "-target" -Xswiftc "x86_64-apple-ios13.0-simulator"
-      uses: fwcd/swift-docc-action@v1
-      with:
-        target: Fastis
-        output: ./public
-        transform-for-static-hosting: 'true'
-        disable-indexing: 'true'
-        hosting-base-path: Fastis
+      run: |
+        xcrun docc generate Fastis --output ./public
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v1
       with:
