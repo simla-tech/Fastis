@@ -19,7 +19,7 @@ concurrency:
 
 jobs:
   docs:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
     - uses: actions/checkout@v3
@@ -30,13 +30,8 @@ jobs:
       with:
         swift-version: '5.7'
     - name: Generate Docs
-      uses: fwcd/swift-docc-action@v1
-      with:
-        target: Fastis
-        output: ./public
-        transform-for-static-hosting: 'true'
-        disable-indexing: 'true'
-        hosting-base-path: Fastis
+      run: |
+        xcrun docc generate Fastis --output ./public
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v1
       with:
