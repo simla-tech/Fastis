@@ -176,6 +176,8 @@ var closeOnSelectionImmediately: Bool = false
 - `allowDateRangeChanges` (Only for `.range` mode) - Set this variable to `false` if you want to disable date range changes. Next tap after selecting a range will start a new range selection. The default value is `true`.
 - `closeOnSelectionImmediately` (Only for `.single` mode) - Set this variable to `true` if you want to hide view of the selected date and close the controller right after the date is selected. The default value is `false`
 
+[Documentation Reference](https://simla-tech.github.io/Fastis/documentation/fastis/fastiscontroller)
+
 ### Shortcuts
 
 Using shortcuts allows you to select set dates or date ranges quickly.
@@ -196,11 +198,13 @@ var customShortcut = FastisShortcut(name: "Today") {
 fastisController.shortcuts = [customShortcut, .lastWeek]
 ```
 
+[Documentation Reference](https://simla-tech.github.io/Fastis/documentation/fastis/fastisshortcut)
+
 ### Customization
 
 Fastis can be customised global or local. `FastisConfig` have some sections:
 
-- `calendar` - Base calendar that used to render UI. Default value is `.current`
+- `calendar` - Base calendar that used to render UI. Default value is `.current`.
 - `controller` - base view controller (`cancelButtonTitle`, `doneButtonTitle`, etc.)
 - `monthHeader` - month titles
 - `dayCell` - day cells (selection parameters, font, etc.)
@@ -248,6 +252,8 @@ config.todayCell.circleViewColor = .red
 
 If you don't want to customzie today date cell, just set `config.todayCell = nil` and today cell will use `dayCell` config.
 
+[Documentation Reference](https://simla-tech.github.io/Fastis/documentation/fastis/fastisconfig)
+
 ### SwiftUI
 
 The library also contains a SwiftUI wrapper
@@ -293,6 +299,8 @@ FastisView(mode: .range, dismissHandler: { action in
 .shortcuts([.yesterday, .today, .tomorrow])
 .closeOnSelectionImmediately(true)
 ```
+
+[Documentation Reference]([https://simla-tech.github.io/Fastis/documentation/fastis/fastisconfig](https://simla-tech.github.io/Fastis/documentation/fastis/fastisview))
 
 ## Documentation
 
