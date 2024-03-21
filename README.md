@@ -19,6 +19,7 @@ Fastis is a fully customisable UI component for picking dates and ranges created
 	- [Shortcuts](#shortcuts)
 	- [Customization](#customization)
 	- [SwiftUI](#swiftui)
+- [Documentation](#documentation)
 - [Credits](#credits)
 - [License](#license)
 
@@ -292,6 +293,12 @@ FastisView(mode: .range, dismissHandler: { action in
 .shortcuts([.yesterday, .today, .tomorrow])
 .closeOnSelectionImmediately(true)
 ```
+
+## Documentation
+
+You can use **detailed DocC documentation** which contains reference documentation about all components.
+
+[-> Go to DocC documentation](https://simla-tech.github.io/Fastis/documentation/fastis/)
 
 ## Credits
 
