@@ -60,7 +60,7 @@ public struct FastisView<Value: FastisValue>: UIViewControllerRepresentable {
     public func makeUIViewController(context: Context) -> UINavigationController {
         UINavigationController(rootViewController: self.controller)
     }
-    
+
     public func updateUIViewController(
         _ uiViewController: UINavigationController,
         context: UIViewControllerRepresentableContext<FastisView>
