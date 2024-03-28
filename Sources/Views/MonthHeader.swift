@@ -27,7 +27,6 @@ final class MonthHeader: JTACMonthReusableView {
     private var topAnchorConstraint: NSLayoutConstraint?
     private var bottomAnchorConstraint: NSLayoutConstraint?
 
-    internal var calculatedHeight: CGFloat = 0
     internal var tapHandler: (() -> Void)?
     private lazy var monthFormatter = DateFormatter()
 
@@ -133,16 +132,6 @@ public extension FastisConfig {
          Default value — `"MMMM yyyy"`
          */
         public var monthFormat = "MMMM yyyy"
-
-        /**
-         Locale of displayed month value
-
-         Default value — `.current`
-         */
-        @available(*, unavailable, message: "Use locale FastisConfig.calendar.locale")
-        public var monthLocale: Locale {
-            .autoupdatingCurrent
-        }
 
         /**
          Height of month view

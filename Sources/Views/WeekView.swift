@@ -12,7 +12,7 @@ final class WeekView: UIView {
 
     // MARK: - Outlets
 
-    public lazy var stackView: UIStackView = {
+    private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.backgroundColor = .clear
         stackView.spacing = 0
