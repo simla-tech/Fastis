@@ -74,7 +74,7 @@ final class DayCell: JTACDayCell {
 
     // MARK: - Configurations
 
-    public func applyConfig(_ config: FastisConfig) {
+    func applyConfig(_ config: FastisConfig) {
         self.backgroundColor = config.controller.backgroundColor
 
         let todayConfig = config.todayCell

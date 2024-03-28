@@ -234,14 +234,5 @@ public extension FastisConfig {
          */
         public var format = "d MMMM"
 
-        /**
-         Locale of formatter
-
-         Default value — `Locale.autoupdatingCurrent`
-         */
-        @available(*, unavailable, message: "Use locale in FastisConfig.calendar.locale")
-        public var locale: Locale {
-            .autoupdatingCurrent
-        }
     }
 }
