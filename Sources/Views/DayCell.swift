@@ -27,6 +27,14 @@ final class DayCell: JTACDayCell {
         return view
     }()
 
+    lazy var markerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemRed
+        view.isHidden = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     lazy var selectionBackgroundView: UIView = {
         let view = UIView()
         view.isHidden = true
@@ -99,6 +107,7 @@ final class DayCell: JTACDayCell {
         self.contentView.addSubview(self.backgroundRangeView)
         self.contentView.addSubview(self.selectionBackgroundView)
         self.contentView.addSubview(self.dateLabel)
+        self.contentView.addSubview(self.markerView)
         self.selectionBackgroundView.layer.cornerRadius = min(self.frame.width, self.frame.height) / 2
     }
 
@@ -107,6 +116,13 @@ final class DayCell: JTACDayCell {
         NSLayoutConstraint.activate([
             self.dateLabel.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
             self.dateLabel.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor)
+        ])
+
+        NSLayoutConstraint.activate([
+            self.markerView.centerXAnchor.constraint(equalTo: self.dateLabel.centerXAnchor),
+            self.markerView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -6),
+            self.markerView.widthAnchor.constraint(equalToConstant: 5),
+            self.markerView.heightAnchor.constraint(equalToConstant: 5)
         ])
 
         self.rangeViewLeftAnchorToSuperviewConstraint = self.backgroundRangeView.leftAnchor.constraint(equalTo: self.contentView.leftAnchor)
@@ -278,6 +294,7 @@ final class DayCell: JTACDayCell {
         var isDateEnabled = true
         var rangeView = RangeViewConfig()
         var isToday = false
+        var showsMarker = false
     }
 
     internal func configure(for config: ViewConfig) {
@@ -285,6 +302,8 @@ final class DayCell: JTACDayCell {
         self.selectionBackgroundView.isHidden = config.isSelectedViewHidden
         self.isUserInteractionEnabled = config.dateLabelText != nil && config.isDateEnabled
         self.clipsToBounds = config.dateLabelText == nil
+        self.markerView.layer.cornerRadius = 2.5
+        self.markerView.isHidden = !config.showsMarker || config.dateLabelText == nil
 
         if let dateLabelText = config.dateLabelText {
             self.dateLabel.isHidden = false
