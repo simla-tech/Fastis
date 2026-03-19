@@ -156,6 +156,13 @@ fastisController.dismissHandler = { [weak self] action in
 If you want to show a red dot under specific days, you can pass an array of dates to `markedDates`.
 These dates are used only for display. They do not change the picker result type, so Fastis still works in single-date or range mode.
 
+You can customize the marker globally through `FastisConfig.dayCell`:
+
+```swift
+FastisConfig.default.dayCell.markerColor = .systemGreen
+FastisConfig.default.dayCell.markerSize = 6
+```
+
 UIKit:
 
 ```swift
