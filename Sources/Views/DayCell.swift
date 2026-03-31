@@ -411,7 +411,7 @@ final class DayCell: JTACDayCell {
             self.circleView.backgroundColor = usesMarkerStyle ? self.config.markerColor : todayConfig.circleViewColor
         }
 
-        self.markerView.isHidden = true
+        self.markerView.isHidden = !usesMarkerStyle
         self.circleView.layer.cornerRadius = circleSize * 0.5
         self.circleView.removeFromSuperview()
         self.contentView.addSubview(self.circleView)
