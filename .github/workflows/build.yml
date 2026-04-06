@@ -13,4 +13,13 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build
-      run: swift build -v -Xswiftc "-sdk" -Xswiftc "`xcrun --sdk iphonesimulator --show-sdk-path`" -Xswiftc "-target" -Xswiftc "x86_64-apple-ios13.0-simulator"
+      run: |
+        SDK_PATH="$(xcrun --sdk iphonesimulator --show-sdk-path)"
+        SIMULATOR_ARCH="$(uname -m)"
+        TARGET_TRIPLE="${SIMULATOR_ARCH}-apple-ios13.0-simulator"
+
+        swift build -v \
+          -Xswiftc -sdk -Xswiftc "$SDK_PATH" \
+          -Xswiftc -target -Xswiftc "$TARGET_TRIPLE" \
+          -Xcc -isysroot -Xcc "$SDK_PATH" \
+          -Xcc -target -Xcc "$TARGET_TRIPLE"
