@@ -12,5 +12,5 @@ let project = Project(
             ]
         )
     ],
-    additionalFiles: ["README.MD", "Package.swift", "Fastis.podspec"]
+    additionalFiles: ["README.md", "Package.swift", "Fastis.podspec"]
 )
