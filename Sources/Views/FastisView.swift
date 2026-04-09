@@ -144,6 +144,16 @@ public struct FastisView<Value: FastisValue>: UIViewControllerRepresentable {
         return self
     }
 
+    /**
+     Dates that should display a red marker dot in the calendar.
+
+     Default value - `"[]"`
+     */
+    public func markedDates(_ value: [Date]) -> Self {
+        self.controller.markedDates = value
+        return self
+    }
+
 }
 
 public extension FastisView where Value == FastisRange {

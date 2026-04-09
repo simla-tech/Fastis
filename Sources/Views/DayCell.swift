@@ -27,6 +27,14 @@ final class DayCell: JTACDayCell {
         return view
     }()
 
+    lazy var markerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemRed
+        view.isHidden = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
     lazy var selectionBackgroundView: UIView = {
         let view = UIView()
         view.isHidden = true
@@ -52,6 +60,8 @@ final class DayCell: JTACDayCell {
     private var rangeViewLeftAnchorToCenterConstraint: NSLayoutConstraint?
     private var rangeViewRightAnchorToSuperviewConstraint: NSLayoutConstraint?
     private var rangeViewRightAnchorToCenterConstraint: NSLayoutConstraint?
+    private var markerViewWidthConstraint: NSLayoutConstraint?
+    private var markerViewHeightConstraint: NSLayoutConstraint?
 
     // MARK: - Lifecycle
 
@@ -88,6 +98,9 @@ final class DayCell: JTACDayCell {
         self.selectionBackgroundView.backgroundColor = config.selectedBackgroundColor
         self.dateLabel.font = config.dateLabelFont
         self.dateLabel.textColor = config.dateLabelColor
+        self.markerView.backgroundColor = config.markerColor
+        self.markerViewWidthConstraint?.constant = config.markerSize
+        self.markerViewHeightConstraint?.constant = config.markerSize
         if let cornerRadius = config.customSelectionViewCornerRadius {
             self.selectionBackgroundView.layer.cornerRadius = cornerRadius
         }
@@ -99,6 +112,7 @@ final class DayCell: JTACDayCell {
         self.contentView.addSubview(self.backgroundRangeView)
         self.contentView.addSubview(self.selectionBackgroundView)
         self.contentView.addSubview(self.dateLabel)
+        self.contentView.addSubview(self.markerView)
         self.selectionBackgroundView.layer.cornerRadius = min(self.frame.width, self.frame.height) / 2
     }
 
@@ -108,6 +122,16 @@ final class DayCell: JTACDayCell {
             self.dateLabel.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
             self.dateLabel.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor)
         ])
+
+        self.markerViewWidthConstraint = self.markerView.widthAnchor.constraint(equalToConstant: self.config.markerSize)
+        self.markerViewHeightConstraint = self.markerView.heightAnchor.constraint(equalToConstant: self.config.markerSize)
+
+        NSLayoutConstraint.activate([
+            self.markerView.centerXAnchor.constraint(equalTo: self.dateLabel.centerXAnchor),
+            self.markerView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -6),
+            self.markerViewWidthConstraint,
+            self.markerViewHeightConstraint
+        ].compactMap { $0 })
 
         self.rangeViewLeftAnchorToSuperviewConstraint = self.backgroundRangeView.leftAnchor.constraint(equalTo: self.contentView.leftAnchor)
         self.rangeViewLeftAnchorToCenterConstraint = self.backgroundRangeView.leftAnchor.constraint(equalTo: self.contentView.centerXAnchor)
@@ -278,6 +302,7 @@ final class DayCell: JTACDayCell {
         var isDateEnabled = true
         var rangeView = RangeViewConfig()
         var isToday = false
+        var showsMarker = false
     }
 
     internal func configure(for config: ViewConfig) {
@@ -285,6 +310,8 @@ final class DayCell: JTACDayCell {
         self.selectionBackgroundView.isHidden = config.isSelectedViewHidden
         self.isUserInteractionEnabled = config.dateLabelText != nil && config.isDateEnabled
         self.clipsToBounds = config.dateLabelText == nil
+        self.markerView.layer.cornerRadius = 2.5
+        self.markerView.isHidden = !config.showsMarker || config.dateLabelText == nil
 
         if let dateLabelText = config.dateLabelText {
             self.dateLabel.isHidden = false
@@ -367,6 +394,9 @@ final class DayCell: JTACDayCell {
     private func configureTodayCell(viewConfig: ViewConfig, todayConfig: FastisConfig.TodayCell) {
         self.dateLabel.font = todayConfig.dateLabelFont
 
+        let usesMarkerStyle = viewConfig.showsMarker
+        let circleSize = usesMarkerStyle ? self.config.markerSize : todayConfig.circleSize
+
         if !viewConfig.isDateEnabled {
             self.dateLabel.textColor = todayConfig.dateLabelUnavailableColor
             self.circleView.backgroundColor = todayConfig.circleViewUnavailableColor
@@ -375,20 +405,21 @@ final class DayCell: JTACDayCell {
             self.circleView.backgroundColor = todayConfig.circleViewSelectedColor
         } else if !viewConfig.rangeView.isHidden {
             self.dateLabel.textColor = todayConfig.onRangeLabelColor
-            self.circleView.backgroundColor = todayConfig.onRangeLabelColor
+            self.circleView.backgroundColor = usesMarkerStyle ? self.config.markerColor : todayConfig.circleViewOnRangeColor
         } else {
             self.dateLabel.textColor = todayConfig.dateLabelColor
-            self.circleView.backgroundColor = todayConfig.circleViewColor
+            self.circleView.backgroundColor = usesMarkerStyle ? self.config.markerColor : todayConfig.circleViewColor
         }
 
-        self.circleView.layer.cornerRadius = todayConfig.circleSize * 0.5
+        self.markerView.isHidden = !usesMarkerStyle
+        self.circleView.layer.cornerRadius = circleSize * 0.5
         self.circleView.removeFromSuperview()
         self.contentView.addSubview(self.circleView)
         NSLayoutConstraint.activate([
             self.circleView.centerXAnchor.constraint(equalTo: self.dateLabel.centerXAnchor),
             self.circleView.topAnchor.constraint(equalTo: self.dateLabel.bottomAnchor, constant: todayConfig.circleVerticalInset),
-            self.circleView.widthAnchor.constraint(equalToConstant: todayConfig.circleSize),
-            self.circleView.heightAnchor.constraint(equalToConstant: todayConfig.circleSize)
+            self.circleView.widthAnchor.constraint(equalToConstant: circleSize),
+            self.circleView.heightAnchor.constraint(equalToConstant: circleSize)
         ])
     }
 
@@ -430,6 +461,20 @@ public extension FastisConfig {
          Default value — `.systemBlue`
          */
         public var selectedBackgroundColor: UIColor = .systemBlue
+
+        /**
+         Color of marker dot displayed under marked dates
+
+         Default value — `.systemRed`
+         */
+        public var markerColor: UIColor = .systemRed
+
+        /**
+         Size of marker dot displayed under marked dates
+
+         Default value — `5pt`
+         */
+        public var markerSize: CGFloat = 5
 
         /**
          Color of date label in cell when date is selected

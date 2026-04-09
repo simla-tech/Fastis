@@ -15,6 +15,7 @@ Fastis is a fully customisable UI component for picking dates and ranges created
 - [Usage](#usage)
 	- [Quick Start](#quick-start)
 	- [Single and range modes](#single-and-range-modes)
+	- [Marked dates](#marked-dates)
 	- [Configuration](#configuration)
 	- [Shortcuts](#shortcuts)
 	- [Customization](#customization)
@@ -150,6 +151,57 @@ fastisController.dismissHandler = { [weak self] action in
 }
 ```
 
+### Marked dates
+
+If you want to show a red dot under specific days, you can pass an array of dates to `markedDates`.
+These dates are used only for display. They do not change the picker result type, so Fastis still works in single-date or range mode.
+
+You can customize the marker globally through `FastisConfig.dayCell`:
+
+```swift
+FastisConfig.default.dayCell.markerColor = .systemGreen
+FastisConfig.default.dayCell.markerSize = 6
+```
+
+UIKit:
+
+```swift
+let markedDates = [
+    Date(),
+    Calendar.current.date(byAdding: .day, value: 2, to: Date())!
+]
+
+let fastisController = FastisController(mode: .single)
+fastisController.markedDates = markedDates
+fastisController.dismissHandler = { action in
+    switch action {
+    case .done(let resultDate):
+        print(resultDate)
+    case .cancel:
+        break
+    }
+}
+```
+
+SwiftUI:
+
+```swift
+let markedDates = [
+    Date(),
+    Calendar.current.date(byAdding: .day, value: 2, to: Date())!
+]
+
+FastisView(mode: .single) { action in
+    switch action {
+    case .done(let resultDate):
+        print(resultDate)
+    case .cancel:
+        break
+    }
+}
+.markedDates(markedDates)
+```
+
 ### Configuration
 
 FastisController has the following default configuration parameters:
@@ -159,6 +211,7 @@ var shortcuts: [FastisShortcut<Value>] = []
 var allowsToChooseNilDate: Bool = false
 var dismissHandler: ((DismissAction) -> Void)? = nil
 var initialValue: Value? = nil
+var markedDates: [Date] = []
 var minimumDate: Date? = nil
 var maximumDate: Date? = nil
 var selectMonthOnHeaderTap: Bool = true
@@ -170,6 +223,7 @@ var closeOnSelectionImmediately: Bool = false
 - `allowsToChooseNilDate`- Allow to choose `nil` date. If you set `true`, the done button will always be enabled and you will be able to reset selection by you tapping on selected date again. The default value is `false`.
 - `dismissHandler`- The block to execute after the dismissal finishes. The default value is `nil`. Return DismissAction.done(FastisValue?) after the "Done" button will be tapped or DismissAction.cancel when controller dismissed without tapped the "Done" button.
 - `initialValue`- And initial value which will be selected by default. The default value is `nil`.
+- `markedDates`- Dates that should display a red marker dot in the calendar. The default value is `[]`.
 - `minimumDate`-  Minimal selection date. Dates less than current will be marked as unavailable. The default value is `nil`.
 - `maximumDate`- Maximum selection date. Dates more significant than current will be marked as unavailable. The default value is `nil`.
 - `selectMonthOnHeaderTap` (Only for `.range` mode) - Set this variable to `true` if you want to allow select date ranges by tapping on months. The default value is `true`.

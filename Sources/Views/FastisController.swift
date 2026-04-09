@@ -157,6 +157,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
     private var dayFormatter = DateFormatter()
     private var isDone = false
     private var privateCloseOnSelectionImmediately = false
+    private var markedDateSet = Set<Date>()
 
     private var value: Value? {
         didSet {
@@ -211,6 +212,23 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
      Default value — `"nil"`
      */
     public var initialValue: Value?
+
+    /**
+     Dates that should display a red marker dot in the calendar.
+
+     Default value - `"[]"`
+     */
+    public var markedDates: [Date] = [] {
+        didSet {
+            self.markedDateSet = Set(
+                self.markedDates.map { $0.startOfDay(in: self.config.calendar) }
+            )
+            self.viewConfigs.removeAll()
+            if self.isViewLoaded {
+                self.calendarView.reloadData()
+            }
+        }
+    }
 
     /**
      Minimal selection date. Dates less then current will be marked as unavailable
@@ -400,6 +418,9 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
 
             if newConfig.dateLabelText != nil {
                 newConfig.dateLabelText = self.dayFormatter.string(from: date)
+                newConfig.showsMarker = self.markedDateSet.contains(
+                    date.startOfDay(in: self.config.calendar)
+                )
             }
 
             if self.config.calendar.isDateInToday(date) {
